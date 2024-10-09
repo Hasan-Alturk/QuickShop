@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quick Shop</string>
+    <string name="facebook_app_id">1108623474170073</string>
+    <string name="fb_login_protocol_scheme">fb1108623474170073</string>
+    <string name="facebook_client_token">e30c4c3eb473d210fbac2023ff530684</string>
+</resources>    
