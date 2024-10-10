@@ -5,7 +5,16 @@ import 'package:quick_shop/core/constants/app_colors.dart';
 class CustomSnackbar {
   static void showErrorSnackbar(String message) {
     Get.snackbar(
-      'Error', // عنوان الرسالة
+      '', // عنوان الرسالة
+      titleText: const Text(
+        'Error',
+        style: TextStyle(
+          color: AppColors.whiteColor,
+          fontWeight: FontWeight.normal,
+          fontSize: 16,
+        ),
+      ),
+
       message, // محتوى الرسالة
       snackPosition: SnackPosition.TOP, // مكان عرض الرسالة
       backgroundColor: Colors.black.withOpacity(0.8), // خلفية شبه شفافة
@@ -26,7 +35,7 @@ class CustomSnackbar {
         )
       ],
       backgroundGradient: const LinearGradient(
-        colors: [Colors.red, Colors.orange],
+        colors: [AppColors.darkColor, AppColors.redColor],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),
@@ -44,11 +53,18 @@ class CustomSnackbar {
 
   static void showSuccessSnackbar(String message) {
     Get.snackbar(
-      'Success', // عنوان الرسالة
+      '', // عنوان الرسالة
+      titleText: const Text(
+        'Success',
+        style: TextStyle(
+          color: AppColors.whiteColor,
+          fontWeight: FontWeight.normal,
+          fontSize: 16,
+        ),
+      ),
       message, // محتوى الرسالة
       snackPosition: SnackPosition.TOP, // مكان عرض الرسالة
-      backgroundColor:
-          Colors.green.withOpacity(0.8), // خلفية شبه شفافة بلون أخضر
+      backgroundColor: Colors.black.withOpacity(0.8), // خلفية شبه شفافة
       colorText: AppColors.whiteColor, // لون النص
       borderRadius: 32, // لتدوير الحواف
       margin: const EdgeInsets.all(16), // هامش من كل الجوانب
@@ -66,7 +82,7 @@ class CustomSnackbar {
         )
       ],
       backgroundGradient: const LinearGradient(
-        colors: [Colors.green, Colors.lightGreen], // تدرج لوني أخضر
+        colors: [AppColors.darkColor, AppColors.primaryColor],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),
