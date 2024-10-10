@@ -30,6 +30,8 @@ class VerificationCodeController extends GetxController {
       update(["ElevatedButton"]);
 
       if (data['status'] == 'approved') {
+        CustomSnackbar.showSuccessSnackbar('Code accepted successfully');
+
         Get.toNamed("/sign_up_complete_with_phone", arguments: fullNumber);
       } else {
         CustomSnackbar.showErrorSnackbar(data['message']);
@@ -54,6 +56,7 @@ class VerificationCodeController extends GetxController {
       isLoading = false;
       update(["ElevatedButton"]);
 
+      CustomSnackbar.showSuccessSnackbar('Code accepted successfully');
       Get.toNamed("/sign_up_complete_with_email");
     } on ErrorHandler catch (e) {
       isLoading = false;
@@ -70,7 +73,8 @@ class VerificationCodeController extends GetxController {
       await authRepo.reSendVerifyOtpWithEmail(token: token);
       isLoading = false;
       update(["TimerButton"]);
-      CustomSnackbar.showSuccessSnackbar('Re send verify Otp on email');
+      CustomSnackbar.showSuccessSnackbar(
+          'Re send verify Otp on Email successfully');
     } on ErrorHandler catch (e) {
       isLoading = false;
       update(["TimerButton"]);
@@ -81,15 +85,14 @@ class VerificationCodeController extends GetxController {
   Future<void> reSendVerifyOtpWithPhone({required String fullNumber}) async {
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
-      //   final response =
-      // await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
+      update(["TimerButton"]);
 
       await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["TimerButton"]);
 
-      CustomSnackbar.showErrorSnackbar('Re send verify Otp on phone');
+      CustomSnackbar.showErrorSnackbar(
+          'Re send verify Otp on Phone Number successfully');
 
       // if (response.statusCode == 201) {
       //   log(response.data.toString());

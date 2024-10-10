@@ -137,7 +137,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
                                   onPressed: () {
                                     if (controller.formKey.currentState!
                                         .validate()) {
-                                      controller.signUpWithEmail(
+                                      controller.signUpWithEmailAndPhone(
                                         token: controller.token,
                                         name: controller.nameController.text,
                                         password:

@@ -66,6 +66,7 @@ class LoginController extends GetxController {
 
       isLoading = false;
       update(["ElevatedButton"]);
+      CustomSnackbar.showSuccessSnackbar('Sign in with Google successfully');
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
@@ -86,6 +87,7 @@ class LoginController extends GetxController {
 
       isLoading = false;
       update(["ElevatedButton"]);
+      CustomSnackbar.showSuccessSnackbar('Sign in with Facebook successfully');
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
@@ -108,6 +110,7 @@ class LoginController extends GetxController {
       await SharedStorage.saveUser(user);
       isLoading = false;
       update(["ElevatedButton"]);
+      CustomSnackbar.showSuccessSnackbar('Sign in with Email successfully');
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
@@ -130,6 +133,8 @@ class LoginController extends GetxController {
       await SharedStorage.saveUser(user);
       isLoading = false;
       update(["ElevatedButton"]);
+      CustomSnackbar.showSuccessSnackbar(
+          'Sign in with Phone Number successfully');
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {

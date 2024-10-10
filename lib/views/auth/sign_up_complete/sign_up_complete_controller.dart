@@ -22,7 +22,7 @@ class SignUpCompleteController extends GetxController {
 
   SignUpCompleteController({required this.authRepo});
 
-  Future<void> signUpWithEmail({
+  Future<void> signUpWithEmailAndPhone({
     required String token,
     required String name,
     required String password,
@@ -43,6 +43,7 @@ class SignUpCompleteController extends GetxController {
       isLoading = false;
       update(["ElevatedButton"]);
 
+      CustomSnackbar.showSuccessSnackbar('Sign Up complete successfully');
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
       isLoading = false;

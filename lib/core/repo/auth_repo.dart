@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -30,6 +31,7 @@ class AuthRepo {
       if (facebookSignIn.status == LoginStatus.success) {
         final Map<String, dynamic> facebookUser =
             await FacebookAuth.instance.getUserData();
+        log(facebookUser.toString());
 
         Response response = await dio.post(
           "$baseUrl/api/users/login/facebook",
@@ -61,17 +63,17 @@ class AuthRepo {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
-      // if (googleUser == null) {
-      //   throw ErrorHandler(message: "sign in google was cancelled");
-      // }
+      if (googleUser == null) {
+        throw ErrorHandler(message: "sign in google was cancelled");
+      }
 
       Response response = await dio.post(
         "$baseUrl/api/users/login/google",
         data: {
-          "id": googleUser!.id.toString(),
+          "id": googleUser.id.toString(),
           "email": googleUser.email.toString(),
-          "displayName": googleUser.displayName ?? "",
-          //  "photoUrl": googleUser.photoUrl ?? ""
+          "displayName": googleUser.displayName.toString(),
+          "photoUrl": googleUser.photoUrl.toString()
         },
       );
 

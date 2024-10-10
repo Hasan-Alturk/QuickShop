@@ -67,6 +67,9 @@ class SignUpController extends GetxController {
       // await SharedStorage.saveToken(token: token);
       isLoading = false;
       update(["ElevatedButton"]);
+      CustomSnackbar.showSuccessSnackbar(
+          'Verification code sent on Phone Number successfully');
+
       Get.toNamed(
         "/verification_code_with_phone",
         arguments: {'fullNumber': fullNumber},
@@ -82,12 +85,18 @@ class SignUpController extends GetxController {
     try {
       isLoading = true;
       update(["ElevatedButton"]);
+
       final response = await authRepo.sendVerificationWithEmail(email: email);
       Map<String, dynamic> responseData = response.data;
       String token = responseData['token'];
       await SharedStorage.saveToken(token: token);
+
       isLoading = false;
       update(["ElevatedButton"]);
+
+      CustomSnackbar.showSuccessSnackbar(
+          'Verification code sent on Email successfully');
+
       Get.toNamed("/verification_code_with_email");
     } on ErrorHandler catch (e) {
       isLoading = false;
@@ -107,6 +116,7 @@ class SignUpController extends GetxController {
 
       isLoading = false;
       update(["ElevatedButton"]);
+      CustomSnackbar.showSuccessSnackbar('Sign in with Google successfully');
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
@@ -128,6 +138,7 @@ class SignUpController extends GetxController {
       isLoading = false;
       update(["ElevatedButton"]);
 
+      CustomSnackbar.showSuccessSnackbar('Sign in with Facebook successfully');
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
       isLoading = false;
