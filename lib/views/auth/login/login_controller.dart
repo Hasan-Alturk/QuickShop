@@ -72,7 +72,7 @@ class LoginController extends GetxController {
       update(["ElevatedButton"]);
 
       Get.offAllNamed("/main_home");
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log(e.message);
       Get.snackbar('Error', '$e');
       isLoading = false;
@@ -95,7 +95,7 @@ class LoginController extends GetxController {
       update(["ElevatedButton"]);
 
       Get.offAllNamed("/main_home");
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log(e.message);
       Get.snackbar('Error', '$e');
       isLoading = false;
@@ -119,7 +119,7 @@ class LoginController extends GetxController {
       update(["ElevatedButton"]);
 
       Get.offAllNamed("/main_home");
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log(e.message);
       Get.snackbar('Error', '$e');
       isLoading = false;
@@ -143,7 +143,7 @@ class LoginController extends GetxController {
       update(["ElevatedButton"]);
 
       Get.offAllNamed("/main_home");
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log(e.message);
       Get.snackbar('Error', '$e');
       isLoading = false;

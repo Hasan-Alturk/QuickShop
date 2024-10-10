@@ -70,7 +70,7 @@ class SignUpController extends GetxController {
         "/verification_code_with_phone",
         arguments: {'fullNumber': fullNumber},
       );
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log("Error: $e");
     } catch (e) {
       log("Unexpected Error: $e");
@@ -103,7 +103,7 @@ class SignUpController extends GetxController {
 
         Get.snackbar("خطأ", "لم يتم إرسال رمز التحقق.");
       }
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log("Error: $e");
       isLoading = false;
       update();
@@ -132,7 +132,7 @@ class SignUpController extends GetxController {
       update(["ElevatedButton"]);
 
       Get.offAllNamed("/main_home");
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log(e.message);
       Get.snackbar('Error', '$e');
       isLoading = false;
@@ -155,7 +155,7 @@ class SignUpController extends GetxController {
       update(["ElevatedButton"]);
 
       Get.offAllNamed("/main_home");
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log(e.message);
       Get.snackbar('Error', '$e');
       isLoading = false;

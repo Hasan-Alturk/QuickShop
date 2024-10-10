@@ -49,7 +49,7 @@ class SignUpCompleteController extends GetxController {
       update(["ElevatedButton"]);
 
       Get.offAllNamed("/main_home");
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log("Error: $e");
       isLoading = false;
       error = e.toString();

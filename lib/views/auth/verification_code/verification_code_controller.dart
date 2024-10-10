@@ -70,7 +70,7 @@ class VerificationCodeController extends GetxController {
         update();
         Get.snackbar("خطأ", "حدث خطأ غير متوقع: ${response.statusCode}");
       }
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log("Error: $e");
       Get.snackbar("خطأ", e.message);
     } catch (e) {
@@ -104,7 +104,7 @@ class VerificationCodeController extends GetxController {
         update();
         Get.snackbar("خطأ", "حدث خطأ غير متوقع: ${response.statusCode}");
       }
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log("Error: $e");
       Get.snackbar("خطأ", e.message);
     } catch (e) {
@@ -138,7 +138,7 @@ class VerificationCodeController extends GetxController {
         update();
         Get.snackbar("خطأ", "حدث خطأ غير متوقع: ${response.statusCode}");
       }
-    } on ExceptionHandler catch (e) {
+    } on ErrorHandler catch (e) {
       log("Error: $e");
     } catch (e) {
       log("Unexpected Error: $e");
