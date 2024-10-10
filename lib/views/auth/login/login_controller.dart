@@ -1,10 +1,10 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 import 'package:quick_shop/core/services/shared_storage.dart';
+import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class LoginController extends GetxController {
   final AuthRepo authRepo;
@@ -62,8 +62,6 @@ class LoginController extends GetxController {
       update(["ElevatedButton"]);
 
       User user = await authRepo.signInWithGoogle();
-      log(user.toString());
-
       await SharedStorage.saveUser(user);
 
       isLoading = false;
@@ -71,10 +69,9 @@ class LoginController extends GetxController {
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
-      log(e.message);
-      Get.snackbar('Error', '$e');
       isLoading = false;
       update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 
@@ -84,7 +81,6 @@ class LoginController extends GetxController {
       update(["ElevatedButton"]);
 
       User user = await authRepo.signInWithFacebook();
-      log(user.toString());
 
       await SharedStorage.saveUser(user);
 
@@ -93,10 +89,9 @@ class LoginController extends GetxController {
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
-      log(e.message);
-      Get.snackbar('Error', '$e');
       isLoading = false;
       update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 
@@ -109,17 +104,16 @@ class LoginController extends GetxController {
         login: email,
         password: password,
       );
-      log(user.toString());
+
       await SharedStorage.saveUser(user);
       isLoading = false;
       update(["ElevatedButton"]);
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
-      log(e.message);
-      Get.snackbar('Error', '$e');
       isLoading = false;
       update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 
@@ -132,17 +126,16 @@ class LoginController extends GetxController {
         login: phone,
         password: password,
       );
-      log(user.toString());
+
       await SharedStorage.saveUser(user);
       isLoading = false;
       update(["ElevatedButton"]);
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
-      log(e.message);
-      Get.snackbar('Error', '$e');
       isLoading = false;
       update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 }

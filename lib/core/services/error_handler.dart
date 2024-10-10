@@ -14,7 +14,7 @@ class ErrorHandler implements Exception {
 
       switch (e.response!.statusCode) {
         case 400:
-          throw ErrorHandler(message: "Invalid request data");
+          throw ErrorHandler(message: e.response!.data["message"].toString());
         case 401:
           throw ErrorHandler(message: "Unauthorized access");
         case 403:
@@ -56,7 +56,6 @@ class ErrorHandler implements Exception {
               message: "Unexpected error: ${e.response!.statusMessage}");
       }
     } else {
-      log('Error: ${e.message}');
       throw ErrorHandler(message: "Network error: ${e.message}");
     }
   }

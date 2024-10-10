@@ -61,17 +61,17 @@ class AuthRepo {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
-      if (googleUser == null) {
-        throw ErrorHandler(message: "sign in google was cancelled");
-      }
+      // if (googleUser == null) {
+      //   throw ErrorHandler(message: "sign in google was cancelled");
+      // }
 
       Response response = await dio.post(
         "$baseUrl/api/users/login/google",
         data: {
-          "id": googleUser.id.toString(),
+          "id": googleUser!.id.toString(),
           "email": googleUser.email.toString(),
-          "displayName": googleUser.displayName.toString(),
-          "photoUrl": googleUser.photoUrl.toString()
+          "displayName": googleUser.displayName ?? "",
+          //  "photoUrl": googleUser.photoUrl ?? ""
         },
       );
 

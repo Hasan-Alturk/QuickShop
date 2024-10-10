@@ -1,9 +1,9 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 import 'package:quick_shop/core/services/shared_storage.dart';
+import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class VerificationCodeController extends GetxController {
   final AuthRepo authRepo;
@@ -21,25 +21,23 @@ class VerificationCodeController extends GetxController {
   }) async {
     try {
       isLoading = true;
-      update();
+      update(["ElevatedButton"]);
 
       final response =
           await authRepo.verifyOtpWithPhone(phoneNumber: fullNumber, otp: otp);
-      log(response.statusCode.toString());
       dynamic data = response.data;
       isLoading = false;
-      update();
+      update(["ElevatedButton"]);
 
       if (data['status'] == 'approved') {
         Get.toNamed("/sign_up_complete_with_phone", arguments: fullNumber);
       } else {
-        Get.snackbar("خطأ", "فشل في تطابق رمز التحقق. حاول مرة أخرى.");
+        CustomSnackbar.showErrorSnackbar(data['message']);
       }
-    } catch (e) {
-      Get.snackbar("خطأ", "حدث خطأ غير متوقع.");
-    } finally {
+    } on ErrorHandler catch (e) {
       isLoading = false;
-      update();
+      update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 
@@ -50,35 +48,17 @@ class VerificationCodeController extends GetxController {
     token = (await SharedStorage.getToken())!;
     try {
       isLoading = true;
-      update();
+      update(["ElevatedButton"]);
 
-      final response =
-          await authRepo.verifyOtpWithEmail(token: token, otp: otp);
+      await authRepo.verifyOtpWithEmail(token: token, otp: otp);
+      isLoading = false;
+      update(["ElevatedButton"]);
 
-      if (response.statusCode == 200) {
-        log(response.data.toString());
-        isLoading = false;
-        update();
-        Get.toNamed("/sign_up_complete_with_email");
-      } else if (response.statusCode == 400) {
-        log(response.data.toString());
-        isLoading = false;
-        update();
-        Get.snackbar("خطأ", "تم إرسال رمز التحقق مسبقا.");
-      } else {
-        isLoading = false;
-        update();
-        Get.snackbar("خطأ", "حدث خطأ غير متوقع: ${response.statusCode}");
-      }
+      Get.toNamed("/sign_up_complete_with_email");
     } on ErrorHandler catch (e) {
-      log("Error: $e");
-      Get.snackbar("خطأ", e.message);
-    } catch (e) {
-      log("Unexpected Error: $e");
-      Get.snackbar("خطأ", "حدث خطأ غير متوقع.");
-    } finally {
-      isLoading = false; // تأكد من إعادة ضبط isLoading دائمًا
-      update();
+      isLoading = false;
+      update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 
@@ -86,63 +66,50 @@ class VerificationCodeController extends GetxController {
     token = (await SharedStorage.getToken())!;
     try {
       isLoading = true;
-      update();
-      final response = await authRepo.reSendVerifyOtpWithEmail(token: token);
-
-      if (response.statusCode == 200) {
-        log(response.data.toString());
-        isLoading = false;
-        update();
-        Get.snackbar("", "تم إرسال رمز التحقق مجددا الى البريد الالكتروني.");
-      } else if (response.statusCode == 400) {
-        log(response.data.toString());
-        isLoading = false;
-        update();
-        Get.snackbar("خطأ", "تم إرسال رمز التحقق مسبقا.");
-      } else {
-        isLoading = false;
-        update();
-        Get.snackbar("خطأ", "حدث خطأ غير متوقع: ${response.statusCode}");
-      }
+      update(["TimerButton"]);
+      await authRepo.reSendVerifyOtpWithEmail(token: token);
+      isLoading = false;
+      update(["TimerButton"]);
+      CustomSnackbar.showSuccessSnackbar('Re send verify Otp on email');
     } on ErrorHandler catch (e) {
-      log("Error: $e");
-      Get.snackbar("خطأ", e.message);
-    } catch (e) {
-      log("Unexpected Error: $e");
-      Get.snackbar("خطأ", "حدث خطأ غير متوقع.");
-    } finally {
-      isLoading = false; // تأكد من إعادة ضبط isLoading دائمًا
-      update();
+      isLoading = false;
+      update(["TimerButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 
   Future<void> reSendVerifyOtpWithPhone({required String fullNumber}) async {
     try {
       isLoading = true;
-      update();
-      final response =
-          await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
+      update(["ElevatedButton"]);
+      //   final response =
+      // await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
 
-      if (response.statusCode == 201) {
-        log(response.data.toString());
-        isLoading = false;
-        update();
-        Get.snackbar("", "تم إرسال رمز التحقق مجددا الى الرقم المحمول.");
-      } else if (response.statusCode == 400) {
-        log(response.data.toString());
-        isLoading = false;
-        update();
-        Get.snackbar("خطأ", "تم إرسال رمز التحقق مسبقا.");
-      } else {
-        isLoading = false;
-        update();
-        Get.snackbar("خطأ", "حدث خطأ غير متوقع: ${response.statusCode}");
-      }
+      await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
+      isLoading = false;
+      update(["ElevatedButton"]);
+
+      CustomSnackbar.showErrorSnackbar('Re send verify Otp on phone');
+
+      // if (response.statusCode == 201) {
+      //   log(response.data.toString());
+      //   isLoading = false;
+      //   update();
+      //   Get.snackbar("", "تم إرسال رمز التحقق مجددا الى الرقم المحمول.");
+      // } else if (response.statusCode == 400) {
+      //   log(response.data.toString());
+      //   isLoading = false;
+      //   update();
+      //   Get.snackbar("خطأ", "تم إرسال رمز التحقق مسبقا.");
+      // } else {
+      //   isLoading = false;
+      //   update();
+      //   Get.snackbar("خطأ", "حدث خطأ غير متوقع: ${response.statusCode}");
+      // }
     } on ErrorHandler catch (e) {
-      log("Error: $e");
-    } catch (e) {
-      log("Unexpected Error: $e");
-      Get.snackbar("خطأ", "حدث خطأ غير متوقع.");
+      isLoading = false;
+      update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 }

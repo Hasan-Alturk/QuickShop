@@ -10,8 +10,6 @@ import 'package:quick_shop/views/main_home/main_home_binding.dart';
 import 'package:quick_shop/views/main_home/main_home_view.dart';
 import 'package:quick_shop/views/popular/popular_binding.dart';
 import 'package:quick_shop/views/popular/popular_view.dart';
-import 'package:quick_shop/views/auth/forget_password/forget_password_binding.dart';
-import 'package:quick_shop/views/auth/forget_password/forget_password_view.dart';
 import 'package:quick_shop/views/auth/verification_code/verification_code_binding.dart';
 import 'package:quick_shop/views/auth/verification_code/verification_code_with_phone_view.dart';
 import 'package:quick_shop/views/auth/login/login_binding.dart';
@@ -80,11 +78,11 @@ List<GetPage> appPages = [
     binding: SignUpCompleteBinding(),
   ),
 
-  GetPage(
-    name: "/forget_password",
-    page: () => const ForgetPasswordView(),
-    binding: ForgetPasswordBinding(),
-  ),
+  // GetPage(
+  //   name: "/forget_password",
+  //   page: () => const ForgetPasswordView(),
+  //   binding: ForgetPasswordBinding(),
+  // ),
 
   GetPage(
     name: "/main_home",

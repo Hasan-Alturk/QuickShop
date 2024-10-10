@@ -1,11 +1,10 @@
-import 'dart:developer';
-import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 import 'package:quick_shop/core/services/shared_storage.dart';
+import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class SignUpController extends GetxController {
   final AuthRepo authRepo;
@@ -19,7 +18,6 @@ class SignUpController extends GetxController {
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
 
-  String? error;
   String fullNumber = "";
 
   bool isLoading = false;
@@ -61,70 +59,49 @@ class SignUpController extends GetxController {
       {required String fullNumber}) async {
     try {
       isLoading = true;
-      update();
-      await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
+      update(["ElevatedButton"]);
 
+      await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
+      // Map<String, dynamic> responseData = response.data;
+      // String token = responseData['token'];
+      // await SharedStorage.saveToken(token: token);
       isLoading = false;
-      update();
+      update(["ElevatedButton"]);
       Get.toNamed(
         "/verification_code_with_phone",
         arguments: {'fullNumber': fullNumber},
       );
     } on ErrorHandler catch (e) {
-      log("Error: $e");
-    } catch (e) {
-      log("Unexpected Error: $e");
-      Get.snackbar("خطأ", "حدث خطأ غير متوقع.");
+      isLoading = false;
+      update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 
   Future<void> goToVerificationWithEmail({required String email}) async {
     try {
       isLoading = true;
-      update();
-      final dio.Response response =
-          await authRepo.sendVerificationWithEmail(email: email);
-
-      if (response.statusCode == 200) {
-        Map<String, dynamic> responseData = response.data;
-        String token = responseData['token'];
-        await SharedStorage.saveToken(token: token);
-        isLoading = false;
-        update();
-        Get.toNamed(
-          "/verification_code_with_email",
-          // arguments: {
-          //   'currentPage': currentPage,
-          // },
-        );
-      } else {
-        isLoading = false;
-        update();
-
-        Get.snackbar("خطأ", "لم يتم إرسال رمز التحقق.");
-      }
+      update(["ElevatedButton"]);
+      final response = await authRepo.sendVerificationWithEmail(email: email);
+      Map<String, dynamic> responseData = response.data;
+      String token = responseData['token'];
+      await SharedStorage.saveToken(token: token);
+      isLoading = false;
+      update(["ElevatedButton"]);
+      Get.toNamed("/verification_code_with_email");
     } on ErrorHandler catch (e) {
-      log("Error: $e");
       isLoading = false;
-      update();
-
-      Get.snackbar("خطأ", e.message);
-    } catch (e) {
-      log("Unexpected Error: $e");
-
-      isLoading = false;
-      update();
-      Get.snackbar("خطأ", "حدث خطأ غير متوقع.");
+      update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 
   Future signInWithGoogle() async {
     try {
       isLoading = true;
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
 
       User user = await authRepo.signInWithGoogle();
-      log(user.toString());
 
       await SharedStorage.saveUser(user);
 
@@ -133,21 +110,18 @@ class SignUpController extends GetxController {
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
-      log(e.message);
-      Get.snackbar('Error', '$e');
       isLoading = false;
-      error = e.toString();
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 
   Future signInWithFacebook() async {
     try {
       isLoading = true;
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
 
       User user = await authRepo.signInWithFacebook();
-      log(user.toString());
 
       await SharedStorage.saveUser(user);
 
@@ -156,45 +130,9 @@ class SignUpController extends GetxController {
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
-      log(e.message);
-      Get.snackbar('Error', '$e');
       isLoading = false;
-      error = e.toString();
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
-
-  // Future<void> signInWithGoogle() async {
-  //   User? user = await authRepo.signInWithGoogle();
-  //   // الانتقال إلى صفحة أخرى أو تحديث واجهة المستخدم باستخدام GetX
-  //   if (user != null) {
-  //     // الانتقال إلى صفحة أخرى أو تحديث واجهة المستخدم باستخدام GetX
-  //     Get.snackbar('Success', 'Signed in as ${user.email}');
-  //   } else {
-  //     Get.snackbar('Error', 'Failed to sign in with Google.');
-  //   }
-  // }
-
-  // Future<void> login() async {
-  //   try {
-  //     error = null;
-  //     isLoading = true;
-  //     update(["TextError", "ElevatedButton"]);
-  //     // User user = await authRepo.login(
-  //     //   username: usernameController.text,
-  //     //   password: passwordController.text,
-  //     // );
-  //     // print(user.toString());
-  //     // await storageService.saveUser(user);
-
-  //     // Get.offAllNamed("/mainHome");
-  //     isLoading = false;
-  //     update(["ElevatedButton"]);
-  //   } on ExceptionHandler catch (e) {
-  //     print("Error: $e");
-  //     isLoading = false;
-  //     error = e.error;
-  //     update(["TextError", "ElevatedButton"]);
-  //   }
-  // }
 }

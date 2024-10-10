@@ -6,17 +6,15 @@ import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 import 'package:quick_shop/core/services/shared_storage.dart';
+import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class SignUpCompleteController extends GetxController {
   final AuthRepo authRepo;
-  // final StorageService storageService;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-
-  String error = "";
 
   bool isLoading = false;
   bool isChanged = false;
@@ -36,24 +34,22 @@ class SignUpCompleteController extends GetxController {
 
     try {
       isLoading = true;
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
       User user = await authRepo.signUp(
         token: token,
         name: name,
         password: password,
         passwordConfirmation: confirmPassword,
       );
-      log(user.toString());
       await SharedStorage.saveUser(user);
       isLoading = false;
       update(["ElevatedButton"]);
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
-      log("Error: $e");
       isLoading = false;
-      error = e.toString();
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
+      CustomSnackbar.showErrorSnackbar('$e');
     }
   }
 }

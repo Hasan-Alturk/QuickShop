@@ -31,6 +31,7 @@ class SignUpWithPhoneView extends GetView<SignUpController> {
           }),
           const SizedBox(height: 24),
           GetBuilder<SignUpController>(
+            id: "ElevatedButton",
             builder: (_) {
               return SizedBox(
                 width: double.infinity,
@@ -38,17 +39,9 @@ class SignUpWithPhoneView extends GetView<SignUpController> {
                 child: CustomButton(
                   onPressed: () {
                     if (controller.formKey.currentState!.validate()) {
-                      if (controller.currentPage == 0) {
-                        controller.goToVerificationWithEmail(
-                          email: controller.emailController.text,
-                        );
-                      } else {
-                        controller.goToVerificationCodeWithPhone(
-                          fullNumber: controller.fullNumber,
-                        );
-                      }
-                    } else {
-                      log("Error From validate");
+                      controller.goToVerificationCodeWithPhone(
+                        fullNumber: controller.fullNumber,
+                      );
                     }
                   },
                   text: "Sign Up",

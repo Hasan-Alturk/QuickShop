@@ -77,6 +77,7 @@ class VerificationCodeWithEmailView
                                         ),
                               ),
                               GetBuilder<VerificationCodeController>(
+                                id: "TimerButton",
                                 builder: (_) {
                                   return TimerButton(
                                     label: "Resend Code",
@@ -91,20 +92,18 @@ class VerificationCodeWithEmailView
                           ),
                           const SizedBox(height: 24),
                           GetBuilder<VerificationCodeController>(
+                            id: "ElevatedButton",
                             builder: (_) {
                               return SizedBox(
                                 width: double.infinity,
                                 height: 50,
                                 child: CustomButton(
                                   onPressed: () {
-                                    if (controller.formKey.currentState!
-                                        .validate()) {
+                                    if (controller.otp.length == 6) {
                                       controller.goToSignUpCompleteWithEmail(
                                         token: controller.token,
                                         otp: controller.otp,
                                       );
-                                    } else {
-                                      log("Error From validate");
                                     }
                                   },
                                   text: "Verify",

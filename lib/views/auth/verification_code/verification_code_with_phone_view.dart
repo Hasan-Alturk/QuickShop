@@ -92,6 +92,7 @@ class VerificationCodeWithPhoneView
                           ),
                           const SizedBox(height: 24),
                           GetBuilder<VerificationCodeController>(
+                            id: "ElevatedButton",
                             builder: (_) {
                               return SizedBox(
                                 width: double.infinity,
