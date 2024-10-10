@@ -20,8 +20,6 @@ class LoginController extends GetxController {
   bool showTextFieldEmail = true;
   String fullNumber = "";
 
-  String? error;
-
   bool isLoading = false;
   bool isChanged = false;
 
@@ -61,7 +59,7 @@ class LoginController extends GetxController {
   Future signInWithGoogle() async {
     try {
       isLoading = true;
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
 
       User user = await authRepo.signInWithGoogle();
       log(user.toString());
@@ -76,15 +74,14 @@ class LoginController extends GetxController {
       log(e.message);
       Get.snackbar('Error', '$e');
       isLoading = false;
-      error = e.toString();
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
     }
   }
 
   Future signInWithFacebook() async {
     try {
       isLoading = true;
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
 
       User user = await authRepo.signInWithFacebook();
       log(user.toString());
@@ -99,8 +96,7 @@ class LoginController extends GetxController {
       log(e.message);
       Get.snackbar('Error', '$e');
       isLoading = false;
-      error = e.toString();
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
     }
   }
 
@@ -108,7 +104,7 @@ class LoginController extends GetxController {
       {required String email, required String password}) async {
     try {
       isLoading = true;
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
       User user = await authRepo.login(
         login: email,
         password: password,
@@ -123,8 +119,7 @@ class LoginController extends GetxController {
       log(e.message);
       Get.snackbar('Error', '$e');
       isLoading = false;
-      error = e.toString();
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
     }
   }
 
@@ -132,7 +127,7 @@ class LoginController extends GetxController {
       {required String phone, required String password}) async {
     try {
       isLoading = true;
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
       User user = await authRepo.login(
         login: phone,
         password: password,
@@ -147,8 +142,7 @@ class LoginController extends GetxController {
       log(e.message);
       Get.snackbar('Error', '$e');
       isLoading = false;
-      error = e.toString();
-      update(["TextError", "ElevatedButton"]);
+      update(["ElevatedButton"]);
     }
   }
 }

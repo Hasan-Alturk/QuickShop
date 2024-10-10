@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:quick_shop/core/services/_handler.dart';
 
 class ErrorHandler implements Exception {
   final String message;
@@ -68,18 +67,17 @@ class ErrorHandler implements Exception {
       await handleDioException(e);
     } else if (e is FormatException) {
       log('Error: Invalid format - $e');
-      throw ExceptionHandler(message: "Invalid format: ${e.message}");
+      throw ErrorHandler(message: "Invalid format: ${e.message}");
     } else if (e is TimeoutException) {
       log('Error: Timeout - $e');
-      throw ExceptionHandler(
-          message: "Request timed out, please try again later.");
+      throw ErrorHandler(message: "Request timed out, please try again later.");
     } else if (e is SocketException) {
       log('Error: Network issue - $e');
-      throw ExceptionHandler(
+      throw ErrorHandler(
           message: "No internet connection. Please check your network.");
     } else {
       log('Unknown Error: $e');
-      throw ExceptionHandler(message: "An unexpected error occurred.");
+      throw ErrorHandler(message: "An unexpected error occurred.");
     }
   }
 
