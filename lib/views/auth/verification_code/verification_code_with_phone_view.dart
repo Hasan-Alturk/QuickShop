@@ -26,11 +26,10 @@ class VerificationCodeWithPhoneView
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.3,
+                height: height * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
-                  title: "Verification Code",
-                  subTitle: "Inter your OTP code",
+                  title: "Inter your OTP code",
                 ),
               ),
               Expanded(

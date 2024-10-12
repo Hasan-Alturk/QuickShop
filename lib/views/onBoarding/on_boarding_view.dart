@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/onBoarding/on_boarding_controller.dart';
-import 'package:quick_shop/widgets/custom_dots_indicator.dart';
+import 'package:quick_shop/widgets/dots_indicator.dart';
 import 'package:quick_shop/widgets/custom_page_view_on_boarding_item.dart';
 
 class OnBoardingView extends GetView<OnBoardingController> {
@@ -67,7 +67,7 @@ class OnBoardingView extends GetView<OnBoardingController> {
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CustomDotsIndicator(
+                      DotsIndicator(
                         itemsCount: controller.items.length,
                         currentPage: controller.currentPage,
                       ),

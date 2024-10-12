@@ -5,9 +5,10 @@ import 'package:quick_shop/views/home/home_controller.dart';
 import 'package:quick_shop/widgets/custom_card_category.dart';
 import 'package:quick_shop/widgets/custom_card_product.dart';
 import 'package:quick_shop/widgets/custom_carousel_slider.dart';
-import 'package:quick_shop/widgets/custom_dots_indicator.dart';
+import 'package:quick_shop/widgets/dots_indicator.dart';
 import 'package:quick_shop/widgets/custom_header_home.dart';
 import 'package:quick_shop/widgets/custom_search_and_promo_home.dart';
+import 'package:quick_shop/widgets/custom_snack_bar.dart';
 import 'package:quick_shop/widgets/custom_title_home.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -31,8 +32,10 @@ class HomeView extends GetView<HomeController> {
                 GetBuilder<HomeController>(builder: (_) {
                   return ElevatedButton(
                     onPressed: () {
-                      controller.notificationController.showNotification(
-                          'Hello', 'This is a test notification!');
+                      CustomSnackbar.showSuccessSnackbar("message");
+
+                      // controller.notificationController.showNotification(
+                      //     'Hello', 'This is a test notification!');
                     },
                     child: const Text('Show Notification'),
                   );
@@ -45,8 +48,12 @@ class HomeView extends GetView<HomeController> {
                   builder: (_) {
                     return Column(
                       children: [
-                        CustomCarouselSlider(controller: controller),
-                        CustomDotsIndicator(
+                        CustomCarouselSlider(
+                          items: controller.items,
+                          carouselController: controller.carouselController,
+                          onPageChanged: controller.onPageChanged,
+                        ),
+                        DotsIndicator(
                           itemsCount: controller.items.length,
                           currentPage: controller.currentPage,
                         ),

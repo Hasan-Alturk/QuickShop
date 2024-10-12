@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:quick_shop/core/constants/app_colors.dart';
 
-class CustomDotsIndicator extends StatelessWidget {
+class DotsIndicator extends StatelessWidget {
   final int itemsCount;
   final int currentPage;
 
-  const CustomDotsIndicator({
+  const DotsIndicator({
     super.key,
     required this.itemsCount,
     required this.currentPage,

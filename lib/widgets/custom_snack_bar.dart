@@ -23,10 +23,10 @@ class CustomSnackbar {
       margin: const EdgeInsets.all(16), // هامش من كل الجوانب
       padding: const EdgeInsets.symmetric(
           vertical: 16, horizontal: 20), // مسافات داخلية أكبر
-      animationDuration: const Duration(milliseconds: 600), // مدة الأنيميشن
-      duration: const Duration(seconds: 3), // مدة عرض الإشعار
-      forwardAnimationCurve: Curves.easeOutBack, // منحنى حركة الخروج
-      reverseAnimationCurve: Curves.easeInCubic, // منحنى حركة الدخول
+      animationDuration: const Duration(milliseconds: 300),
+      duration: const Duration(seconds: 2), // مدة عرض الإشعار
+      forwardAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الخروج
+      reverseAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الدخول
       boxShadows: [
         const BoxShadow(
           color: AppColors.darkColor,
@@ -35,7 +35,7 @@ class CustomSnackbar {
         )
       ],
       backgroundGradient: const LinearGradient(
-        colors: [AppColors.darkColor, AppColors.redColor],
+        colors: [AppColors.darkColor, Colors.red],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),
@@ -70,10 +70,10 @@ class CustomSnackbar {
       margin: const EdgeInsets.all(16), // هامش من كل الجوانب
       padding: const EdgeInsets.symmetric(
           vertical: 16, horizontal: 20), // مسافات داخلية أكبر
-      animationDuration: const Duration(milliseconds: 600), // مدة الأنيميشن
-      duration: const Duration(seconds: 3), // مدة عرض الإشعار
-      forwardAnimationCurve: Curves.easeOutBack, // منحنى حركة الخروج
-      reverseAnimationCurve: Curves.easeInCubic, // منحنى حركة الدخول
+      animationDuration: const Duration(milliseconds: 300),
+      duration: const Duration(seconds: 2), // مدة عرض الإشعار
+      forwardAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الخروج
+      reverseAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الدخول
       boxShadows: [
         const BoxShadow(
           color: AppColors.darkColor,
@@ -82,7 +82,7 @@ class CustomSnackbar {
         )
       ],
       backgroundGradient: const LinearGradient(
-        colors: [AppColors.darkColor, AppColors.primaryColor],
+        colors: [AppColors.darkColor, Colors.green],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),

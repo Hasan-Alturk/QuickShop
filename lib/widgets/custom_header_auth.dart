@@ -7,29 +7,26 @@ class CustomHeaderAuth extends StatelessWidget {
   const CustomHeaderAuth({
     super.key,
     required this.title,
-    required this.subTitle,
     required this.image,
   });
   final String image;
   final String title;
-  final String subTitle;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.darkColor,
-      // appBar: AppBar(
-      //   backgroundColor: AppColors.darkColor,
-      //   iconTheme: const IconThemeData(
-      //     color: AppColors.whiteColor,
-      //   ),
-      // ),
+      appBar: AppBar(
+        backgroundColor: AppColors.darkColor,
+        iconTheme: const IconThemeData(
+          color: AppColors.whiteColor,
+        ),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 75),
           child: Column(
             children: [
-              const SizedBox(height: 25),
               SvgPicture.asset(
                 image,
                 fit: BoxFit.cover,
@@ -41,19 +38,6 @@ class CustomHeaderAuth extends StatelessWidget {
                       color: AppColors.whiteColor,
                     ),
                 textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                subTitle,
-                style: AppTextStyles().medium12(context).copyWith(
-                      color: AppColors.nonActiveColor,
-                    ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 10,
               ),
             ],
           ),

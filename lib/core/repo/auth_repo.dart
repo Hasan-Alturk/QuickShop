@@ -24,7 +24,7 @@ class AuthRepo {
   String authToken = '6d560aa878729536ffe6131cfa805d3e';
   String serviceSid = 'VA087f4a42d118c412f2ccfbc106b0a131';
 
-  Future<User> signInWithFacebook() async {
+  Future<User> loginWithFacebook() async {
     try {
       final LoginResult facebookSignIn = await FacebookAuth.instance.login();
 
@@ -59,7 +59,7 @@ class AuthRepo {
     throw ErrorHandler(message: "Sign in with facebook failed");
   }
 
-  Future<User> signInWithGoogle() async {
+  Future<User> loginWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
@@ -218,7 +218,7 @@ class AuthRepo {
     required String phoneNumber,
   }) async {
     try {
-      final response = await dio.post(
+      final responseTwilio = await dio.post(
         'https://verify.twilio.com/v2/Services/$serviceSid/Verifications',
         options: Options(
           headers: <String, String>{
@@ -232,10 +232,22 @@ class AuthRepo {
           'Channel': "sms",
         },
       );
-      if (response.statusCode == 200 && response.data != null) {
-        return response;
+
+      if (responseTwilio.statusCode == 200 ||
+          responseTwilio.statusCode == 201) {
+        final response = await dio.post(
+          '$baseUrl/api/users/register/phone',
+          data: {
+            "phone": phoneNumber,
+          },
+        );
+        if (response.statusCode == 200 && response.data != null) {
+          return response;
+        } else {
+          throw ErrorHandler(message: "${response.statusMessage}");
+        }
       } else {
-        throw ErrorHandler(message: "${response.statusMessage}");
+        throw ErrorHandler(message: "${responseTwilio.statusMessage}");
       }
     } catch (e) {
       await ErrorHandler.handleGeneralException(e);

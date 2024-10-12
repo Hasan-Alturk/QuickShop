@@ -48,7 +48,7 @@ class SignUpController extends GetxController {
   }
 
   void goToLogin() {
-    Get.back();
+    Get.offAllNamed("/login");
   }
 
   void goToSetNewPassword() {
@@ -61,10 +61,11 @@ class SignUpController extends GetxController {
       isLoading = true;
       update(["ElevatedButton"]);
 
-      await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
-      // Map<String, dynamic> responseData = response.data;
-      // String token = responseData['token'];
-      // await SharedStorage.saveToken(token: token);
+      final response =
+          await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
+      Map<String, dynamic> responseData = response.data;
+      String token = responseData['token'];
+      await SharedStorage.saveToken(token: token);
       isLoading = false;
       update(["ElevatedButton"]);
       CustomSnackbar.showSuccessSnackbar(
@@ -110,7 +111,7 @@ class SignUpController extends GetxController {
       isLoading = true;
       update(["ElevatedButton"]);
 
-      User user = await authRepo.signInWithGoogle();
+      User user = await authRepo.loginWithGoogle();
 
       await SharedStorage.saveUser(user);
 
@@ -131,7 +132,7 @@ class SignUpController extends GetxController {
       isLoading = true;
       update(["ElevatedButton"]);
 
-      User user = await authRepo.signInWithFacebook();
+      User user = await authRepo.loginWithFacebook();
 
       await SharedStorage.saveUser(user);
 

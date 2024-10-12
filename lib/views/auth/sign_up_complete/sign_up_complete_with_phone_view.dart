@@ -25,12 +25,10 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.3,
+                height: height * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
                   title: "Complete Sign Up",
-                  subTitle:
-                      "Please complete your sign up by filling out your details below",
                 ),
               ),
               Expanded(

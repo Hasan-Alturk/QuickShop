@@ -23,11 +23,10 @@ class LoginView extends GetView<LoginController> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.3,
+                height: height * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
-                  title: "Go ahead and set up your account",
-                  subTitle: "Sign in to enjoy the best shopping experience",
+                  title: "Unlock your shopping adventure",
                 ),
               ),
               Expanded(
@@ -44,39 +43,41 @@ class LoginView extends GetView<LoginController> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: GetBuilder<LoginController>(builder: (_) {
-                      return Column(
-                        children: [
-                          const SizedBox(height: 24),
-                          CustomContainerAuth(
-                            firstText: 'Email',
-                            secondText: 'Phone Number',
-                            firstColor: controller.currentPage == 0
-                                ? AppColors.lightColor
-                                : AppColors.containerColor,
-                            secondColor: controller.currentPage == 1
-                                ? AppColors.lightColor
-                                : AppColors.containerColor,
-                            firstOnTap: () {
-                              controller.animateToPage(0);
-                            },
-                            secondOnTap: () {
-                              controller.animateToPage(1);
-                            },
-                          ),
-                          Expanded(
-                            child: PageView(
-                              controller: controller.pageController,
-                              onPageChanged: controller.onPageChanged,
-                              children: const [
-                                LoginWithEmailView(),
-                                LoginWithPhoneView(),
-                              ],
+                    child: GetBuilder<LoginController>(
+                      builder: (_) {
+                        return Column(
+                          children: [
+                            const SizedBox(height: 24),
+                            CustomContainerAuth(
+                              firstText: 'Email',
+                              secondText: 'Phone Number',
+                              firstColor: controller.currentPage == 0
+                                  ? AppColors.lightColor
+                                  : AppColors.containerColor,
+                              secondColor: controller.currentPage == 1
+                                  ? AppColors.lightColor
+                                  : AppColors.containerColor,
+                              firstOnTap: () {
+                                controller.animateToPage(0);
+                              },
+                              secondOnTap: () {
+                                controller.animateToPage(1);
+                              },
                             ),
-                          )
-                        ],
-                      );
-                    }),
+                            Expanded(
+                              child: PageView(
+                                controller: controller.pageController,
+                                onPageChanged: controller.onPageChanged,
+                                children: const [
+                                  LoginWithEmailView(),
+                                  LoginWithPhoneView(),
+                                ],
+                              ),
+                            )
+                          ],
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

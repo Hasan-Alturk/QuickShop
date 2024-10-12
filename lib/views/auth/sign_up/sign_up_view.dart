@@ -22,11 +22,10 @@ class SignUpView extends GetView<SignUpController> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.3,
+                height: height * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
-                  title: "Create your account",
-                  subTitle: "Sign upn to enjoy the best shopping experience",
+                  title: "Sign Up to access exclusive offers",
                 ),
               ),
               Expanded(

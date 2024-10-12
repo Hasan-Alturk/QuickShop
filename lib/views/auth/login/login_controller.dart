@@ -49,11 +49,11 @@ class LoginController extends GetxController {
   }
 
   void goToForgetPassword() {
-    Get.toNamed("/forget_password");
+    //  Get.toNamed("/forget_password");
   }
 
   void goToSignUp() {
-    Get.toNamed("/sign_up");
+    Get.offAllNamed("/sign_up");
   }
 
   Future signInWithGoogle() async {
@@ -61,7 +61,7 @@ class LoginController extends GetxController {
       isLoading = true;
       update(["ElevatedButton"]);
 
-      User user = await authRepo.signInWithGoogle();
+      User user = await authRepo.loginWithGoogle();
       await SharedStorage.saveUser(user);
 
       isLoading = false;
@@ -81,7 +81,7 @@ class LoginController extends GetxController {
       isLoading = true;
       update(["ElevatedButton"]);
 
-      User user = await authRepo.signInWithFacebook();
+      User user = await authRepo.loginWithFacebook();
 
       await SharedStorage.saveUser(user);
 

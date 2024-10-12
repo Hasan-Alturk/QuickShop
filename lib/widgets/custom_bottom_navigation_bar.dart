@@ -19,7 +19,6 @@ class CustomBottomNavigationBar extends StatefulWidget {
 }
 
 class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
-  final List<double> _rotationAngles = [0.0, 0.0, 0.0, 0.0, 0.0];
   final List<double> _opacityValues = [
     1.0,
     1.0,
@@ -55,17 +54,12 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     return InkWell(
       onTap: () {
         setState(() {
-          // تغيير الزاوية فقط للأيقونة التي تم النقر عليها
-          _rotationAngles[index] = 360; // تعيين الزاوية إلى 360
-
           // تعيين قيمة الشفافية للأيقونة النشطة
           _opacityValues[index] = 0.1; // تعيين الشفافية إلى 0 لتصبح غير مرئية
 
           // تنفيذ animation
-          Future.delayed(const Duration(milliseconds: 500), () {
+          Future.delayed(const Duration(milliseconds: 400), () {
             setState(() {
-              _rotationAngles[index] =
-                  0; // إعادة الزاوية إلى 0 بعد انتهاء التحول
               _opacityValues[index] =
                   1.0; // تعيين الشفافية إلى 1 لجعلها مرئية مرة أخرى
             });
@@ -76,18 +70,13 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          AnimatedRotation(
-            turns:
-                _rotationAngles[index] / 360, // تحويل الزاوية إلى عدد الدورات
-            duration: const Duration(milliseconds: 500), // مدة التحول
-            child: AnimatedOpacity(
-              opacity: _opacityValues[index], // استخدام قيمة الشفافية
-              duration: const Duration(milliseconds: 500), // مدة التدرج
-              child: SvgPicture.asset(
-                icon,
-                // ignore: deprecated_member_use
-                color: isActive ? AppColors.whiteColor : AppColors.grayColor,
-              ),
+          AnimatedOpacity(
+            opacity: _opacityValues[index], // استخدام قيمة الشفافية
+            duration: const Duration(milliseconds: 400), // مدة التدرج
+            child: SvgPicture.asset(
+              icon,
+              // ignore: deprecated_member_use
+              color: isActive ? AppColors.whiteColor : AppColors.grayColor,
             ),
           ),
         ],

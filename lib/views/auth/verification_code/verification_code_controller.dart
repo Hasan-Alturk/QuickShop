@@ -34,7 +34,7 @@ class VerificationCodeController extends GetxController {
 
         Get.toNamed("/sign_up_complete_with_phone", arguments: fullNumber);
       } else {
-        CustomSnackbar.showErrorSnackbar(data['message']);
+        CustomSnackbar.showErrorSnackbar("Invalid OTP");
       }
     } on ErrorHandler catch (e) {
       isLoading = false;
@@ -91,7 +91,7 @@ class VerificationCodeController extends GetxController {
       isLoading = false;
       update(["TimerButton"]);
 
-      CustomSnackbar.showErrorSnackbar(
+      CustomSnackbar.showSuccessSnackbar(
           'Re send verify Otp on Phone Number successfully');
 
       // if (response.statusCode == 201) {

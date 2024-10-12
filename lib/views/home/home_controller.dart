@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/services/local_notification_controller.dart';
+import 'package:quick_shop/views/popular/popular_view.dart';
 import 'package:quick_shop/widgets/custom_card_product.dart';
 
 class HomeController extends GetxController {
@@ -11,6 +14,7 @@ class HomeController extends GetxController {
 
   final LocalNotificationController notificationController =
       Get.put(LocalNotificationController());
+
   int selectedCategoryIndex = -1; // يبدأ من -1 لتحديد عدم وجود أي عنصر محدد
   void selectCategory(int index) {
     selectedCategoryIndex = index; // تحديث الفهرس المحدد
@@ -20,6 +24,11 @@ class HomeController extends GetxController {
   int currentPage = 0;
 
   void updatePageIndex(int index) {
+    currentPage = index;
+    update();
+  }
+
+  void onPageChanged(int index, CarouselPageChangedReason reason) {
     currentPage = index;
     update();
   }
