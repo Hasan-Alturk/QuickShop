@@ -6,12 +6,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 
-String baseUrl = "https://khd.kankfyha.com";
-
 class AuthRepo {
   AuthRepo(this.dio);
 
   final Dio dio;
+
+  static const String baseUrl = "https://khd.kankfyha.com";
 
   final GoogleSignIn googleSignIn = GoogleSignIn(
     scopes: <String>[
@@ -20,9 +20,12 @@ class AuthRepo {
     ],
   );
 
+  // Twilio configuration
   String accountSid = 'ACdc9cda35bb830403397d96a96dbfb937';
   String authToken = '6d560aa878729536ffe6131cfa805d3e';
   String serviceSid = 'VA087f4a42d118c412f2ccfbc106b0a131';
+
+  // ** Login Methods **
 
   Future<User> loginWithFacebook() async {
     try {
@@ -42,21 +45,19 @@ class AuthRepo {
         );
 
         if (response.statusCode == 200 && response.data != null) {
-          if (response.data != null) {
-            UserResopnse userResponse = UserResopnse.fromJson(response.data);
-            User user = userResponse.data;
-            return user;
-          }
+          UserResopnse userResponse = UserResopnse.fromJson(response.data);
+          User user = userResponse.data;
+          return user;
         } else {
           throw ErrorHandler(message: "${response.statusMessage}");
         }
-      } else if (facebookSignIn.status == LoginStatus.failed) {
+      } else {
         throw ErrorHandler(message: " ${facebookSignIn.message}");
       }
     } catch (e) {
       await ErrorHandler.handleGeneralException(e);
     }
-    throw ErrorHandler(message: "Sign in with facebook failed");
+    throw ErrorHandler(message: "Facebook login failed");
   }
 
   Future<User> loginWithGoogle() async {
@@ -64,7 +65,7 @@ class AuthRepo {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
 
       if (googleUser == null) {
-        throw ErrorHandler(message: "sign in google was cancelled");
+        throw ErrorHandler(message: "Google sign-in was cancelled");
       }
 
       Response response = await dio.post(
@@ -87,7 +88,7 @@ class AuthRepo {
     } catch (e) {
       await ErrorHandler.handleGeneralException(e);
     }
-    throw ErrorHandler(message: "sign in with google failed");
+    throw ErrorHandler(message: "Google login failed");
   }
 
   Future<User> login({
@@ -115,6 +116,8 @@ class AuthRepo {
     }
     throw ErrorHandler(message: "Login failed");
   }
+
+  // ** Registration Methods **
 
   Future<Response<dynamic>> sendVerificationWithEmail({
     required String email,
@@ -179,7 +182,7 @@ class AuthRepo {
     } catch (e) {
       await ErrorHandler.handleGeneralException(e);
     }
-    throw ErrorHandler(message: "Failed to resend OTP");
+    throw ErrorHandler(message: "Failed to resend verification email");
   }
 
   Future<User> signUp({
@@ -213,6 +216,8 @@ class AuthRepo {
     }
     throw ErrorHandler(message: "Sign up failed");
   }
+
+  // ** Phone Verification Methods **
 
   Future<Response<dynamic>> sendVerificationWithPhone({
     required String phoneNumber,

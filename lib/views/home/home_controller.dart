@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/services/local_notification_controller.dart';
-import 'package:quick_shop/views/popular/popular_view.dart';
 import 'package:quick_shop/widgets/custom_card_product.dart';
 
 class HomeController extends GetxController {
