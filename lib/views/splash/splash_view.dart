@@ -10,13 +10,16 @@ class SplashView extends GetView<SplashController> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
+            height: height,
+            width: width,
             decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(Assets.imagesSplach),
@@ -33,7 +36,7 @@ class SplashView extends GetView<SplashController> {
                         child: SvgPicture.asset(Assets.imagesLogoWhite),
                       ),
                     )),
-                const SizedBox(height: 50),
+                SizedBox(height: height * 0.05),
                 const CircularProgressIndicator(
                   strokeWidth: 3,
                   color: AppColors.whiteColor,

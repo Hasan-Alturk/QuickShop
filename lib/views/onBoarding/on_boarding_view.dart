@@ -11,6 +11,8 @@ class OnBoardingView extends GetView<OnBoardingController> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
       backgroundColor: AppColors.lightColor,
       body: SafeArea(
@@ -108,7 +110,7 @@ class OnBoardingView extends GetView<OnBoardingController> {
                 },
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: height * 0.02),
           ],
         ),
       ),

@@ -67,7 +67,7 @@ class TimerButtonState extends State<TimerButton> {
       child: Text(
         _remainingTime == 0 ? widget.label : ' $_remainingTime sec',
         style: AppTextStyles()
-            .medium14(context)
+            .medium12(context)
             .copyWith(color: AppColors.darkColor),
       ),
     );

@@ -112,7 +112,7 @@ class CustomTextFieldState extends State<CustomTextField> {
                 : null,
           ),
           style: AppTextStyles()
-              .bold16(context)
+              .medium14(context)
               .copyWith(color: AppColors.darkColor),
         ),
       ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomIntlPhoneNumber extends StatelessWidget {
   const CustomIntlPhoneNumber({
@@ -62,6 +63,9 @@ class CustomIntlPhoneNumber extends StatelessWidget {
         errorMaxLines: 3,
         fillColor: AppColors.nonActiveColor,
       ),
+      style: AppTextStyles()
+          .medium14(context)
+          .copyWith(color: AppColors.darkColor),
       validator: (text) {
         RegExp regExp = RegExp(r'^\+?[0-9]{10,15}$');
 

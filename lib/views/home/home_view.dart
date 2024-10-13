@@ -32,8 +32,7 @@ class HomeView extends GetView<HomeController> {
                 GetBuilder<HomeController>(builder: (_) {
                   return ElevatedButton(
                     onPressed: () {
-                      CustomSnackbar.showSuccessSnackbar("message");
-
+                      CustomSnackbar.showErrorSnackbar("message");
                       // controller.notificationController.showNotification(
                       //     'Hello', 'This is a test notification!');
                     },

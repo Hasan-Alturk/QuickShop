@@ -16,6 +16,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: AppColors.darkColor,
@@ -33,7 +34,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
               ),
               Expanded(
                 child: Container(
-                  width: double.infinity,
+                  width: width,
                   decoration: const ShapeDecoration(
                     color: AppColors.lightColor,
                     shape: RoundedRectangleBorder(
@@ -48,7 +49,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          const SizedBox(height: 24),
+                          SizedBox(height: height * 0.024),
                           CustomTextField(
                             controller: controller.nameController,
                             hint: "Name",
@@ -65,7 +66,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
                               }
                             },
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: height * 0.012),
                           CustomTextField(
                             controller: controller.passwordController,
                             hint: "Password",
@@ -93,7 +94,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
                               }
                             },
                           ),
-                          const SizedBox(height: 12),
+                          SizedBox(height: height * 0.012),
                           CustomTextField(
                             controller: controller.confirmPasswordController,
                             hint: "Confirm Password",
@@ -124,12 +125,12 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
                               }
                             },
                           ),
-                          const SizedBox(height: 24),
+                          SizedBox(height: height * 0.024),
                           GetBuilder<SignUpCompleteController>(
                             id: "ElevatedButton",
                             builder: (_) {
                               return SizedBox(
-                                width: double.infinity,
+                                width: width,
                                 height: 50,
                                 child: CustomButton(
                                   onPressed: () {

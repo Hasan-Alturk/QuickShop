@@ -14,6 +14,7 @@ class SignUpView extends GetView<SignUpController> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: AppColors.darkColor,
       body: Form(
@@ -30,7 +31,7 @@ class SignUpView extends GetView<SignUpController> {
               ),
               Expanded(
                 child: Container(
-                  width: double.infinity,
+                  width: width,
                   decoration: const ShapeDecoration(
                     color: AppColors.lightColor,
                     shape: RoundedRectangleBorder(
@@ -45,7 +46,7 @@ class SignUpView extends GetView<SignUpController> {
                     child: GetBuilder<SignUpController>(builder: (_) {
                       return Column(
                         children: [
-                          const SizedBox(height: 24),
+                          SizedBox(height: height * 0.024),
                           CustomContainerAuth(
                             firstText: 'Email',
                             secondText: 'Phone Number',

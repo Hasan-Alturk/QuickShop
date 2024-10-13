@@ -120,7 +120,7 @@ class SplashController extends GetxController
   void getData() async {
     try {
       final savedLocale = await localeController.getLocale();
-      
+
       final savedTheme = await themeController.getTheme();
 
       if (savedLocale != null) {
@@ -155,7 +155,5 @@ class SplashController extends GetxController
     }
   }
 
-  Future<void> sendTokenToServer(String token) async {
-
-  }
+  Future<void> sendTokenToServer(String token) async {}
 }

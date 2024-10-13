@@ -5,17 +5,24 @@ import 'package:quick_shop/core/constants/app_colors.dart';
 class CustomSnackbar {
   static void showErrorSnackbar(String message) {
     Get.snackbar(
-      '', // عنوان الرسالة
+      'Error', // عنوان الرسالة
       titleText: const Text(
         'Error',
         style: TextStyle(
           color: AppColors.whiteColor,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.bold,
           fontSize: 16,
         ),
       ),
-
       message, // محتوى الرسالة
+      messageText: Text(
+        message,
+        style: const TextStyle(
+          color: AppColors.lightColor,
+          fontWeight: FontWeight.normal,
+          fontSize: 14,
+        ),
+      ),
       snackPosition: SnackPosition.TOP, // مكان عرض الرسالة
       backgroundColor: Colors.black.withOpacity(0.8), // خلفية شبه شفافة
       colorText: AppColors.whiteColor, // لون النص
@@ -27,13 +34,7 @@ class CustomSnackbar {
       duration: const Duration(seconds: 2), // مدة عرض الإشعار
       forwardAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الخروج
       reverseAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الدخول
-      boxShadows: [
-        const BoxShadow(
-          color: AppColors.darkColor,
-          blurRadius: 10,
-          offset: Offset(0, 4), // لتكوين تأثير ظل خفيف
-        )
-      ],
+
       backgroundGradient: const LinearGradient(
         colors: [AppColors.darkColor, Colors.red],
         begin: Alignment.topLeft,
@@ -41,7 +42,7 @@ class CustomSnackbar {
       ),
       overlayBlur: 1, // تأثير ضبابي للخلفية
       overlayColor:
-          Colors.black.withOpacity(0.5), // لون يغطي الخلفية خلف الإشعار
+          Colors.black.withOpacity(0.4), // لون يغطي الخلفية خلف الإشعار
       icon: const Icon(
         Icons.warning_rounded,
         color: Colors.white,
@@ -53,16 +54,24 @@ class CustomSnackbar {
 
   static void showSuccessSnackbar(String message) {
     Get.snackbar(
-      '', // عنوان الرسالة
+      'Success', // عنوان الرسالة
       titleText: const Text(
         'Success',
         style: TextStyle(
           color: AppColors.whiteColor,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.bold,
           fontSize: 16,
         ),
       ),
       message, // محتوى الرسالة
+      messageText: Text(
+        message,
+        style: const TextStyle(
+          color: AppColors.lightColor,
+          fontWeight: FontWeight.normal,
+          fontSize: 14,
+        ),
+      ),
       snackPosition: SnackPosition.TOP, // مكان عرض الرسالة
       backgroundColor: Colors.black.withOpacity(0.8), // خلفية شبه شفافة
       colorText: AppColors.whiteColor, // لون النص
@@ -74,13 +83,7 @@ class CustomSnackbar {
       duration: const Duration(seconds: 2), // مدة عرض الإشعار
       forwardAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الخروج
       reverseAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الدخول
-      boxShadows: [
-        const BoxShadow(
-          color: AppColors.darkColor,
-          blurRadius: 10,
-          offset: Offset(0, 4), // لتكوين تأثير ظل خفيف
-        )
-      ],
+
       backgroundGradient: const LinearGradient(
         colors: [AppColors.darkColor, Colors.green],
         begin: Alignment.topLeft,
@@ -88,7 +91,7 @@ class CustomSnackbar {
       ),
       overlayBlur: 1, // تأثير ضبابي للخلفية
       overlayColor:
-          Colors.black.withOpacity(0.5), // لون يغطي الخلفية خلف الإشعار
+          Colors.black.withOpacity(0.4), // لون يغطي الخلفية خلف الإشعار
       icon: const Icon(
         Icons.check_circle_rounded,
         color: Colors.white,

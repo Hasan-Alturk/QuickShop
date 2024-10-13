@@ -17,6 +17,7 @@ class VerificationCodeWithPhoneView
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: AppColors.darkColor,
@@ -34,7 +35,7 @@ class VerificationCodeWithPhoneView
               ),
               Expanded(
                 child: Container(
-                  width: double.infinity,
+                  width: width,
                   decoration: const ShapeDecoration(
                     color: AppColors.lightColor,
                     shape: RoundedRectangleBorder(
@@ -49,7 +50,7 @@ class VerificationCodeWithPhoneView
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          const SizedBox(height: 24),
+                          SizedBox(height: height * 0.024),
                           GetBuilder<VerificationCodeController>(
                             builder: (_) {
                               return OtpTextField(
@@ -63,7 +64,7 @@ class VerificationCodeWithPhoneView
                               );
                             },
                           ),
-                          const SizedBox(height: 24),
+                          SizedBox(height: height * 0.024),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -89,12 +90,12 @@ class VerificationCodeWithPhoneView
                               ),
                             ],
                           ),
-                          const SizedBox(height: 24),
+                          SizedBox(height: height * 0.024),
                           GetBuilder<VerificationCodeController>(
                             id: "ElevatedButton",
                             builder: (_) {
                               return SizedBox(
-                                width: double.infinity,
+                                width: width,
                                 height: 50,
                                 child: CustomButton(
                                   onPressed: () {

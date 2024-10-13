@@ -67,6 +67,7 @@ class CustomPageViewOnBoardingItemState
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -87,7 +88,7 @@ class CustomPageViewOnBoardingItemState
             ),
           ),
         ),
-        const SizedBox(height: 100),
+        SizedBox(height: height * 0.1),
         Expanded(
           flex: 1,
           child: Padding(
@@ -104,7 +105,7 @@ class CustomPageViewOnBoardingItemState
                         .copyWith(color: AppColors.primaryColor),
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: height * 0.02),
                 SlideTransition(
                   position: _subtitleSlideAnimation,
                   child: Text(
