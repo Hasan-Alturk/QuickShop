@@ -17,12 +17,14 @@ class AppTextStyles {
   double getScaleFactor(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
-    if (width < 600) {
+    if (width < 360) {
+      return width / 360;
+    } else if (width < 600) {
       return width / 500;
     } else if (width < 900) {
       return width / 800;
     } else {
-      return width / 1000;
+      return width / 1200;
     }
   }
 

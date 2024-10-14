@@ -82,8 +82,7 @@ class OtpTextFieldState extends State<OtpTextField> {
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
-                borderSide:
-                    const BorderSide(color: AppColors.primaryLightColor),
+                borderSide: const BorderSide(color: AppColors.primaryColor),
               ),
               fillColor: AppColors.nonActiveColor,
               filled: true,
