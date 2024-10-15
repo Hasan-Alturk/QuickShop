@@ -35,7 +35,7 @@ class SplashView extends GetView<SplashController> {
                 SizedBox(height: height * 0.05),
                 CircularProgressIndicator(
                   strokeWidth: 3,
-                  color: Get.theme.colorScheme.primary,
+                  color: Get.theme.colorScheme.onPrimary,
                 ),
               ],
             ),

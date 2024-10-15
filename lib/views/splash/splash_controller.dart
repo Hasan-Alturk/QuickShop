@@ -115,14 +115,15 @@ class SplashController extends GetxController
     try {
       final savedLocale = await localeController.getLocale();
 
-     // final savedTheme = await themeController.getTheme();
+      final savedTheme = await themeController.getTheme();
 
       if (savedLocale != null) {
-        //Get.updateLocale(savedLocale);
+        Get.updateLocale(savedLocale);
         log("savedLocale != null");
       }
-    //  Get.changeTheme(savedTheme);
-      log("savedTheme != null");
+
+      Get.changeTheme(savedTheme);
+      log("changeTheme=");
       Future.delayed(const Duration(seconds: 3), () {
         log("on_boarding");
 
