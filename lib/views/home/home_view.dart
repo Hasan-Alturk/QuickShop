@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/views/home/home_controller.dart';
 import 'package:quick_shop/widgets/custom_card_category.dart';
 import 'package:quick_shop/widgets/custom_card_product.dart';
@@ -17,7 +16,6 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),

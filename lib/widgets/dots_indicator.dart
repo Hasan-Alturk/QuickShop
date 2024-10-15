@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 
 class DotsIndicator extends StatelessWidget {
   final int itemsCount;
@@ -23,8 +23,8 @@ class DotsIndicator extends StatelessWidget {
           height: 10.0,
           decoration: BoxDecoration(
             color: currentPage == index
-                ? AppColors.primaryColor
-                : AppColors.secondryTextColor,
+                ? Get.theme.colorScheme.primary
+                : Get.theme.colorScheme.onSecondary,
             borderRadius: BorderRadius.circular(5.0),
           ),
         );

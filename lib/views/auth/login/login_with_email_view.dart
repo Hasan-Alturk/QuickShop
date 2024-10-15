@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/auth/login/login_controller.dart';
@@ -79,9 +78,9 @@ class LoginWithEmailView extends GetView<LoginController> {
                     builder: (_) {
                       return Checkbox(
                         value: controller.isRememberMeChecked,
-                        activeColor: AppColors.primaryColor,
-                        side: const BorderSide(
-                          color: AppColors.primaryColor,
+                        activeColor: Get.theme.colorScheme.primary,
+                        side: BorderSide(
+                          color: Get.theme.colorScheme.primary,
                           width: 2,
                         ),
                         onChanged: (bool? value) {
@@ -93,7 +92,7 @@ class LoginWithEmailView extends GetView<LoginController> {
                   Text(
                     "Remember me",
                     style: AppTextStyles().medium12(context).copyWith(
-                          color: AppColors.secondryTextColor,
+                          color: Get.theme.colorScheme.onSurface,
                         ),
                   ),
                 ],
@@ -106,7 +105,7 @@ class LoginWithEmailView extends GetView<LoginController> {
                   "Forget Password?",
                   style: AppTextStyles()
                       .medium12(context)
-                      .copyWith(color: AppColors.primaryColor),
+                      .copyWith(color: Get.theme.colorScheme.primary),
                 ),
               )
             ],

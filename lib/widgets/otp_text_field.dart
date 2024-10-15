@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class OtpTextField extends StatefulWidget {
@@ -70,7 +70,7 @@ class OtpTextFieldState extends State<OtpTextField> {
             focusNode: focusNodes[index],
             textAlign: TextAlign.center,
             style: AppTextStyles().blackBold24(context).copyWith(
-                  color: AppColors.primaryColor,
+                  color: Get.theme.colorScheme.primary,
                 ),
             maxLength: 1,
             keyboardType: TextInputType.number,
@@ -78,13 +78,14 @@ class OtpTextFieldState extends State<OtpTextField> {
               counterText: "",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
-                borderSide: const BorderSide(color: AppColors.grayColor),
+                borderSide:
+                    BorderSide(color: Get.theme.colorScheme.onSecondary),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
-                borderSide: const BorderSide(color: AppColors.primaryColor),
+                borderSide: BorderSide(color: Get.theme.colorScheme.primary),
               ),
-              fillColor: AppColors.nonActiveColor,
+              fillColor: Get.theme.colorScheme.surface,
               filled: true,
             ),
             onChanged: (value) => _handleInput(value, index),

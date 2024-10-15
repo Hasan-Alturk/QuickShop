@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
-import 'package:quick_shop/core/services/shared_storage.dart';
+import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
 import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class SignUpController extends GetxController {
@@ -65,7 +65,7 @@ class SignUpController extends GetxController {
           await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
       Map<String, dynamic> responseData = response.data;
       String token = responseData['token'];
-      await SharedStorage.saveToken(token: token);
+      await SharedPreferencesSingleton.saveToken(token: token);
       isLoading = false;
       update(["ElevatedButton"]);
       CustomSnackbar.showSuccessSnackbar(
@@ -90,7 +90,7 @@ class SignUpController extends GetxController {
       final response = await authRepo.sendVerificationWithEmail(email: email);
       Map<String, dynamic> responseData = response.data;
       String token = responseData['token'];
-      await SharedStorage.saveToken(token: token);
+      await SharedPreferencesSingleton.saveToken(token: token);
 
       isLoading = false;
       update(["ElevatedButton"]);
@@ -113,7 +113,7 @@ class SignUpController extends GetxController {
 
       User user = await authRepo.loginWithGoogle();
 
-      await SharedStorage.saveUser(user);
+      await SharedPreferencesSingleton.saveUser(user);
 
       isLoading = false;
       update(["ElevatedButton"]);
@@ -134,7 +134,7 @@ class SignUpController extends GetxController {
 
       User user = await authRepo.loginWithFacebook();
 
-      await SharedStorage.saveUser(user);
+      await SharedPreferencesSingleton.saveUser(user);
 
       isLoading = false;
       update(["ElevatedButton"]);

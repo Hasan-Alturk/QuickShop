@@ -2,18 +2,20 @@ import 'dart:convert';
 import 'package:quick_shop/core/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedStorage {
+class SharedPreferencesSingleton {
+  static late SharedPreferences prefs;
+
+  static Future<void> init() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
   // Save Token
   static Future<void> saveToken({required String token}) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
     prefs.setString('token', "Bearer $token");
   }
 
   // get Token from SharedPreferences
   static Future<String?> getToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
     String? token = prefs.getString('token');
     return token;
   }
@@ -21,16 +23,12 @@ class SharedStorage {
   // Save User in SharedPreferences
 
   static Future<void> saveUser(User user) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
     prefs.setString('user', jsonEncode(user.toJson()));
   }
 
   // get User from SharedPreferences
 
   static Future<User?> getUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
     String? userString = prefs.getString('user');
     Map<String, dynamic> user = jsonDecode(userString!);
     return User.fromJson(user);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomOrAuthWith extends StatelessWidget {
@@ -15,9 +15,9 @@ class CustomOrAuthWith extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Expanded(
+        Expanded(
           child: Divider(
-            color: AppColors.grayColor,
+            color: Get.theme.colorScheme.onSecondary,
             thickness: 2,
           ),
         ),
@@ -25,13 +25,13 @@ class CustomOrAuthWith extends StatelessWidget {
         Text(
           text,
           style: AppTextStyles().bold12(context).copyWith(
-                color: AppColors.secondryTextColor,
+                color: Get.theme.colorScheme.onSurface,
               ),
         ),
         const SizedBox(width: 10),
-        const Expanded(
+        Expanded(
           child: Divider(
-            color: AppColors.grayColor,
+            color: Get.theme.colorScheme.onSecondary,
             thickness: 2,
           ),
         ),

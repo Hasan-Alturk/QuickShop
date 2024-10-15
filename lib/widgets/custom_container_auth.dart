@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
-class CustomContainerAuth<T extends GetxController> extends StatelessWidget {
+class CustomContainerAuth extends StatelessWidget {
   const CustomContainerAuth({
     super.key,
     required this.firstText,
@@ -29,7 +28,7 @@ class CustomContainerAuth<T extends GetxController> extends StatelessWidget {
       width: double.infinity,
       height: 50,
       decoration: ShapeDecoration(
-        color: AppColors.containerColor,
+        color: Get.theme.colorScheme.primaryContainer,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(32),
         ),
@@ -47,7 +46,7 @@ class CustomContainerAuth<T extends GetxController> extends StatelessWidget {
                   decoration: ShapeDecoration(
                     color: firstColor,
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(color: AppColors.nonActiveColor),
+                      side: BorderSide(color: Get.theme.colorScheme.surface),
                       borderRadius: BorderRadius.circular(24),
                     ),
                   ),
@@ -56,7 +55,7 @@ class CustomContainerAuth<T extends GetxController> extends StatelessWidget {
                       firstText,
                       style: AppTextStyles()
                           .semiBold16(context)
-                          .copyWith(color: AppColors.darkColor),
+                          .copyWith(color: Get.theme.colorScheme.secondary),
                     ),
                   ),
                 ),
@@ -73,7 +72,7 @@ class CustomContainerAuth<T extends GetxController> extends StatelessWidget {
                   decoration: ShapeDecoration(
                     color: secondColor,
                     shape: RoundedRectangleBorder(
-                      side: const BorderSide(color: AppColors.nonActiveColor),
+                      side: BorderSide(color: Get.theme.colorScheme.surface),
                       borderRadius: BorderRadius.circular(24),
                     ),
                   ),
@@ -82,7 +81,7 @@ class CustomContainerAuth<T extends GetxController> extends StatelessWidget {
                       secondText,
                       style: AppTextStyles()
                           .semiBold16(context)
-                          .copyWith(color: AppColors.darkColor),
+                          .copyWith(color: Get.theme.colorScheme.secondary),
                     ),
                   ),
                 ),

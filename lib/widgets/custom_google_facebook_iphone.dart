@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 
 class CustomGoogleFacebookIphone extends StatelessWidget {
@@ -22,11 +22,11 @@ class CustomGoogleFacebookIphone extends StatelessWidget {
             child: Container(
               height: 50,
               decoration: ShapeDecoration(
-                color: AppColors.nonActiveColor,
+                color: Get.theme.colorScheme.surface,
                 shape: RoundedRectangleBorder(
-                  side: const BorderSide(
+                  side: BorderSide(
                     width: 2,
-                    color: AppColors.grayColor,
+                    color: Get.theme.colorScheme.onSecondary,
                   ),
                   borderRadius: BorderRadius.circular(32),
                 ),
@@ -47,11 +47,11 @@ class CustomGoogleFacebookIphone extends StatelessWidget {
             child: Container(
               height: 50,
               decoration: ShapeDecoration(
-                color: AppColors.nonActiveColor,
+                color: Get.theme.colorScheme.surface,
                 shape: RoundedRectangleBorder(
-                  side: const BorderSide(
+                  side: BorderSide(
                     width: 2,
-                    color: AppColors.grayColor,
+                    color: Get.theme.colorScheme.onSecondary,
                   ),
                   borderRadius: BorderRadius.circular(32),
                 ),
@@ -70,11 +70,11 @@ class CustomGoogleFacebookIphone extends StatelessWidget {
           child: Container(
             height: 50,
             decoration: ShapeDecoration(
-              color: AppColors.nonActiveColor,
+              color: Get.theme.colorScheme.surface,
               shape: RoundedRectangleBorder(
-                side: const BorderSide(
+                side: BorderSide(
                   width: 2,
-                  color: AppColors.grayColor,
+                  color: Get.theme.colorScheme.onSecondary,
                 ),
                 borderRadius: BorderRadius.circular(32),
               ),

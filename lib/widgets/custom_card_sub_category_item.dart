@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomCardSubCategoryItem extends StatelessWidget {
@@ -25,7 +25,7 @@ class CustomCardSubCategoryItem extends StatelessWidget {
             width: 60,
             height: 60,
             decoration: ShapeDecoration(
-              color: AppColors.nonActiveColor,
+              color: Get.theme.colorScheme.surface,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
@@ -39,7 +39,7 @@ class CustomCardSubCategoryItem extends StatelessWidget {
           Text(
             categoryName,
             style: AppTextStyles().medium10(context).copyWith(
-                  color: AppColors.darkColor,
+                  color: Get.theme.colorScheme.secondary,
                 ),
             textAlign: TextAlign.center,
           ),

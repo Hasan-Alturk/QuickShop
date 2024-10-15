@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/auth/verification_code/verification_code_controller.dart';
@@ -19,7 +18,7 @@ class VerificationCodeWithEmailView
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: AppColors.darkColor,
+      backgroundColor: Get.theme.colorScheme.secondary,
       body: Form(
         key: controller.formKey,
         child: SafeArea(
@@ -35,9 +34,9 @@ class VerificationCodeWithEmailView
               Expanded(
                 child: Container(
                   width: width,
-                  decoration: const ShapeDecoration(
-                    color: AppColors.lightColor,
-                    shape: RoundedRectangleBorder(
+                  decoration: ShapeDecoration(
+                    color: Get.theme.scaffoldBackgroundColor,
+                    shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(32),
                         topRight: Radius.circular(32),
@@ -69,10 +68,11 @@ class VerificationCodeWithEmailView
                             children: [
                               Text(
                                 'Didn’t receive code?   ',
-                                style:
-                                    AppTextStyles().medium12(context).copyWith(
-                                          color: AppColors.secondryTextColor,
-                                        ),
+                                style: AppTextStyles()
+                                    .medium12(context)
+                                    .copyWith(
+                                      color: Get.theme.colorScheme.onSurface,
+                                    ),
                               ),
                               GetBuilder<VerificationCodeController>(
                                 id: "TimerButton",

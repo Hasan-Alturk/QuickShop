@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/views/auth/sign_up/sign_up_with_email_view.dart';
 import 'package:quick_shop/views/auth/sign_up/sign_up_with_phone_view.dart';
@@ -16,7 +15,7 @@ class SignUpView extends GetView<SignUpController> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: AppColors.darkColor,
+      backgroundColor: Get.theme.colorScheme.secondary,
       body: Form(
         key: controller.formKey,
         child: SafeArea(
@@ -32,9 +31,9 @@ class SignUpView extends GetView<SignUpController> {
               Expanded(
                 child: Container(
                   width: width,
-                  decoration: const ShapeDecoration(
-                    color: AppColors.lightColor,
-                    shape: RoundedRectangleBorder(
+                  decoration: ShapeDecoration(
+                    color: Get.theme.scaffoldBackgroundColor,
+                    shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(32),
                         topRight: Radius.circular(32),
@@ -51,11 +50,11 @@ class SignUpView extends GetView<SignUpController> {
                             firstText: 'Email',
                             secondText: 'Phone Number',
                             firstColor: controller.currentPage == 0
-                                ? AppColors.lightColor
-                                : AppColors.containerColor,
+                                ? Get.theme.scaffoldBackgroundColor
+                                : Get.theme.colorScheme.primaryContainer,
                             secondColor: controller.currentPage == 1
-                                ? AppColors.lightColor
-                                : AppColors.containerColor,
+                                ? Get.theme.scaffoldBackgroundColor
+                                : Get.theme.colorScheme.primaryContainer,
                             firstOnTap: () {
                               controller.animateToPage(0);
                             },

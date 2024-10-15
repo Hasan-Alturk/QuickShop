@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
-import 'package:quick_shop/core/services/shared_storage.dart';
+import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
 import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class VerificationCodeController extends GetxController {
@@ -47,7 +47,7 @@ class VerificationCodeController extends GetxController {
     required String token,
     required String otp,
   }) async {
-    token = (await SharedStorage.getToken())!;
+    token = (await SharedPreferencesSingleton.getToken())!;
     try {
       isLoading = true;
       update(["ElevatedButton"]);
@@ -66,7 +66,7 @@ class VerificationCodeController extends GetxController {
   }
 
   Future<void> reSendVerifyOtpWithEmail() async {
-    token = (await SharedStorage.getToken())!;
+    token = (await SharedPreferencesSingleton.getToken())!;
     try {
       isLoading = true;
       update(["TimerButton"]);

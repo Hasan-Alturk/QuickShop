@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomTitleHome extends StatelessWidget {
@@ -21,7 +21,7 @@ class CustomTitleHome extends StatelessWidget {
           title,
           style: AppTextStyles()
               .semiBold16(context)
-              .copyWith(color: AppColors.darkColor),
+              .copyWith(color: Get.theme.colorScheme.secondary),
         ),
         InkWell(
           onTap: onTap,
@@ -29,7 +29,7 @@ class CustomTitleHome extends StatelessWidget {
             "See All",
             style: AppTextStyles()
                 .semiBold16(context)
-                .copyWith(color: AppColors.primaryColor),
+                .copyWith(color: Get.theme.colorScheme.primary),
           ),
         ),
       ],

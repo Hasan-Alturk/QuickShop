@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/widgets/custom_search.dart';
 
@@ -10,24 +10,24 @@ class CustomSearchAndPromoHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
         Expanded(
           flex: 5,
           child: CustomSearch(
             text: "Search clothes, laptops or etc",
-            color: AppColors.nonActiveColor,
-            colorText: AppColors.grayColor,
+            color: Get.theme.colorScheme.surface,
+            colorText: Get.theme.colorScheme.onSecondary,
             icon: Assets.imagesSearch,
           ),
         ),
-        SizedBox(width: 4),
+        const SizedBox(width: 4),
         Expanded(
           flex: 2,
           child: CustomSearch(
             text: "Promo",
-            color: AppColors.nonActiveColor,
-            colorText: AppColors.darkColor,
+            color: Get.theme.colorScheme.surface,
+            colorText: Get.theme.colorScheme.secondary,
             icon: Assets.imagesPromo,
           ),
         ),

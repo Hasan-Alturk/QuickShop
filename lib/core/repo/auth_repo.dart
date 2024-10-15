@@ -3,16 +3,15 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:quick_shop/core/constants/constants.dart';
 import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 
 class AuthRepo {
   AuthRepo(this.dio);
-
   final Dio dio;
 
-  static const String baseUrl = "https://khd.kankfyha.com";
-
+  // Google configuration
   final GoogleSignIn googleSignIn = GoogleSignIn(
     scopes: <String>[
       'email',

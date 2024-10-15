@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 
 class CustomSnackbar {
   static void showErrorSnackbar(String message) {
     Get.snackbar(
       'Error', // عنوان الرسالة
-      titleText: const Text(
+      titleText: Text(
         'Error',
         style: TextStyle(
-          color: AppColors.whiteColor,
+          color: Get.theme.colorScheme.onPrimary,
           fontWeight: FontWeight.bold,
           fontSize: 16,
         ),
@@ -17,15 +16,15 @@ class CustomSnackbar {
       message, // محتوى الرسالة
       messageText: Text(
         message,
-        style: const TextStyle(
-          color: AppColors.lightColor,
+        style: TextStyle(
+          color: Get.theme.scaffoldBackgroundColor,
           fontWeight: FontWeight.normal,
           fontSize: 14,
         ),
       ),
       snackPosition: SnackPosition.TOP, // مكان عرض الرسالة
       backgroundColor: Colors.black.withOpacity(0.8), // خلفية شبه شفافة
-      colorText: AppColors.whiteColor, // لون النص
+      colorText: Get.theme.colorScheme.onPrimary, // لون النص
       borderRadius: 32, // لتدوير الحواف
       margin: const EdgeInsets.all(16), // هامش من كل الجوانب
       padding: const EdgeInsets.symmetric(
@@ -35,8 +34,11 @@ class CustomSnackbar {
       forwardAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الخروج
       reverseAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الدخول
 
-      backgroundGradient: const LinearGradient(
-        colors: [AppColors.darkColor, Colors.red],
+      backgroundGradient: LinearGradient(
+        colors: [
+          Get.theme.colorScheme.secondary,
+          Get.theme.colorScheme.onError
+        ],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),
@@ -55,10 +57,10 @@ class CustomSnackbar {
   static void showSuccessSnackbar(String message) {
     Get.snackbar(
       'Success', // عنوان الرسالة
-      titleText: const Text(
+      titleText: Text(
         'Success',
         style: TextStyle(
-          color: AppColors.whiteColor,
+          color: Get.theme.colorScheme.onPrimary,
           fontWeight: FontWeight.bold,
           fontSize: 16,
         ),
@@ -66,15 +68,15 @@ class CustomSnackbar {
       message, // محتوى الرسالة
       messageText: Text(
         message,
-        style: const TextStyle(
-          color: AppColors.lightColor,
+        style: TextStyle(
+          color: Get.theme.scaffoldBackgroundColor,
           fontWeight: FontWeight.normal,
           fontSize: 14,
         ),
       ),
       snackPosition: SnackPosition.TOP, // مكان عرض الرسالة
       backgroundColor: Colors.black.withOpacity(0.8), // خلفية شبه شفافة
-      colorText: AppColors.whiteColor, // لون النص
+      colorText: Get.theme.colorScheme.onPrimary, // لون النص
       borderRadius: 32, // لتدوير الحواف
       margin: const EdgeInsets.all(16), // هامش من كل الجوانب
       padding: const EdgeInsets.symmetric(
@@ -84,8 +86,8 @@ class CustomSnackbar {
       forwardAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الخروج
       reverseAnimationCurve: Curves.easeInOut, // منحنى حركة سلس عند الدخول
 
-      backgroundGradient: const LinearGradient(
-        colors: [AppColors.darkColor, Colors.green],
+      backgroundGradient: LinearGradient(
+        colors: [Get.theme.colorScheme.secondary, Colors.green],
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomCardCategory extends StatelessWidget {
@@ -25,7 +25,9 @@ class CustomCardCategory extends StatelessWidget {
         width: 65,
         height: 65,
         decoration: ShapeDecoration(
-          color: isSelected ? AppColors.primaryColor : AppColors.nonActiveColor,
+          color: isSelected
+              ? Get.theme.colorScheme.primary
+              : Get.theme.colorScheme.surface,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
@@ -42,8 +44,9 @@ class CustomCardCategory extends StatelessWidget {
             Text(
               categoryName,
               style: AppTextStyles().medium10(context).copyWith(
-                    color:
-                        isSelected ? AppColors.whiteColor : AppColors.darkColor,
+                    color: isSelected
+                        ? Get.theme.colorScheme.onPrimary
+                        : Get.theme.colorScheme.secondary,
                   ),
               textAlign: TextAlign.center,
             ),

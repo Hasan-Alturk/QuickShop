@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomIntlPhoneNumber extends StatelessWidget {
@@ -19,23 +19,23 @@ class CustomIntlPhoneNumber extends StatelessWidget {
 
   final Function(String) onFullNumber;
 
-  OutlineInputBorder outlineInputNone() {
+  OutlineInputBorder outlineInputNone(BuildContext context) {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: AppColors.grayColor),
+      borderSide: BorderSide(color: Get.theme.colorScheme.onSecondary),
       borderRadius: BorderRadius.circular(32),
     );
   }
 
-  OutlineInputBorder outlineInputBorder() {
+  OutlineInputBorder outlineInputBorder(BuildContext context) {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: AppColors.primaryColor),
+      borderSide: BorderSide(color: Get.theme.colorScheme.primary),
       borderRadius: BorderRadius.circular(32),
     );
   }
 
-  OutlineInputBorder outlineInputError() {
+  OutlineInputBorder outlineInputError(BuildContext context) {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: AppColors.redColor),
+      borderSide: BorderSide(color: Get.theme.colorScheme.onError),
       borderRadius: BorderRadius.circular(32),
     );
   }
@@ -48,24 +48,24 @@ class CustomIntlPhoneNumber extends StatelessWidget {
       //  languageCode: 'en',
       disableLengthCheck: true,
       pickerDialogStyle: PickerDialogStyle(
-        backgroundColor: AppColors.lightColor,
+        backgroundColor: Get.theme.scaffoldBackgroundColor,
       ),
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      cursorColor: AppColors.primaryColor,
+      cursorColor: Get.theme.colorScheme.primary,
       decoration: InputDecoration(
         filled: true,
-        enabledBorder: outlineInputNone(),
-        focusedBorder: outlineInputBorder(),
-        errorBorder: outlineInputError(),
-        focusedErrorBorder: outlineInputBorder(),
-        disabledBorder: outlineInputNone(),
-        border: outlineInputNone(),
+        enabledBorder: outlineInputNone(context),
+        focusedBorder: outlineInputBorder(context),
+        errorBorder: outlineInputError(context),
+        focusedErrorBorder: outlineInputBorder(context),
+        disabledBorder: outlineInputNone(context),
+        border: outlineInputNone(context),
         errorMaxLines: 3,
-        fillColor: AppColors.nonActiveColor,
+        fillColor: Get.theme.colorScheme.surface,
       ),
       style: AppTextStyles()
           .medium14(context)
-          .copyWith(color: AppColors.darkColor),
+          .copyWith(color: Get.theme.colorScheme.secondary),
       validator: (text) {
         RegExp regExp = RegExp(r'^\+?[0-9]{10,15}$');
 

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class TimerButton extends StatefulWidget {
@@ -56,8 +56,8 @@ class TimerButtonState extends State<TimerButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      style:
-          ElevatedButton.styleFrom(backgroundColor: AppColors.nonActiveColor),
+      style: ElevatedButton.styleFrom(
+          backgroundColor: Get.theme.colorScheme.surface),
       onPressed: _remainingTime == 0
           ? () {
               widget.onPressed(); // نفذ دالة الضغط
@@ -68,7 +68,7 @@ class TimerButtonState extends State<TimerButton> {
         _remainingTime == 0 ? widget.label : ' $_remainingTime sec',
         style: AppTextStyles()
             .medium12(context)
-            .copyWith(color: AppColors.darkColor),
+            .copyWith(color: Get.theme.colorScheme.secondary),
       ),
     );
   }

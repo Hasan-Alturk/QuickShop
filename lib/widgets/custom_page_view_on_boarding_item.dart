@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomPageViewOnBoardingItem extends StatefulWidget {
@@ -102,7 +102,7 @@ class CustomPageViewOnBoardingItemState
                     widget.title,
                     style: AppTextStyles()
                         .blackBold24(context)
-                        .copyWith(color: AppColors.primaryColor),
+                        .copyWith(color: Get.theme.colorScheme.primary),
                   ),
                 ),
                 SizedBox(height: height * 0.02),
@@ -111,7 +111,7 @@ class CustomPageViewOnBoardingItemState
                   child: Text(
                     widget.subtitle,
                     style: AppTextStyles().medium14(context).copyWith(
-                          color: AppColors.secondryTextColor,
+                          color: Get.theme.colorScheme.onSurface,
                         ),
                   ),
                 ),

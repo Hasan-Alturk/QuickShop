@@ -14,7 +14,6 @@ class SplashController extends GetxController
   late AnimationController animationController;
 
   RxDouble fadeAnimation = 0.0.obs;
-  RxDouble scaleAnimation = 0.0.obs;
 
   @override
   void onInit() {
@@ -71,11 +70,6 @@ class SplashController extends GetxController
           .animate(CurvedAnimation(
               parent: animationController, curve: Curves.bounceIn))
           .value;
-
-      scaleAnimation.value = Tween<double>(begin: 0.5, end: 1.0)
-          .animate(CurvedAnimation(
-              parent: animationController, curve: Curves.elasticOut))
-          .value;
     });
 
     animationController.forward();
@@ -121,13 +115,13 @@ class SplashController extends GetxController
     try {
       final savedLocale = await localeController.getLocale();
 
-      final savedTheme = await themeController.getTheme();
+     // final savedTheme = await themeController.getTheme();
 
       if (savedLocale != null) {
         //Get.updateLocale(savedLocale);
         log("savedLocale != null");
       }
-      Get.changeTheme(savedTheme);
+    //  Get.changeTheme(savedTheme);
       log("savedTheme != null");
       Future.delayed(const Duration(seconds: 3), () {
         log("on_boarding");

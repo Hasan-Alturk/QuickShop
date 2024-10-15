@@ -9,24 +9,24 @@ class ThemeController extends GetxController {
     await prefs.setString('theme', theme);
   }
 
-  Future<ThemeData> getTheme() async {
-    final brightness =
-        WidgetsBinding.instance.platformDispatcher.platformBrightness;
-    final prefs = await SharedPreferences.getInstance();
-    final theme = prefs.getString('theme');
+//   Future<ThemeData> getTheme() async {
+//     final brightness =
+//         WidgetsBinding.instance.platformDispatcher.platformBrightness;
+//     final prefs = await SharedPreferences.getInstance();
+//     final theme = prefs.getString('theme');
 
-    if (theme == "light") {
-      return MyThemes.customLightTheme;
-    } else if (theme == "dark") {
-      return MyThemes.customDarkTheme;
-    } else {
-      if (brightness != Brightness.dark) {
-        return MyThemes.customLightTheme;
-      } else {
-        return MyThemes.customDarkTheme;
-      }
-    }
-  }
+//     if (theme == "light") {
+//     //  return MyThemes.customLightTheme;
+//     } else if (theme == "dark") {
+//  //     return MyThemes.customDarkTheme;
+//     } else {
+//       if (brightness != Brightness.dark) {
+//     //    return MyThemes.customLightTheme;
+//       } else {
+//      //   return MyThemes.customDarkTheme;
+//       }
+//     }
+//   }
 }
 
 // import 'dart:developer';

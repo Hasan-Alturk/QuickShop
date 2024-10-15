@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/views/splash/splash_controller.dart';
 
@@ -14,7 +13,7 @@ class SplashView extends GetView<SplashController> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: Get.theme.colorScheme.primary,
       body: Column(
         children: [
           Container(
@@ -31,15 +30,12 @@ class SplashView extends GetView<SplashController> {
               children: [
                 Obx(() => Opacity(
                       opacity: controller.fadeAnimation.value,
-                      child: Transform.scale(
-                        scale: controller.scaleAnimation.value,
-                        child: SvgPicture.asset(Assets.imagesLogoWhite),
-                      ),
+                      child: SvgPicture.asset(Assets.imagesLogoWhite),
                     )),
                 SizedBox(height: height * 0.05),
-                const CircularProgressIndicator(
+                CircularProgressIndicator(
                   strokeWidth: 3,
-                  color: AppColors.whiteColor,
+                  color: Get.theme.colorScheme.primary,
                 ),
               ],
             ),

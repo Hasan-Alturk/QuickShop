@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/categories/categories_controller.dart';
@@ -14,7 +13,7 @@ class CategoriesView extends GetView<CategoriesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightColor,
+      backgroundColor: Get.theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -22,10 +21,10 @@ class CategoriesView extends GetView<CategoriesController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 12),
-              const CustomSearch(
+              CustomSearch(
                 text: "Search Categories",
-                color: AppColors.nonActiveColor,
-                colorText: AppColors.grayColor,
+                color: Get.theme.colorScheme.surface,
+                colorText: Get.theme.colorScheme.onSecondary,
                 icon: Assets.imagesSearch,
               ),
               const SizedBox(height: 12),
@@ -39,8 +38,8 @@ class CategoriesView extends GetView<CategoriesController> {
                           flex: 2,
                           child: _buildCategoryList(),
                         ),
-                        const VerticalDivider(
-                          color: AppColors.grayColor, // لون الخط
+                        VerticalDivider(
+                          color: Get.theme.colorScheme.onSecondary, // لون الخط
                           thickness: 1, // سمك الخط
                           width: 15, // المسافة حول الخط
                         ),
@@ -94,14 +93,14 @@ class CategoriesView extends GetView<CategoriesController> {
       builder: (_) {
         return ExpansionTile(
           // هنا نغير الواجهة بناءً على حالة expanded
-          iconColor: AppColors.primaryColor,
-          collapsedIconColor: AppColors.secondryTextColor,
+          iconColor: Get.theme.colorScheme.primary,
+          collapsedIconColor: Get.theme.colorScheme.onSurface,
           title: Text(
             title,
             style: AppTextStyles().medium12(context).copyWith(
                   color: controller.selectedCategoryTitle == title
-                      ? AppColors.darkColor
-                      : AppColors.secondryTextColor,
+                      ? Get.theme.colorScheme.secondary
+                      : Get.theme.colorScheme.onSurface,
                 ),
           ),
           onExpansionChanged: (bool expanded) {

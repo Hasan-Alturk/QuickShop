@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomSearch extends StatelessWidget {
@@ -25,7 +25,7 @@ class CustomSearch extends StatelessWidget {
       decoration: ShapeDecoration(
         color: color,
         shape: RoundedRectangleBorder(
-          side: const BorderSide(color: AppColors.nonActiveColor),
+          side: BorderSide(color: Get.theme.colorScheme.surface),
           borderRadius: BorderRadius.circular(32),
         ),
       ),

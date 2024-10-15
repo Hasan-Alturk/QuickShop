@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/auth/verification_code/verification_code_controller.dart';
@@ -20,7 +19,7 @@ class VerificationCodeWithPhoneView
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: AppColors.darkColor,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       body: Form(
         key: controller.formKey,
         child: SafeArea(
@@ -36,9 +35,9 @@ class VerificationCodeWithPhoneView
               Expanded(
                 child: Container(
                   width: width,
-                  decoration: const ShapeDecoration(
-                    color: AppColors.lightColor,
-                    shape: RoundedRectangleBorder(
+                  decoration: ShapeDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(32),
                         topRight: Radius.circular(32),
@@ -72,7 +71,9 @@ class VerificationCodeWithPhoneView
                                 'Didn’t receive code?   ',
                                 style:
                                     AppTextStyles().medium12(context).copyWith(
-                                          color: AppColors.secondryTextColor,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurface,
                                         ),
                               ),
                               GetBuilder<VerificationCodeController>(

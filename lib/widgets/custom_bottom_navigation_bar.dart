@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -31,9 +31,9 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget build(BuildContext context) {
     return Container(
       height: 60,
-      decoration: const BoxDecoration(
-        color: AppColors.darkColor,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: Get.theme.colorScheme.secondary,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(32),
           topRight: Radius.circular(32),
         ),
@@ -76,7 +76,9 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             child: SvgPicture.asset(
               icon,
               // ignore: deprecated_member_use
-              color: isActive ? AppColors.whiteColor : AppColors.grayColor,
+              color: isActive
+                  ? Get.theme.colorScheme.onPrimary
+                  : Get.theme.colorScheme.onSecondary,
             ),
           ),
         ],

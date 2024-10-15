@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
-import 'package:quick_shop/core/services/shared_storage.dart';
+import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
 import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class SignUpCompleteController extends GetxController {
@@ -28,7 +28,7 @@ class SignUpCompleteController extends GetxController {
     required String password,
     required String confirmPassword,
   }) async {
-    token = (await SharedStorage.getToken())!;
+    token = (await SharedPreferencesSingleton.getToken())!;
 
     try {
       isLoading = true;
@@ -39,7 +39,7 @@ class SignUpCompleteController extends GetxController {
         password: password,
         passwordConfirmation: confirmPassword,
       );
-      await SharedStorage.saveUser(user);
+      await SharedPreferencesSingleton.saveUser(user);
       isLoading = false;
       update(["ElevatedButton"]);
 

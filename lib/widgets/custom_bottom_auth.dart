@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomBottomAuth extends StatelessWidget {
@@ -24,7 +24,7 @@ class CustomBottomAuth extends StatelessWidget {
           title,
           style: AppTextStyles()
               .bold16(context)
-              .copyWith(color: AppColors.secondryTextColor),
+              .copyWith(color: Get.theme.colorScheme.onSurface),
         ),
         GestureDetector(
           onTap: onTap,
@@ -32,7 +32,7 @@ class CustomBottomAuth extends StatelessWidget {
             subTitle,
             style: AppTextStyles()
                 .bold16(context)
-                .copyWith(color: AppColors.primaryColor),
+                .copyWith(color: Get.theme.colorScheme.primary),
           ),
         )
       ],

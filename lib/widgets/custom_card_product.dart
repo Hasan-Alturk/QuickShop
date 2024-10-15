@@ -1,8 +1,7 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomCardProduct extends StatelessWidget {
@@ -27,7 +26,7 @@ class CustomCardProduct extends StatelessWidget {
       height: 360,
       width: 170,
       decoration: ShapeDecoration(
-        color: AppColors.nonActiveColor,
+        color: Get.theme.colorScheme.surface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -59,7 +58,7 @@ class CustomCardProduct extends StatelessWidget {
                       Text(
                         productName,
                         style: AppTextStyles().bold16(context).copyWith(
-                              color: AppColors.darkColor,
+                              color: Get.theme.colorScheme.secondary,
                             ),
                       ),
                       const SizedBox(
@@ -68,7 +67,7 @@ class CustomCardProduct extends StatelessWidget {
                       Text(
                         description,
                         style: AppTextStyles().medium12(context).copyWith(
-                              color: AppColors.secondryTextColor,
+                              color: Get.theme.colorScheme.onSurface,
                             ),
                       ),
                       const SizedBox(
@@ -79,7 +78,7 @@ class CustomCardProduct extends StatelessWidget {
                           Text(
                             originalPrice,
                             style: AppTextStyles().medium12(context).copyWith(
-                                  color: AppColors.grayColor,
+                                  color: Get.theme.colorScheme.onSecondary,
                                   decoration: TextDecoration.lineThrough,
                                 ),
                           ),
@@ -87,7 +86,7 @@ class CustomCardProduct extends StatelessWidget {
                           Text(
                             discountedPrice!,
                             style: AppTextStyles().semiBold16(context).copyWith(
-                                  color: AppColors.primaryColor,
+                                  color: Get.theme.colorScheme.primary,
                                 ),
                           ),
                         ],
@@ -117,7 +116,7 @@ class CustomCardProduct extends StatelessWidget {
                         'Based on 800 review',
                         style: AppTextStyles()
                             .medium8(context)
-                            .copyWith(color: AppColors.secondryTextColor),
+                            .copyWith(color: Get.theme.colorScheme.onSurface),
                       ),
                     ],
                   ),
@@ -132,14 +131,14 @@ class CustomCardProduct extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: ShapeDecoration(
-                color: AppColors.whiteColor,
+                color: Get.theme.colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(40),
                 ),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.favorite,
-                color: AppColors.redColor,
+                color: Get.theme.colorScheme.onError,
               ),
             ),
           ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomHeaderAuth extends StatelessWidget {
@@ -15,11 +15,11 @@ class CustomHeaderAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.darkColor,
+      backgroundColor: Get.theme.colorScheme.secondary,
       appBar: AppBar(
-        backgroundColor: AppColors.darkColor,
-        iconTheme: const IconThemeData(
-          color: AppColors.whiteColor,
+        backgroundColor: Get.theme.colorScheme.secondary,
+        iconTheme: IconThemeData(
+          color: Get.theme.colorScheme.onPrimary,
         ),
       ),
       body: Center(
@@ -35,7 +35,7 @@ class CustomHeaderAuth extends StatelessWidget {
               Text(
                 title,
                 style: AppTextStyles().semiBold24(context).copyWith(
-                      color: AppColors.whiteColor,
+                      color: Get.theme.colorScheme.onPrimary,
                     ),
                 textAlign: TextAlign.center,
               ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/onBoarding/on_boarding_controller.dart';
 import 'package:quick_shop/widgets/dots_indicator.dart';
@@ -14,7 +13,6 @@ class OnBoardingView extends GetView<OnBoardingController> {
     double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: AppColors.lightColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -38,7 +36,7 @@ class OnBoardingView extends GetView<OnBoardingController> {
                           child: Text(
                             'skip',
                             style: AppTextStyles().semiBold16(context).copyWith(
-                                  color: AppColors.darkColor,
+                                  color: Get.theme.colorScheme.secondary,
                                 ),
                           ),
                         ),
@@ -88,8 +86,8 @@ class OnBoardingView extends GetView<OnBoardingController> {
                               valueColor: AlwaysStoppedAnimation<Color>(
                                 controller.currentPage ==
                                         controller.items.length - 1
-                                    ? AppColors.primaryColor
-                                    : AppColors.secondryTextColor,
+                                    ? Get.theme.primaryColor
+                                    : Get.theme.colorScheme.onSecondary,
                               ),
                             ),
                           ),
@@ -97,9 +95,9 @@ class OnBoardingView extends GetView<OnBoardingController> {
                             onTap: () {
                               controller.goToNextPage();
                             },
-                            child: const Icon(
+                            child: Icon(
                               Icons.arrow_forward_rounded,
-                              color: AppColors.primaryColor,
+                              color: Get.theme.colorScheme.primary,
                               size: 40,
                             ),
                           ),

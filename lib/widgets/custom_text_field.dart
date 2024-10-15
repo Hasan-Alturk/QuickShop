@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:quick_shop/core/constants/app_colors.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -42,21 +42,21 @@ class CustomTextFieldState extends State<CustomTextField> {
 
   OutlineInputBorder outlineInputNone() {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: AppColors.grayColor),
+      borderSide: BorderSide(color: Get.theme.colorScheme.onSecondary),
       borderRadius: BorderRadius.circular(32),
     );
   }
 
   OutlineInputBorder outlineInputBorder() {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: AppColors.primaryColor),
+      borderSide: BorderSide(color: Get.theme.colorScheme.primary),
       borderRadius: BorderRadius.circular(32),
     );
   }
 
   OutlineInputBorder outlineInputError() {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: AppColors.redColor),
+      borderSide: BorderSide(color: Get.theme.colorScheme.onError),
       borderRadius: BorderRadius.circular(32),
     );
   }
@@ -72,7 +72,7 @@ class CustomTextFieldState extends State<CustomTextField> {
           onChanged: widget.onChanged,
           keyboardType: widget.textInputType,
           obscureText: obscureText,
-          cursorColor: AppColors.primaryColor,
+          cursorColor: Get.theme.colorScheme.primary,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           decoration: InputDecoration(
             filled: true,
@@ -83,16 +83,16 @@ class CustomTextFieldState extends State<CustomTextField> {
             disabledBorder: outlineInputNone(),
             border: outlineInputNone(),
             errorMaxLines: 3,
-            fillColor: AppColors.nonActiveColor,
+            fillColor: Get.theme.colorScheme.surface,
             hintText: widget.hint,
             hintStyle: AppTextStyles()
                 .medium14(context)
-                .copyWith(color: AppColors.secondryTextColor),
+                .copyWith(color: Get.theme.colorScheme.onSurface),
             suffixIcon: widget.suffixIcon
                 ? IconButton(
                     icon: Icon(
                       obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: AppColors.grayColor,
+                      color: Get.theme.colorScheme.onSecondary,
                     ),
                     onPressed: () {
                       setState(() {
@@ -113,7 +113,7 @@ class CustomTextFieldState extends State<CustomTextField> {
           ),
           style: AppTextStyles()
               .medium14(context)
-              .copyWith(color: AppColors.darkColor),
+              .copyWith(color: Get.theme.colorScheme.secondary),
         ),
       ],
     );
