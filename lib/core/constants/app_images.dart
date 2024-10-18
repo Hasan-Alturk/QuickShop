@@ -109,14 +109,6 @@ class Assets {
   static const String imagesNotificationWithRed =
       "assets/images/notification_with_red.svg";
 
-  /// Assets for imagesOffer
-  /// assets/images/offer.png
-  static const String imagesOffer = "assets/images/offer.png";
-
-  /// Assets for imagesOffer2
-  /// assets/images/offer2.png
-  static const String imagesOffer2 = "assets/images/offer2.png";
-
   /// Assets for imagesOnBoarding1
   /// assets/images/on_boarding_1.png
   static const String imagesOnBoarding1 = "assets/images/on_boarding_1.png";

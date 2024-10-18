@@ -111,13 +111,6 @@ class HomeController extends GetxController {
       discountedPrice: "30\$",
     ),
   ];
-  List<Widget> items = [
-    Image.asset(Assets.imagesOffer),
-    Image.asset(Assets.imagesOffer2),
-    Image.asset(Assets.imagesOffer),
-    Image.asset(Assets.imagesOffer2),
-    Image.asset(Assets.imagesOffer),
-  ];
 
   List<String> categories = [
     Assets.imagesFashion,
