@@ -30,7 +30,7 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
         autoPlayCurve: Curves.fastLinearToSlowEaseIn,
         viewportFraction: 1,
         initialPage: 0,
-        height: 180,
+        height: 200,
         onPageChanged: widget.onPageChanged,
       ),
     );

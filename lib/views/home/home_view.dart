@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/views/home/home_controller.dart';
@@ -9,12 +12,16 @@ import 'package:quick_shop/widgets/custom_header_home.dart';
 import 'package:quick_shop/widgets/custom_search_and_promo_home.dart';
 import 'package:quick_shop/widgets/custom_snack_bar.dart';
 import 'package:quick_shop/widgets/custom_title_home.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -22,42 +29,56 @@ class HomeView extends GetView<HomeController> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 12),
+                SizedBox(height: height * 0.012),
                 const CustomHeaderHome(),
-                const SizedBox(height: 12),
+                SizedBox(height: height * 0.012),
                 const CustomSearchAndPromoHome(),
-                const SizedBox(height: 24),
-                GetBuilder<HomeController>(builder: (_) {
-                  return ElevatedButton(
-                    onPressed: () {
-                      CustomSnackbar.showErrorSnackbar("message");
-                      // controller.notificationController.showNotification(
-                      //     'Hello', 'This is a test notification!');
-                    },
-                    child: const Text('Show Notification'),
-                  );
-                }),
+                SizedBox(height: height * 0.024),
+                GetBuilder<HomeController>(
+                  builder: (_) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        CustomSnackbar.showErrorSnackbar("message");
+                        log(controller.offersImages
+                            .toString()); // طباعة عدد العناصر في القائمة
+                        // controller.notificationController.showNotification(
+                        //     'Hello', 'This is a test notification!');
+                      },
+                      child: const Text('Show Notification'),
+                    );
+                  },
+                ),
                 CustomTitleHome(
                   title: "Offers",
                   onTap: () => controller.goToOffers(),
                 ),
+                SizedBox(height: height * 0.012),
                 GetBuilder<HomeController>(
+                  id: "offers",
                   builder: (_) {
-                    return Column(
-                      children: [
-                        CustomCarouselSlider(
-                          items: controller.items,
-                          carouselController: controller.carouselController,
-                          onPageChanged: controller.onPageChanged,
-                        ),
-                        DotsIndicator(
-                          itemsCount: controller.items.length,
-                          currentPage: controller.currentPage,
-                        ),
-                      ],
+                    return Skeletonizer(
+                      enabled: controller.isLoadingOffers,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: height * 0.2,
+                            child: CustomCarouselSlider(
+                              items: controller.offersImages,
+                              carouselController: controller.carouselController,
+                              onPageChanged: controller.onPageChanged,
+                            ),
+                          ),
+                          SizedBox(height: height * 0.024),
+                          DotsIndicator(
+                            itemsCount: controller.offersImages.length,
+                            currentPage: controller.currentPage,
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),
+                const SizedBox(height: 12),
                 CustomTitleHome(
                   title: "Categories",
                   onTap: () => controller.goToCategories(),

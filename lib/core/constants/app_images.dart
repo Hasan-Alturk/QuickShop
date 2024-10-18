@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for imagesActiveIcon
   /// assets/images/active_icon.svg
   static const String imagesActiveIcon = "assets/images/active_icon.svg";
@@ -80,7 +80,8 @@ class Assets {
 
   /// Assets for imagesLogoHorizontal
   /// assets/images/logo_horizontal.svg
-  static const String imagesLogoHorizontal = "assets/images/logo_horizontal.svg";
+  static const String imagesLogoHorizontal =
+      "assets/images/logo_horizontal.svg";
 
   /// Assets for imagesLogoWhite
   /// assets/images/logo_white.svg
@@ -88,7 +89,8 @@ class Assets {
 
   /// Assets for imagesLogoWhiteSmall
   /// assets/images/logo_white_small.svg
-  static const String imagesLogoWhiteSmall = "assets/images/logo_white_small.svg";
+  static const String imagesLogoWhiteSmall =
+      "assets/images/logo_white_small.svg";
 
   /// Assets for imagesMadrb
   /// assets/images/madrb.png
@@ -104,7 +106,8 @@ class Assets {
 
   /// Assets for imagesNotificationWithRed
   /// assets/images/notification_with_red.svg
-  static const String imagesNotificationWithRed = "assets/images/notification_with_red.svg";
+  static const String imagesNotificationWithRed =
+      "assets/images/notification_with_red.svg";
 
   /// Assets for imagesOffer
   /// assets/images/offer.png
@@ -166,4 +169,3 @@ class Assets {
   /// assets/images/sub_cati.png
   static const String imagesSubCati = "assets/images/sub_cati.png";
 }
-

@@ -43,11 +43,11 @@ class User extends Equatable {
   final dynamic email;
   final dynamic phone;
   final dynamic emailVerifiedAt;
+  final dynamic isActive;
   final String createdAt;
   final String updatedAt;
   final dynamic googleId;
   final dynamic facebookId;
-  final bool isActive;
 
   const User({
     required this.id,
@@ -73,7 +73,7 @@ class User extends Equatable {
       updatedAt: json['updated_at'] as String,
       googleId: json['google_id'] as dynamic,
       facebookId: json['facebook_id'] as dynamic,
-      isActive: json['is_active'] as bool,
+      isActive: json['is_active'] as dynamic,
     );
   }
 

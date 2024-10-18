@@ -1,11 +1,31 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
+import 'package:quick_shop/core/models/offers.dart';
+import 'package:quick_shop/core/repo/home_repo.dart';
+import 'package:quick_shop/core/services/error_handler.dart';
 import 'package:quick_shop/core/services/local_notification_controller.dart';
 import 'package:quick_shop/widgets/custom_card_product.dart';
+import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class HomeController extends GetxController {
+  HomeController({required this.homeRepo});
+
+  final HomeRepo homeRepo;
+
+  bool isLoading = false;
+  bool isLoadingOffers = true;
+
+  final List<Widget> offersImages = [];
+
+  @override
+  void onInit() async {
+    super.onInit();
+    await getOffers();
+  }
+
   final CarouselSliderController carouselController =
       CarouselSliderController();
 
@@ -28,6 +48,30 @@ class HomeController extends GetxController {
   void onPageChanged(int index, CarouselPageChangedReason reason) {
     currentPage = index;
     update();
+  }
+
+  Future<void> getOffers() async {
+    try {
+      Offers offers = await homeRepo.getOffers();
+      for (Offer offer in offers.data) {
+        offersImages.add(
+          CachedNetworkImage(
+            imageUrl: offer.xxlargeUrl,
+            fit: BoxFit.contain,
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+          ),
+        );
+      }
+
+      isLoadingOffers = false;
+      update(["offers"]);
+
+      // CustomSnackbar.showSuccessSnackbar('get Offers successfully');
+    } on ErrorHandler catch (e) {
+      isLoadingOffers = false;
+      update(["offers"]);
+      CustomSnackbar.showErrorSnackbar('$e');
+    }
   }
 
   List<CustomCardProduct> products = [
@@ -104,6 +148,7 @@ class HomeController extends GetxController {
     "School",
     "Electronics",
   ];
+
   void goToOffers() {
     Get.toNamed("/offers");
   }

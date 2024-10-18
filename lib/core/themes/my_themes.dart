@@ -4,27 +4,35 @@ import 'package:quick_shop/core/constants/app_colors.dart';
 class MyThemes {
   static ThemeData customLightTheme() {
     return ThemeData(
-      fontFamily: "Alexandria",
-      useMaterial3: true,
-      scaffoldBackgroundColor: AppColors.scaffoldBackgroundLight,
-      colorScheme: const ColorScheme(
-        brightness: Brightness.light,
-        primary: AppColors.primaryLight,
-        onPrimary: AppColors.onPrimaryLight,
-        primaryContainer: AppColors.primaryContainerLight,
-        secondary: AppColors.secondaryLight,
-        onSecondary: AppColors.onSecondaryLight,
-        surface: AppColors.surfaceLight,
-        onSurface: AppColors.onSurfaceLight,
-        onError: AppColors.onErrorLight,
-        error: AppColors.onErrorLight,
-      ),
-    );
+        fontFamily: "Alexandria",
+        useMaterial3: true,
+        scaffoldBackgroundColor: AppColors.scaffoldBackgroundLight,
+        colorScheme: const ColorScheme(
+          brightness: Brightness.light,
+          primary: AppColors.primaryLight,
+          onPrimary: AppColors.onPrimaryLight,
+          primaryContainer: AppColors.primaryContainerLight,
+          secondary: AppColors.secondaryLight,
+          onSecondary: AppColors.onSecondaryLight,
+          surface: AppColors.surfaceLight,
+          onSurface: AppColors.onSurfaceLight,
+          onError: AppColors.onErrorLight,
+          error: AppColors.onErrorLight,
+        ),
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          color: AppColors.onPrimaryLight,
+          elevation: 0,
+          iconTheme: IconThemeData(
+            color: AppColors.primaryLight,
+          ),
+        ));
   }
 
   static ThemeData customDarkTheme() {
     return ThemeData(
       fontFamily: "Alexandria",
+      useMaterial3: true,
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundDark,
       colorScheme: const ColorScheme(
         brightness: Brightness.dark,

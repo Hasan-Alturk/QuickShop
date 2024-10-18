@@ -4,6 +4,8 @@ import 'package:quick_shop/core/local/my_translation.dart';
 import 'package:quick_shop/core/constants/app_pages.dart';
 import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
 import 'package:pushy_flutter/pushy_flutter.dart';
+import 'package:quick_shop/core/themes/my_themes.dart';
+import 'package:quick_shop/views/main_home/main_home_binding.dart';
 import 'package:quick_shop/views/splash/splash_binding.dart';
 
 // مستمع الإشعارات في الخلفية
@@ -36,6 +38,8 @@ class QuickShop extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: MyThemes.customLightTheme(),
+      darkTheme: MyThemes.customDarkTheme(),
       translations: MyTranslation(),
       locale: const Locale("en"),
       // initialBinding: MainHomeBinding(),
