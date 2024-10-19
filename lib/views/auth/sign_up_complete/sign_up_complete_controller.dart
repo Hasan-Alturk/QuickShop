@@ -28,7 +28,7 @@ class SignUpCompleteController extends GetxController {
     required String password,
     required String confirmPassword,
   }) async {
-    token = (await SharedPreferencesSingleton.getToken())!;
+    token = (await Prefs.getToken())!;
 
     try {
       isLoading = true;
@@ -39,7 +39,7 @@ class SignUpCompleteController extends GetxController {
         password: password,
         passwordConfirmation: confirmPassword,
       );
-      await SharedPreferencesSingleton.saveUser(user);
+      await Prefs.saveUser(user);
       isLoading = false;
       update(["ElevatedButton"]);
 

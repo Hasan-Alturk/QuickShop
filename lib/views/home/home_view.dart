@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/views/home/home_controller.dart';
@@ -12,7 +9,6 @@ import 'package:quick_shop/widgets/custom_header_home.dart';
 import 'package:quick_shop/widgets/custom_search_and_promo_home.dart';
 import 'package:quick_shop/widgets/custom_snack_bar.dart';
 import 'package:quick_shop/widgets/custom_title_home.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -20,7 +16,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    // double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: SafeArea(
@@ -39,8 +35,7 @@ class HomeView extends GetView<HomeController> {
                     return ElevatedButton(
                       onPressed: () {
                         CustomSnackbar.showErrorSnackbar("message");
-                        log(controller.offersImages
-                            .toString()); // طباعة عدد العناصر في القائمة
+
                         // controller.notificationController.showNotification(
                         //     'Hello', 'This is a test notification!');
                       },
@@ -56,36 +51,33 @@ class HomeView extends GetView<HomeController> {
                 GetBuilder<HomeController>(
                   id: "offers",
                   builder: (_) {
-                    return Skeletonizer(
-                      enabled: controller.isLoadingOffers,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: height * 0.2,
-                            child: CustomCarouselSlider(
-                              items: controller.offersImages,
-                              carouselController: controller.carouselController,
-                              onPageChanged: controller.onPageChanged,
-                            ),
+                    return Column(
+                      children: [
+                        SizedBox(
+                          height: height * 0.20,
+                          child: CustomCarouselSlider(
+                            items: controller.offersImages,
+                            carouselController: controller.carouselController,
+                            onPageChanged: controller.onPageChanged,
                           ),
-                          SizedBox(height: height * 0.024),
-                          DotsIndicator(
-                            itemsCount: controller.offersImages.length,
-                            currentPage: controller.currentPage,
-                          ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(height: height * 0.024),
+                        DotsIndicator(
+                          itemsCount: controller.offersImages.length,
+                          currentPage: controller.currentPage,
+                        ),
+                      ],
                     );
                   },
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: height * 0.012),
                 CustomTitleHome(
                   title: "Categories",
                   onTap: () => controller.goToCategories(),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: height * 0.012),
                 SizedBox(
-                  height: 75,
+                  height: height * 0.09,
                   child: ListView.builder(
                     itemCount: controller.categories.length,
                     scrollDirection: Axis.horizontal,
@@ -96,22 +88,20 @@ class HomeView extends GetView<HomeController> {
                           image: controller.categories[index],
                           categoryName: controller.categoriesNames[index],
                           isSelected: false,
-                          onTap: () {
-                            controller.selectCategory(index);
-                          },
+                          onTap: () {},
                         ),
                       );
                     },
                   ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: height * 0.012),
                 CustomTitleHome(
                   title: "Flash Sale",
                   onTap: () => controller.goToFlashSale(),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: height * 0.012),
                 SizedBox(
-                  height: 360,
+                  height: height * 0.4,
                   child: ListView.builder(
                     itemCount: controller.products.length,
                     scrollDirection: Axis.horizontal,
@@ -131,12 +121,12 @@ class HomeView extends GetView<HomeController> {
                     },
                   ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: height * 0.012),
                 CustomTitleHome(
                   title: "For You",
                   onTap: () => controller.goToForYou(),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: height * 0.012),
                 SizedBox(
                   height: 360,
                   child: ListView.builder(
@@ -158,12 +148,12 @@ class HomeView extends GetView<HomeController> {
                     },
                   ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: height * 0.012),
                 CustomTitleHome(
                   title: "Popular",
                   onTap: () => controller.goToPopular(),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: height * 0.012),
                 SizedBox(
                   height: 360,
                   child: ListView.builder(

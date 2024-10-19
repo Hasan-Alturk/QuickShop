@@ -47,7 +47,7 @@ class VerificationCodeController extends GetxController {
     required String token,
     required String otp,
   }) async {
-    token = (await SharedPreferencesSingleton.getToken())!;
+    token = (await Prefs.getToken())!;
     try {
       isLoading = true;
       update(["ElevatedButton"]);
@@ -66,7 +66,7 @@ class VerificationCodeController extends GetxController {
   }
 
   Future<void> reSendVerifyOtpWithEmail() async {
-    token = (await SharedPreferencesSingleton.getToken())!;
+    token = (await Prefs.getToken())!;
     try {
       isLoading = true;
       update(["TimerButton"]);

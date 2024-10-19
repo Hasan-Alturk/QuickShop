@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:quick_shop/core/constants/constants.dart';
 import 'package:quick_shop/core/models/offers.dart';

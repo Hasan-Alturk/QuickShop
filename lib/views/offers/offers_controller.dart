@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:quick_shop/core/models/offers.dart';
 import 'package:quick_shop/core/repo/home_repo.dart';
@@ -8,25 +6,24 @@ import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class OffersController extends GetxController {
   OffersController({required this.homeRepo});
-
   final HomeRepo homeRepo;
-  bool isLoadingOffers = true;
+  bool isLoadingOffers = false;
   final List<String> offersImages = [];
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
-
-    await getOffers();
+    getOffers();
   }
 
   Future<void> getOffers() async {
     try {
+      isLoadingOffers = true;
+      update(["offers"]);
       Offers offers = await homeRepo.getOffers();
       for (Offer offer in offers.data) {
         offersImages.add(offer.xxlargeUrl);
       }
-
       isLoadingOffers = false;
       update(["offers"]);
     } on ErrorHandler catch (e) {

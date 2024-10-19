@@ -5,7 +5,6 @@ import 'package:quick_shop/core/constants/app_pages.dart';
 import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
 import 'package:pushy_flutter/pushy_flutter.dart';
 import 'package:quick_shop/core/themes/my_themes.dart';
-import 'package:quick_shop/views/main_home/main_home_binding.dart';
 import 'package:quick_shop/views/splash/splash_binding.dart';
 
 // مستمع الإشعارات في الخلفية
@@ -27,7 +26,7 @@ void backgroundNotificationListener(Map<String, dynamic> data) {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SharedPreferencesSingleton.init();
+  await Prefs.init();
   runApp(const QuickShop());
 }
 
@@ -42,9 +41,6 @@ class QuickShop extends StatelessWidget {
       darkTheme: MyThemes.customDarkTheme(),
       translations: MyTranslation(),
       locale: const Locale("en"),
-      // initialBinding: MainHomeBinding(),
-      // initialRoute: "/main_home",
-
       initialBinding: SplashBinding(),
       initialRoute: "/splash",
       getPages: appPages,

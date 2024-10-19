@@ -11,26 +11,25 @@ import 'package:quick_shop/widgets/custom_card_product.dart';
 import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class HomeController extends GetxController {
-  HomeController({required this.homeRepo});
+  HomeController({required this.homeRepo, required this.notificationController});
 
   final HomeRepo homeRepo;
-
+final LocalNotificationController notificationController;
   bool isLoading = false;
-  bool isLoadingOffers = true;
+  bool isLoadingOffers = false;
 
   final List<Widget> offersImages = [];
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
-    await getOffers();
+    getOffers();
   }
 
   final CarouselSliderController carouselController =
       CarouselSliderController();
 
-  final LocalNotificationController notificationController =
-      Get.put(LocalNotificationController());
+   
 
   int selectedCategoryIndex = -1; // يبدأ من -1 لتحديد عدم وجود أي عنصر محدد
   void selectCategory(int index) {
@@ -40,18 +39,16 @@ class HomeController extends GetxController {
 
   int currentPage = 0;
 
-  void updatePageIndex(int index) {
-    currentPage = index;
-    update();
-  }
-
   void onPageChanged(int index, CarouselPageChangedReason reason) {
     currentPage = index;
-    update();
+    update(["offers"]);
   }
 
   Future<void> getOffers() async {
     try {
+      isLoadingOffers = true;
+      update(["offers"]);
+
       Offers offers = await homeRepo.getOffers();
       for (Offer offer in offers.data) {
         offersImages.add(
@@ -65,8 +62,6 @@ class HomeController extends GetxController {
 
       isLoadingOffers = false;
       update(["offers"]);
-
-      // CustomSnackbar.showSuccessSnackbar('get Offers successfully');
     } on ErrorHandler catch (e) {
       isLoadingOffers = false;
       update(["offers"]);

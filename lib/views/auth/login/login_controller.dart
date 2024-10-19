@@ -53,7 +53,7 @@ class LoginController extends GetxController {
   }
 
   void goToSignUp() {
-    Get.offAllNamed("/sign_up");
+    Get.toNamed('/sign_up');
   }
 
   Future signInWithGoogle() async {
@@ -62,7 +62,7 @@ class LoginController extends GetxController {
       update(["ElevatedButton"]);
 
       User user = await authRepo.loginWithGoogle();
-      await SharedPreferencesSingleton.saveUser(user);
+      await Prefs.saveUser(user);
 
       isLoading = false;
       update(["ElevatedButton"]);
@@ -83,7 +83,7 @@ class LoginController extends GetxController {
 
       User user = await authRepo.loginWithFacebook();
 
-      await SharedPreferencesSingleton.saveUser(user);
+      await Prefs.saveUser(user);
 
       isLoading = false;
       update(["ElevatedButton"]);
@@ -107,7 +107,7 @@ class LoginController extends GetxController {
         password: password,
       );
 
-      await SharedPreferencesSingleton.saveUser(user);
+      await Prefs.saveUser(user);
       isLoading = false;
       update(["ElevatedButton"]);
       CustomSnackbar.showSuccessSnackbar('Sign in with Email successfully');
@@ -130,7 +130,7 @@ class LoginController extends GetxController {
         password: password,
       );
 
-      await SharedPreferencesSingleton.saveUser(user);
+      await Prefs.saveUser(user);
       isLoading = false;
       update(["ElevatedButton"]);
       CustomSnackbar.showSuccessSnackbar(

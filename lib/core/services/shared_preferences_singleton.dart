@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:quick_shop/core/models/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferencesSingleton {
+class Prefs {
   static late SharedPreferences prefs;
 
   static Future<void> init() async {
@@ -11,7 +11,7 @@ class SharedPreferencesSingleton {
 
   // Save Token
   static Future<void> saveToken({required String token}) async {
-    prefs.setString('token', "Bearer $token");
+    await prefs.setString('token', "Bearer $token");
   }
 
   // get Token from SharedPreferences
@@ -30,7 +30,10 @@ class SharedPreferencesSingleton {
 
   static Future<User?> getUser() async {
     String? userString = prefs.getString('user');
-    Map<String, dynamic> user = jsonDecode(userString!);
+    if (userString == null) {
+      return null;
+    }
+    Map<String, dynamic> user = jsonDecode(userString);
     return User.fromJson(user);
   }
 

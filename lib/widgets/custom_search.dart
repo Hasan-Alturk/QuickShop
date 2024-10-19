@@ -25,7 +25,7 @@ class CustomSearch extends StatelessWidget {
       decoration: ShapeDecoration(
         color: color,
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Get.theme.colorScheme.surface),
+          side: BorderSide(color: Get.theme.colorScheme.onSecondary),
           borderRadius: BorderRadius.circular(32),
         ),
       ),

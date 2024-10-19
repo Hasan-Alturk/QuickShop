@@ -40,17 +40,11 @@ class OnBoardingController extends GetxController {
       pageController.jumpToPage(currentPage);
       update();
     } else {
-      //   Get.offAllNamed('/home');
-      Get.offAllNamed("/login");
+      Get.offAllNamed("/main_home");
     }
   }
 
-  void goToLogin() {
-    Get.offAllNamed("/login");
-  }
-
   void goToHome() {
-    // Get.offAllNamed("/home");
-    //  Get.offAllNamed("/login");
+    Get.offAllNamed("/main_home");
   }
 }

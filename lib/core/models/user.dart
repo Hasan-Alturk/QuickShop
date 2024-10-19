@@ -48,6 +48,7 @@ class User extends Equatable {
   final String updatedAt;
   final dynamic googleId;
   final dynamic facebookId;
+  final String token;
 
   const User({
     required this.id,
@@ -60,6 +61,7 @@ class User extends Equatable {
     required this.googleId,
     required this.facebookId,
     required this.isActive,
+    required this.token,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -74,6 +76,7 @@ class User extends Equatable {
       googleId: json['google_id'] as dynamic,
       facebookId: json['facebook_id'] as dynamic,
       isActive: json['is_active'] as dynamic,
+      token: json['token'] as String,
     );
   }
 
@@ -90,6 +93,7 @@ class User extends Equatable {
       'google_id': googleId,
       'facebook_id': facebookId,
       'is_active': isActive,
+      'token': token,
     };
   }
 
@@ -106,6 +110,7 @@ class User extends Equatable {
       googleId,
       facebookId,
       isActive,
+      token,
     ];
   }
 }

@@ -29,7 +29,7 @@ class OnBoardingView extends GetView<OnBoardingController> {
                       maintainState: true,
                       child: InkWell(
                         onTap: () {
-                          controller.goToLogin();
+                          controller.goToHome();
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(16),

@@ -92,7 +92,6 @@ class CategoriesView extends GetView<CategoriesController> {
     return GetBuilder<CategoriesController>(
       builder: (_) {
         return ExpansionTile(
-          // هنا نغير الواجهة بناءً على حالة expanded
           iconColor: Get.theme.colorScheme.primary,
           collapsedIconColor: Get.theme.colorScheme.onSurface,
           title: Text(
@@ -113,6 +112,7 @@ class CategoriesView extends GetView<CategoriesController> {
                 spacing: 15.0, // المسافة الأفقية بين العناصر
                 runSpacing: 15.0, // المسافة العمودية بين الصفوف
                 children: List.generate(
+                  
                   controller.subcategories.length,
                   (index) {
                     return CustomCardSubCategoryItem(
