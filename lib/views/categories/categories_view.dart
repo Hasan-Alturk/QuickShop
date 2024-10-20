@@ -96,7 +96,7 @@ class CategoriesView extends GetView<CategoriesController> {
           collapsedIconColor: Get.theme.colorScheme.onSurface,
           title: Text(
             title,
-            style: AppTextStyles().medium12(context).copyWith(
+            style: AppTextStyles().medium12().copyWith(
                   color: controller.selectedCategoryTitle == title
                       ? Get.theme.colorScheme.secondary
                       : Get.theme.colorScheme.onSurface,

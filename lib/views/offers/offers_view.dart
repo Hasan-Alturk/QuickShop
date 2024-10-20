@@ -13,7 +13,7 @@ class OffersView extends GetView<OffersController> {
       appBar: AppBar(
         title: const Text("Offers"),
         titleTextStyle: AppTextStyles()
-            .bold16(context)
+            .bold16()
             .copyWith(color: Get.theme.primaryColor),
       ),
       body: SafeArea(

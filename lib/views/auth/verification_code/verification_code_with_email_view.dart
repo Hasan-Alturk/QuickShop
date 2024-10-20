@@ -69,7 +69,7 @@ class VerificationCodeWithEmailView
                               Text(
                                 'Didn’t receive code?   ',
                                 style: AppTextStyles()
-                                    .medium12(context)
+                                    .medium12()
                                     .copyWith(
                                       color: Get.theme.colorScheme.onSurface,
                                     ),

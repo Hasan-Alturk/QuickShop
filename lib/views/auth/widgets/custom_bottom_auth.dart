@@ -23,7 +23,7 @@ class CustomBottomAuth extends StatelessWidget {
         Text(
           title,
           style: AppTextStyles()
-              .bold16(context)
+              .bold16()
               .copyWith(color: Get.theme.colorScheme.onSurface),
         ),
         GestureDetector(
@@ -31,7 +31,7 @@ class CustomBottomAuth extends StatelessWidget {
           child: Text(
             subTitle,
             style: AppTextStyles()
-                .bold16(context)
+                .bold16()
                 .copyWith(color: Get.theme.colorScheme.primary),
           ),
         )

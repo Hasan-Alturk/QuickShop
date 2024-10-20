@@ -35,7 +35,7 @@ class OnBoardingView extends GetView<OnBoardingController> {
                           padding: const EdgeInsets.all(16),
                           child: Text(
                             'skip',
-                            style: AppTextStyles().semiBold16(context).copyWith(
+                            style: AppTextStyles().semiBold16().copyWith(
                                   color: Get.theme.colorScheme.secondary,
                                 ),
                           ),

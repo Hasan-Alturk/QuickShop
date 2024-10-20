@@ -57,7 +57,7 @@ class CustomCardProduct extends StatelessWidget {
                     children: [
                       Text(
                         productName,
-                        style: AppTextStyles().bold16(context).copyWith(
+                        style: AppTextStyles().bold16().copyWith(
                               color: Get.theme.colorScheme.secondary,
                             ),
                       ),
@@ -66,7 +66,7 @@ class CustomCardProduct extends StatelessWidget {
                       ),
                       Text(
                         description,
-                        style: AppTextStyles().medium12(context).copyWith(
+                        style: AppTextStyles().medium12().copyWith(
                               color: Get.theme.colorScheme.onSurface,
                             ),
                       ),
@@ -77,7 +77,7 @@ class CustomCardProduct extends StatelessWidget {
                         children: [
                           Text(
                             originalPrice,
-                            style: AppTextStyles().medium12(context).copyWith(
+                            style: AppTextStyles().medium12().copyWith(
                                   color: Get.theme.colorScheme.onSecondary,
                                   decoration: TextDecoration.lineThrough,
                                 ),
@@ -85,7 +85,7 @@ class CustomCardProduct extends StatelessWidget {
                           const SizedBox(width: 15),
                           Text(
                             discountedPrice!,
-                            style: AppTextStyles().semiBold16(context).copyWith(
+                            style: AppTextStyles().semiBold16().copyWith(
                                   color: Get.theme.colorScheme.primary,
                                 ),
                           ),
@@ -115,7 +115,7 @@ class CustomCardProduct extends StatelessWidget {
                       Text(
                         'Based on 800 review',
                         style: AppTextStyles()
-                            .medium8(context)
+                            .medium8()
                             .copyWith(color: Get.theme.colorScheme.onSurface),
                       ),
                     ],

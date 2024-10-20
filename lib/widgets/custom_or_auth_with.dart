@@ -24,7 +24,7 @@ class CustomOrAuthWith extends StatelessWidget {
         const SizedBox(width: 10),
         Text(
           text,
-          style: AppTextStyles().bold12(context).copyWith(
+          style: AppTextStyles().bold12().copyWith(
                 color: Get.theme.colorScheme.onSurface,
               ),
         ),

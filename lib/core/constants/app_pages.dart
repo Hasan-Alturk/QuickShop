@@ -6,6 +6,8 @@ import 'package:quick_shop/views/cart/cart_binding.dart';
 import 'package:quick_shop/views/cart/cart_view.dart';
 import 'package:quick_shop/views/favourite/favourite_binding.dart';
 import 'package:quick_shop/views/favourite/favourite_view.dart';
+import 'package:quick_shop/views/filter/filter_binding.dart';
+import 'package:quick_shop/views/filter/filter_view.dart';
 import 'package:quick_shop/views/main_home/main_home_binding.dart';
 import 'package:quick_shop/views/main_home/main_home_view.dart';
 import 'package:quick_shop/views/popular/popular_binding.dart';
@@ -138,9 +140,9 @@ List<GetPage> appPages = [
     binding: PopularBinding(),
   ),
 
-  // GetPage(
-  //   name: "/filter",
-  //   page: () => const FilterView(),
-  //   binding: FilterBinding(),
-  // ),
+  GetPage(
+    name: "/filter",
+    page: () => const FilterView(),
+    binding: FilterBinding(),
+  ),
 ];

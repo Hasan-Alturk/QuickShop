@@ -34,7 +34,7 @@ class CustomHeaderAuth extends StatelessWidget {
               const SizedBox(height: 20),
               Text(
                 title,
-                style: AppTextStyles().semiBold24(context).copyWith(
+                style: AppTextStyles().semiBold24().copyWith(
                       color: Get.theme.colorScheme.onPrimary,
                     ),
                 textAlign: TextAlign.center,

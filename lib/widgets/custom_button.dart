@@ -29,7 +29,7 @@ class CustomButton extends StatelessWidget {
           : Text(
               text,
               style: AppTextStyles()
-                  .semiBold16(context)
+                  .semiBold16()
                   .copyWith(color: Get.theme.colorScheme.onPrimary),
             ),
     );

@@ -20,7 +20,7 @@ class CustomTitleHome extends StatelessWidget {
         Text(
           title,
           style: AppTextStyles()
-              .semiBold16(context)
+              .semiBold16()
               .copyWith(color: Get.theme.colorScheme.secondary),
         ),
         InkWell(
@@ -28,7 +28,7 @@ class CustomTitleHome extends StatelessWidget {
           child: Text(
             "See All",
             style: AppTextStyles()
-                .semiBold16(context)
+                .semiBold16()
                 .copyWith(color: Get.theme.colorScheme.primary),
           ),
         ),

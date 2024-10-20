@@ -38,7 +38,7 @@ class CustomCardSubCategoryItem extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             categoryName,
-            style: AppTextStyles().medium10(context).copyWith(
+            style: AppTextStyles().medium10().copyWith(
                   color: Get.theme.colorScheme.secondary,
                 ),
             textAlign: TextAlign.center,

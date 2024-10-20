@@ -64,7 +64,7 @@ class CustomIntlPhoneNumber extends StatelessWidget {
         fillColor: Get.theme.colorScheme.surface,
       ),
       style: AppTextStyles()
-          .medium14(context)
+          .medium14()
           .copyWith(color: Get.theme.colorScheme.secondary),
       validator: (text) {
         RegExp regExp = RegExp(r'^\+?[0-9]{10,15}$');

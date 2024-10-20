@@ -86,7 +86,7 @@ class CustomTextFieldState extends State<CustomTextField> {
             fillColor: Get.theme.colorScheme.surface,
             hintText: widget.hint,
             hintStyle: AppTextStyles()
-                .medium14(context)
+                .medium14()
                 .copyWith(color: Get.theme.colorScheme.onSurface),
             suffixIcon: widget.suffixIcon
                 ? IconButton(
@@ -112,7 +112,7 @@ class CustomTextFieldState extends State<CustomTextField> {
                 : null,
           ),
           style: AppTextStyles()
-              .medium14(context)
+              .medium14()
               .copyWith(color: Get.theme.colorScheme.secondary),
         ),
       ],

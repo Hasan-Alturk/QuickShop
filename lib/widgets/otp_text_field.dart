@@ -69,7 +69,7 @@ class OtpTextFieldState extends State<OtpTextField> {
             controller: controllers[index],
             focusNode: focusNodes[index],
             textAlign: TextAlign.center,
-            style: AppTextStyles().blackBold24(context).copyWith(
+            style: AppTextStyles().blackBold24().copyWith(
                   color: Get.theme.colorScheme.primary,
                 ),
             maxLength: 1,

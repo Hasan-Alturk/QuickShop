@@ -40,7 +40,7 @@ class CustomSearch extends StatelessWidget {
             child: Text(
               text,
               style:
-                  AppTextStyles().medium12(context).copyWith(color: colorText),
+                  AppTextStyles().medium12().copyWith(color: colorText),
             ),
           ),
         ],

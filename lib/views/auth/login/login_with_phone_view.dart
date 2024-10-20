@@ -80,7 +80,7 @@ class LoginWithPhoneView extends GetView<LoginController> {
                   ),
                   Text(
                     "Remember me",
-                    style: AppTextStyles().medium12(context).copyWith(
+                    style: AppTextStyles().medium12().copyWith(
                           color: Get.theme.colorScheme.onSurface,
                         ),
                   ),
@@ -93,7 +93,7 @@ class LoginWithPhoneView extends GetView<LoginController> {
                 child: Text(
                   "Forget Password?",
                   style: AppTextStyles()
-                      .medium12(context)
+                      .medium12()
                       .copyWith(color: Get.theme.colorScheme.primary),
                 ),
               )

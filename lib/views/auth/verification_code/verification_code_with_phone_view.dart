@@ -70,7 +70,7 @@ class VerificationCodeWithPhoneView
                               Text(
                                 'Didn’t receive code?   ',
                                 style:
-                                    AppTextStyles().medium12(context).copyWith(
+                                    AppTextStyles().medium12().copyWith(
                                           color: Theme.of(context)
                                               .colorScheme
                                               .onSurface,

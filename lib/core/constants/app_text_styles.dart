@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AppTextStyles {
   double getResponsiveFontSize({
-    required BuildContext context,
     required double fontSize,
   }) {
-    double scaleFactor = getScaleFactor(context);
+    double scaleFactor = getScaleFactor(Get.context!);
     double responsiveFontSize = fontSize * scaleFactor;
 
     double lowerLimit = fontSize * 0.95;
@@ -29,84 +29,84 @@ class AppTextStyles {
   }
 
   // BlackBold
-  TextStyle blackBold24(BuildContext context) {
+  TextStyle blackBold24() {
     return TextStyle(
       fontWeight: FontWeight.w900,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 24),
+      fontSize: getResponsiveFontSize(fontSize: 24),
     );
   }
 
   // SemiBold
-  TextStyle semiBold24(BuildContext context) {
+  TextStyle semiBold24() {
     return TextStyle(
       fontWeight: FontWeight.w600,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 24),
+      fontSize: getResponsiveFontSize(fontSize: 24),
     );
   }
 
-  TextStyle semiBold16(BuildContext context) {
+  TextStyle semiBold16() {
     return TextStyle(
       fontWeight: FontWeight.w600,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 16),
+      fontSize: getResponsiveFontSize(fontSize: 16),
     );
   }
 
-  TextStyle semiBold14(BuildContext context) {
+  TextStyle semiBold14() {
     return TextStyle(
       fontWeight: FontWeight.w600,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 14),
+      fontSize: getResponsiveFontSize(fontSize: 14),
     );
   }
 
   // Bold
-  TextStyle bold16(BuildContext context) {
+  TextStyle bold16() {
     return TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 16),
+      fontSize: getResponsiveFontSize(fontSize: 16),
     );
   }
 
-  TextStyle bold12(BuildContext context) {
+  TextStyle bold12() {
     return TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 12),
+      fontSize: getResponsiveFontSize(fontSize: 12),
     );
   }
 
   // Medium
-  TextStyle medium14(BuildContext context) {
+  TextStyle medium14() {
     return TextStyle(
       fontWeight: FontWeight.w500,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 14),
+      fontSize: getResponsiveFontSize(fontSize: 14),
     );
   }
 
-  TextStyle medium12(BuildContext context) {
+  TextStyle medium12() {
     return TextStyle(
       fontWeight: FontWeight.w500,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 12),
+      fontSize: getResponsiveFontSize(fontSize: 12),
     );
   }
 
-  TextStyle medium10(BuildContext context) {
+  TextStyle medium10() {
     return TextStyle(
       fontWeight: FontWeight.w500,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 10),
+      fontSize: getResponsiveFontSize(fontSize: 10),
     );
   }
 
-  TextStyle medium8(BuildContext context) {
+  TextStyle medium8() {
     return TextStyle(
       fontWeight: FontWeight.w500,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 8),
+      fontSize: getResponsiveFontSize(fontSize: 8),
     );
   }
 
   // Regular
-  TextStyle regular12(BuildContext context) {
+  TextStyle regular12() {
     return TextStyle(
       fontWeight: FontWeight.w400,
-      fontSize: getResponsiveFontSize(context: context, fontSize: 12),
+      fontSize: getResponsiveFontSize(fontSize: 12),
     );
   }
 }

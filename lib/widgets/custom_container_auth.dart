@@ -54,7 +54,7 @@ class CustomContainerAuth extends StatelessWidget {
                     child: Text(
                       firstText,
                       style: AppTextStyles()
-                          .semiBold16(context)
+                          .semiBold16()
                           .copyWith(color: Get.theme.colorScheme.secondary),
                     ),
                   ),
@@ -80,7 +80,7 @@ class CustomContainerAuth extends StatelessWidget {
                     child: Text(
                       secondText,
                       style: AppTextStyles()
-                          .semiBold16(context)
+                          .semiBold16()
                           .copyWith(color: Get.theme.colorScheme.secondary),
                     ),
                   ),

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:quick_shop/core/constants/constants.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/models/offers.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 

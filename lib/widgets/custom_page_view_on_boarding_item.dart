@@ -101,7 +101,7 @@ class CustomPageViewOnBoardingItemState
                   child: Text(
                     widget.title,
                     style: AppTextStyles()
-                        .blackBold24(context)
+                        .blackBold24()
                         .copyWith(color: Get.theme.colorScheme.primary),
                   ),
                 ),
@@ -110,7 +110,7 @@ class CustomPageViewOnBoardingItemState
                   position: _subtitleSlideAnimation,
                   child: Text(
                     widget.subtitle,
-                    style: AppTextStyles().medium14(context).copyWith(
+                    style: AppTextStyles().medium14().copyWith(
                           color: Get.theme.colorScheme.onSurface,
                         ),
                   ),
