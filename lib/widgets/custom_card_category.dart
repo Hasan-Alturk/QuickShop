@@ -8,19 +8,19 @@ class CustomCardCategory extends StatelessWidget {
     super.key,
     required this.image,
     required this.categoryName,
-    required this.isSelected, // إضافة خاصية للتحقق مما إذا كان العنصر محددًا
-    required this.onTap, // إضافة حدث عند الضغط
+    required this.isSelected, 
+    required this.onTap,
   });
 
   final String image;
   final String categoryName;
-  final bool isSelected; // حالة التحديد
-  final void Function() onTap; // حدث الضغط
+  final bool isSelected;
+  final void Function() onTap; 
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap, // استدعاء حدث الضغط عند الضغط
+      onTap: onTap, 
       child: Container(
         width: 65,
         height: 65,

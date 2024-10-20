@@ -5,8 +5,7 @@ import 'package:quick_shop/widgets/custom_card_category.dart';
 import 'package:quick_shop/widgets/custom_card_product.dart';
 import 'package:quick_shop/widgets/custom_carousel_slider.dart';
 import 'package:quick_shop/widgets/dots_indicator.dart';
-import 'package:quick_shop/widgets/custom_header_home.dart';
-import 'package:quick_shop/widgets/custom_search_and_promo_home.dart';
+import 'package:quick_shop/views/home/widgets/custom_header_home.dart';
 import 'package:quick_shop/widgets/custom_snack_bar.dart';
 import 'package:quick_shop/widgets/custom_title_home.dart';
 
@@ -27,8 +26,6 @@ class HomeView extends GetView<HomeController> {
               children: [
                 SizedBox(height: height * 0.012),
                 const CustomHeaderHome(),
-                SizedBox(height: height * 0.012),
-                const CustomSearchAndPromoHome(),
                 SizedBox(height: height * 0.024),
                 GetBuilder<HomeController>(
                   builder: (_) {

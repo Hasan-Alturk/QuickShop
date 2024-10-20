@@ -6,25 +6,24 @@ class MyThemes {
     return ThemeData(
         fontFamily: "Alexandria",
         useMaterial3: true,
-        scaffoldBackgroundColor: AppColors.scaffoldBackgroundLight,
+        scaffoldBackgroundColor: AppColors.lightColorLight,
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
-          primary: AppColors.primaryLight,
-          onPrimary: AppColors.onPrimaryLight,
-          primaryContainer: AppColors.primaryContainerLight,
-          secondary: AppColors.secondaryLight,
-          onSecondary: AppColors.onSecondaryLight,
-          surface: AppColors.surfaceLight,
-          onSurface: AppColors.onSurfaceLight,
-          onError: AppColors.onErrorLight,
-          error: AppColors.onErrorLight,
+          primary: AppColors.primaryColorLight,
+          onPrimary: AppColors.whiteColorLight,
+          primaryContainer: AppColors.containerColorLight,
+          secondary: AppColors.darkColorLight,
+          onSecondary: AppColors.grayColorLight,
+          surface: AppColors.nonActiveColorLight,
+          onSurface: AppColors.seconderyColorLight,
+          onError: AppColors.redColorLight,
+          error: AppColors.redColorLight,
         ),
         appBarTheme: const AppBarTheme(
           centerTitle: true,
-          color: AppColors.onPrimaryLight,
-          elevation: 0,
+          color: AppColors.whiteColorLight,
           iconTheme: IconThemeData(
-            color: AppColors.primaryLight,
+            color: AppColors.primaryColorLight,
           ),
         ));
   }
@@ -33,19 +32,6 @@ class MyThemes {
     return ThemeData(
       fontFamily: "Alexandria",
       useMaterial3: true,
-      scaffoldBackgroundColor: AppColors.scaffoldBackgroundDark,
-      colorScheme: const ColorScheme(
-        brightness: Brightness.dark,
-        primary: AppColors.primaryDark,
-        onPrimary: AppColors.onPrimaryDark,
-        primaryContainer: AppColors.primaryContainerDark,
-        secondary: AppColors.secondaryDark,
-        onSecondary: AppColors.onSecondaryDark,
-        surface: AppColors.surfaceDark,
-        onSurface: AppColors.onSurfaceDark,
-        onError: AppColors.onErrorDark,
-        error: AppColors.onErrorDark,
-      ),
     );
   }
 }
