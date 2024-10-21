@@ -28,30 +28,33 @@ class CategoriesView extends GetView<CategoriesController> {
                 icon: Assets.imagesSearch,
               ),
               const SizedBox(height: 12),
-              GetBuilder<CategoriesController>(builder: (_) {
-                return Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 6),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: _buildCategoryList(),
-                        ),
-                        VerticalDivider(
-                          color: Get.theme.colorScheme.onSecondary, // لون الخط
-                          thickness: 1, // سمك الخط
-                          width: 15, // المسافة حول الخط
-                        ),
-                        Expanded(
-                          flex: 8,
-                          child: _buildSubcategoryList(context: context),
-                        ),
-                      ],
+              GetBuilder<CategoriesController>(
+                builder: (_) {
+                  return Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: _buildCategoryList(),
+                          ),
+                          VerticalDivider(
+                            color:
+                                Get.theme.colorScheme.onSecondary, // لون الخط
+                            thickness: 1, // سمك الخط
+                            width: 15, // المسافة حول الخط
+                          ),
+                          Expanded(
+                            flex: 8,
+                            child: _buildSubcategoryList(),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              }),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -77,18 +80,19 @@ class CategoriesView extends GetView<CategoriesController> {
     );
   }
 
-  Widget _buildSubcategoryList({required BuildContext context}) {
+  Widget _buildSubcategoryList() {
     return ListView(
       children: [
-        _buildExpansionTile(title: "Jackets", context: context),
-        _buildExpansionTile(title: "Sweater", context: context),
-        _buildExpansionTile(title: "Coats", context: context),
+        _buildExpansionTile(title: "Jackets"),
+        _buildExpansionTile(title: "Sweater"),
+        _buildExpansionTile(title: "Coats"),
       ],
     );
   }
 
-  Widget _buildExpansionTile(
-      {required String title, required BuildContext context}) {
+  Widget _buildExpansionTile({
+    required String title,
+  }) {
     return GetBuilder<CategoriesController>(
       builder: (_) {
         return ExpansionTile(
@@ -109,10 +113,9 @@ class CategoriesView extends GetView<CategoriesController> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Wrap(
-                spacing: 15.0, // المسافة الأفقية بين العناصر
-                runSpacing: 15.0, // المسافة العمودية بين الصفوف
+                spacing: 12.0, // المسافة الأفقية بين العناصر
+                runSpacing: 6.0, // المسافة العمودية بين الصفوف
                 children: List.generate(
-                  
                   controller.subcategories.length,
                   (index) {
                     return CustomCardSubCategoryItem(

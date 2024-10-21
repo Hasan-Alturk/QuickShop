@@ -28,11 +28,26 @@ class AppTextStyles {
     }
   }
 
-  // BlackBold
+  // Black
   TextStyle blackBold24() {
     return TextStyle(
       fontWeight: FontWeight.w900,
       fontSize: getResponsiveFontSize(fontSize: 24),
+    );
+  }
+
+  // Bold
+  TextStyle bold16() {
+    return TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: getResponsiveFontSize(fontSize: 16),
+    );
+  }
+
+  TextStyle bold12() {
+    return TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: getResponsiveFontSize(fontSize: 12),
     );
   }
 
@@ -55,21 +70,6 @@ class AppTextStyles {
     return TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: getResponsiveFontSize(fontSize: 14),
-    );
-  }
-
-  // Bold
-  TextStyle bold16() {
-    return TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: getResponsiveFontSize(fontSize: 16),
-    );
-  }
-
-  TextStyle bold12() {
-    return TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: getResponsiveFontSize(fontSize: 12),
     );
   }
 
@@ -102,8 +102,23 @@ class AppTextStyles {
     );
   }
 
-  // Regular
-  TextStyle regular12() {
+  // Normal
+
+  TextStyle normal16() {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsiveFontSize(fontSize: 16),
+    );
+  }
+
+  TextStyle normal14() {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsiveFontSize(fontSize: 14),
+    );
+  }
+
+  TextStyle normal12() {
     return TextStyle(
       fontWeight: FontWeight.w400,
       fontSize: getResponsiveFontSize(fontSize: 12),

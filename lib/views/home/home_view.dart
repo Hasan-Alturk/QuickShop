@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/views/home/home_controller.dart';
 import 'package:quick_shop/widgets/custom_card_category.dart';
 import 'package:quick_shop/widgets/custom_card_product.dart';
@@ -99,6 +100,7 @@ class HomeView extends GetView<HomeController> {
                 SizedBox(height: height * 0.012),
                 SizedBox(
                   height: height * 0.4,
+                  width: screenWidth,
                   child: ListView.builder(
                     itemCount: controller.products.length,
                     scrollDirection: Axis.horizontal,

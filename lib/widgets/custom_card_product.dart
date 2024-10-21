@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomCardProduct extends StatelessWidget {
@@ -23,20 +24,20 @@ class CustomCardProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 360,
-      width: 170,
+      height: screenHeight, // نسبة مئوية من ارتفاع الشاشة
+      width: screenWidth / 2, // نسبة مئوية من عرض الشاشة
       decoration: ShapeDecoration(
-        color: Get.theme.colorScheme.surface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
+        color: Get.theme.colorScheme.surface,
       ),
       child: Stack(
         children: [
           Column(
             children: [
               SizedBox(
-                height: 200,
+                height: screenHeight * 0.2,
                 width: double.infinity,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
@@ -45,7 +46,7 @@ class CustomCardProduct extends StatelessWidget {
                   ),
                   child: Image.asset(
                     image,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
@@ -61,18 +62,14 @@ class CustomCardProduct extends StatelessWidget {
                               color: Get.theme.colorScheme.secondary,
                             ),
                       ),
-                      const SizedBox(
-                        height: 4,
-                      ),
+                      SizedBox(height: screenHeight * 0.015),
                       Text(
                         description,
                         style: AppTextStyles().medium12().copyWith(
                               color: Get.theme.colorScheme.onSurface,
                             ),
                       ),
-                      const SizedBox(
-                        height: 4,
-                      ),
+                      SizedBox(height: screenHeight * 0.015),
                       Row(
                         children: [
                           Text(
@@ -82,18 +79,16 @@ class CustomCardProduct extends StatelessWidget {
                                   decoration: TextDecoration.lineThrough,
                                 ),
                           ),
-                          const SizedBox(width: 15),
+                          SizedBox(width: screenWidth * 0.025),
                           Text(
-                            discountedPrice!,
+                            discountedPrice ?? '',
                             style: AppTextStyles().semiBold16().copyWith(
                                   color: Get.theme.colorScheme.primary,
                                 ),
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 4,
-                      ),
+                      SizedBox(height: screenHeight * 0.015),
                       RatingBar.builder(
                         itemSize: 16,
                         initialRating: 3.5,
@@ -109,11 +104,9 @@ class CustomCardProduct extends StatelessWidget {
                           log(rating.toString());
                         },
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
+                      SizedBox(height: screenHeight * 0.005),
                       Text(
-                        'Based on 800 review',
+                        'Based on 800 reviews',
                         style: AppTextStyles()
                             .medium8()
                             .copyWith(color: Get.theme.colorScheme.onSurface),
