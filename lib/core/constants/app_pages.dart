@@ -31,6 +31,8 @@ import 'package:quick_shop/views/offers/offers_binding.dart';
 import 'package:quick_shop/views/offers/offers_view.dart';
 import 'package:quick_shop/views/onBoarding/on_boarding_binding.dart';
 import 'package:quick_shop/views/onBoarding/on_boarding_view.dart';
+import 'package:quick_shop/views/product/product_binding.dart';
+import 'package:quick_shop/views/product/product_view.dart';
 import 'package:quick_shop/views/profile/profile_binding.dart';
 import 'package:quick_shop/views/profile/profile_view.dart';
 import 'package:quick_shop/views/splash/splash_binding.dart';
@@ -144,5 +146,11 @@ List<GetPage> appPages = [
     name: "/filter",
     page: () => const FilterView(),
     binding: FilterBinding(),
+  ),
+
+  GetPage(
+    name: "/product",
+    page: () => const ProductView(),
+    binding: ProductBinding(),
   ),
 ];

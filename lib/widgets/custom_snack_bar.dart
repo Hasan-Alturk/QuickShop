@@ -50,7 +50,7 @@ class CustomSnackbar {
         color: Colors.white,
         size: 40,
       ),
-      shouldIconPulse: true, // حركة خفيفة للرمز
+      shouldIconPulse: false, // حركة خفيفة للرمز
     );
   }
 

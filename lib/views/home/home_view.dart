@@ -6,7 +6,7 @@ import 'package:quick_shop/widgets/custom_card_category.dart';
 import 'package:quick_shop/widgets/custom_card_product.dart';
 import 'package:quick_shop/widgets/custom_carousel_slider.dart';
 import 'package:quick_shop/widgets/dots_indicator.dart';
-import 'package:quick_shop/views/home/widgets/custom_header_home.dart';
+import 'package:quick_shop/widgets/custom_header_home.dart';
 import 'package:quick_shop/widgets/custom_snack_bar.dart';
 import 'package:quick_shop/widgets/custom_title_home.dart';
 
@@ -33,6 +33,19 @@ class HomeView extends GetView<HomeController> {
                     return ElevatedButton(
                       onPressed: () {
                         CustomSnackbar.showErrorSnackbar("message");
+
+                        // controller.notificationController.showNotification(
+                        //     'Hello', 'This is a test notification!');
+                      },
+                      child: const Text('Show Notification'),
+                    );
+                  },
+                ),
+                GetBuilder<HomeController>(
+                  builder: (_) {
+                    return ElevatedButton(
+                      onPressed: () {
+                        CustomSnackbar.showSuccessSnackbar("message");
 
                         // controller.notificationController.showNotification(
                         //     'Hello', 'This is a test notification!');
@@ -99,22 +112,32 @@ class HomeView extends GetView<HomeController> {
                 ),
                 SizedBox(height: height * 0.012),
                 SizedBox(
-                  height: height * 0.4,
-                  width: screenWidth,
-                  child: ListView.builder(
+                  height: height * 0.3,
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, // عدد الأعمدة
+                      crossAxisSpacing: 5.0, // المسافة بين الأعمدة
+                      mainAxisSpacing: 10.0, // المسافة بين الصفوف
+                      childAspectRatio: 0.52, // نسبة العرض إلى الارتفاع
+                    ),
                     itemCount: controller.products.length,
-                    scrollDirection: Axis.horizontal,
                     itemBuilder: (_, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: CustomCardProduct(
-                          image: controller.products[index].image,
-                          productName: controller.products[index].productName,
-                          description: controller.products[index].description,
-                          originalPrice:
-                              controller.products[index].originalPrice,
-                          discountedPrice:
-                              controller.products[index].discountedPrice,
+                      return GestureDetector(
+                        onTap: () {
+                          controller.goToProduct();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: CustomCardProduct(
+                            image: controller.products[index].image,
+                            productName: controller.products[index].productName,
+                            description: controller.products[index].description,
+                            originalPrice:
+                                controller.products[index].originalPrice,
+                            discountedPrice:
+                                controller.products[index].discountedPrice,
+                          ),
                         ),
                       );
                     },
@@ -127,21 +150,32 @@ class HomeView extends GetView<HomeController> {
                 ),
                 SizedBox(height: height * 0.012),
                 SizedBox(
-                  height: 360,
-                  child: ListView.builder(
+                  height: height * 0.3,
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, // عدد الأعمدة
+                      crossAxisSpacing: 5.0, // المسافة بين الأعمدة
+                      mainAxisSpacing: 10.0, // المسافة بين الصفوف
+                      childAspectRatio: 0.52, // نسبة العرض إلى الارتفاع
+                    ),
                     itemCount: controller.products.length,
-                    scrollDirection: Axis.horizontal,
                     itemBuilder: (_, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: CustomCardProduct(
-                          image: controller.products[index].image,
-                          productName: controller.products[index].productName,
-                          description: controller.products[index].description,
-                          originalPrice:
-                              controller.products[index].originalPrice,
-                          discountedPrice:
-                              controller.products[index].discountedPrice,
+                      return GestureDetector(
+                        onTap: () {
+                          controller.goToProduct();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: CustomCardProduct(
+                            image: controller.products[index].image,
+                            productName: controller.products[index].productName,
+                            description: controller.products[index].description,
+                            originalPrice:
+                                controller.products[index].originalPrice,
+                            discountedPrice:
+                                controller.products[index].discountedPrice,
+                          ),
                         ),
                       );
                     },
@@ -154,21 +188,32 @@ class HomeView extends GetView<HomeController> {
                 ),
                 SizedBox(height: height * 0.012),
                 SizedBox(
-                  height: 360,
-                  child: ListView.builder(
+                  height: height * 0.3,
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, // عدد الأعمدة
+                      crossAxisSpacing: 5.0, // المسافة بين الأعمدة
+                      mainAxisSpacing: 10.0, // المسافة بين الصفوف
+                      childAspectRatio: 0.52, // نسبة العرض إلى الارتفاع
+                    ),
                     itemCount: controller.products.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: CustomCardProduct(
-                          image: controller.products[index].image,
-                          productName: controller.products[index].productName,
-                          description: controller.products[index].description,
-                          originalPrice:
-                              controller.products[index].originalPrice,
-                          discountedPrice:
-                              controller.products[index].discountedPrice,
+                    itemBuilder: (_, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          controller.goToProduct();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: CustomCardProduct(
+                            image: controller.products[index].image,
+                            productName: controller.products[index].productName,
+                            description: controller.products[index].description,
+                            originalPrice:
+                                controller.products[index].originalPrice,
+                            discountedPrice:
+                                controller.products[index].discountedPrice,
+                          ),
                         ),
                       );
                     },

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -11,10 +13,11 @@ import 'package:quick_shop/widgets/custom_card_product.dart';
 import 'package:quick_shop/widgets/custom_snack_bar.dart';
 
 class HomeController extends GetxController {
-  HomeController({required this.homeRepo, required this.notificationController});
+  HomeController(
+      {required this.homeRepo, required this.notificationController});
 
   final HomeRepo homeRepo;
-final LocalNotificationController notificationController;
+  final LocalNotificationController notificationController;
   bool isLoading = false;
   bool isLoadingOffers = false;
 
@@ -28,8 +31,6 @@ final LocalNotificationController notificationController;
 
   final CarouselSliderController carouselController =
       CarouselSliderController();
-
-   
 
   int selectedCategoryIndex = -1; // يبدأ من -1 لتحديد عدم وجود أي عنصر محدد
   void selectCategory(int index) {
@@ -47,20 +48,23 @@ final LocalNotificationController notificationController;
   Future<void> getOffers() async {
     try {
       isLoadingOffers = true;
+      log(isLoadingOffers.toString());
       update(["offers"]);
-
       Offers offers = await homeRepo.getOffers();
       for (Offer offer in offers.data) {
         offersImages.add(
           CachedNetworkImage(
             imageUrl: offer.xxlargeUrl,
             fit: BoxFit.contain,
+            placeholder: (context, url) =>
+                const Center(child: CircularProgressIndicator()),
             errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         );
       }
-
       isLoadingOffers = false;
+      log(isLoadingOffers.toString());
+
       update(["offers"]);
     } on ErrorHandler catch (e) {
       isLoadingOffers = false;
@@ -155,5 +159,9 @@ final LocalNotificationController notificationController;
 
   void goToPopular() {
     Get.toNamed("/popular");
+  }
+
+  void goToProduct() {
+    Get.toNamed("/product");
   }
 }

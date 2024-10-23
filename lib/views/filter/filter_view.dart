@@ -20,12 +20,54 @@ class FilterView extends GetView<FilterController> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          // هنا
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 16),
+                Text(
+                  'Category',
+                  style: AppTextStyles()
+                      .normal16()
+                      .copyWith(color: Get.theme.colorScheme.secondary),
+                ),
+                const SizedBox(height: 8),
+                GetBuilder<FilterController>(
+                  id: "category",
+                  builder: (controller) => Wrap(
+                    spacing: 12.0,
+                    runSpacing: 6.0,
+                    children: controller.categories.map(
+                      (category) {
+                        return ChoiceChip(
+                          label: Text(
+                            category,
+                            style: TextStyle(
+                              color: controller.selectedCategories
+                                      .contains(category)
+                                  ? Get.theme.colorScheme.onPrimary
+                                  : Get.theme.colorScheme.secondary,
+                            ),
+                          ),
+                          showCheckmark: false,
+                          selectedColor: Get.theme.colorScheme.primary,
+                          selected:
+                              controller.selectedCategories.contains(category),
+                          onSelected: (bool selected) {
+                            controller.updateCategories(category);
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        );
+                      },
+                    ).toList(),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Divider(color: Get.theme.colorScheme.onSecondary),
+                const SizedBox(height: 16),
                 Text(
                   'Price',
                   style: AppTextStyles()
@@ -104,8 +146,7 @@ class FilterView extends GetView<FilterController> {
                               width: 3.0,
                               strokeAlign: BorderSide.strokeAlignOutside,
                             ),
-                            borderRadius:
-                                BorderRadius.circular(10.0), // زوايا دائرية
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
                         );
                       },
@@ -127,16 +168,7 @@ class FilterView extends GetView<FilterController> {
                   builder: (_) => Wrap(
                     spacing: 12.0,
                     runSpacing: 6.0,
-                    children: [
-                      'XXS',
-                      'XS',
-                      'S',
-                      'M',
-                      'L',
-                      'XL',
-                      'XXL',
-                      'XXXL',
-                    ].map((size) {
+                    children: controller.sizes.map((size) {
                       return ChoiceChip(
                         label: Text(
                           size,
@@ -151,51 +183,6 @@ class FilterView extends GetView<FilterController> {
                         selected: controller.selectedSizes.contains(size),
                         onSelected: (bool selected) {
                           controller.updateSizes(size);
-                        },
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Divider(color: Get.theme.colorScheme.onSecondary),
-                const SizedBox(height: 16),
-                Text(
-                  'category',
-                  style: AppTextStyles()
-                      .normal16()
-                      .copyWith(color: Get.theme.colorScheme.secondary),
-                ),
-                const SizedBox(height: 8),
-                GetBuilder<FilterController>(
-                  id: "category",
-                  builder: (_) => Wrap(
-                    spacing: 12.0,
-                    runSpacing: 6.0,
-                    children: [
-                      'Women',
-                      'Men',
-                      'Boys',
-                      'Girls',
-                    ].map((category) {
-                      return ChoiceChip(
-                        label: Text(
-                          category,
-                          style: TextStyle(
-                            color:
-                                controller.selectedCategories.contains(category)
-                                    ? Get.theme.colorScheme.onPrimary
-                                    : Get.theme.colorScheme.secondary,
-                          ),
-                        ),
-                        showCheckmark: false,
-                        selectedColor: Get.theme.colorScheme.primary,
-                        selected:
-                            controller.selectedCategories.contains(category),
-                        onSelected: (bool selected) {
-                          controller.updateCategories(category);
                         },
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),

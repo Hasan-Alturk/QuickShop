@@ -39,7 +39,7 @@ class QuickShop extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: MyThemes.customLightTheme(),
       darkTheme: MyThemes.customDarkTheme(),
-      translations: MyTranslation(),
+  //    translations: MyTranslation(),
       locale: const Locale("en"),
       initialBinding: SplashBinding(),
       initialRoute: "/splash",

@@ -24,8 +24,8 @@ class CustomCardProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenHeight, // نسبة مئوية من ارتفاع الشاشة
-      width: screenWidth / 2, // نسبة مئوية من عرض الشاشة
+      height: screenHeight,
+      width: screenWidth / 2,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
