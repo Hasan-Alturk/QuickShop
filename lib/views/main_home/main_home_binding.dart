@@ -5,7 +5,7 @@ import 'package:quick_shop/views/main_home/main_home_controller.dart';
 class MainHomeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(MainHomeController(), permanent: true);
+    Get.put(MainHomeController());
 
     HomeBinding().dependencies();
   }

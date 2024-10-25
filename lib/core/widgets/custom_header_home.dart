@@ -27,25 +27,19 @@ class CustomHeaderHome extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 12),
-        Row(
+        const Row(
           children: [
             Expanded(
               flex: 5,
               child: CustomSearch(
                 text: "Search clothes, laptops or etc",
-                color: Get.theme.scaffoldBackgroundColor,
-                colorText: Get.theme.colorScheme.onSecondary,
-                icon: Assets.imagesSearch,
               ),
             ),
-            const SizedBox(width: 4),
+            SizedBox(width: 4),
             Expanded(
               flex: 2,
               child: CustomSearch(
                 text: "Promo",
-                color: Get.theme.scaffoldBackgroundColor,
-                colorText: Get.theme.colorScheme.secondary,
-                icon: Assets.imagesPromo,
               ),
             ),
           ],

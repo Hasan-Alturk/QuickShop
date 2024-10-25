@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
+import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomSearch extends StatelessWidget {
   const CustomSearch({
     super.key,
     required this.text,
-    required this.color,
-    required this.colorText,
-    required this.icon,
+
   });
 
   final String text;
-  final String icon;
-  final Color color;
-  final Color colorText;
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 44,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      height: 50,
+      padding: EdgeInsets.symmetric(horizontal: screenPadding),
       decoration: ShapeDecoration(
-        color: color,
+        color: Get.theme.colorScheme.surface,
         shape: RoundedRectangleBorder(
           side: BorderSide(color: Get.theme.colorScheme.onSecondary),
           borderRadius: BorderRadius.circular(32),
@@ -32,15 +30,16 @@ class CustomSearch extends StatelessWidget {
       child: Row(
         children: [
           SvgPicture.asset(
-            icon,
+            Assets.imagesSearch,
             fit: BoxFit.contain,
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: screenWidth * 0.02),
           Expanded(
             child: Text(
               text,
-              style:
-                  AppTextStyles().medium12().copyWith(color: colorText),
+              style: AppTextStyles()
+                  .medium12()
+                  .copyWith(color: Get.theme.colorScheme.onSecondary),
             ),
           ),
         ],

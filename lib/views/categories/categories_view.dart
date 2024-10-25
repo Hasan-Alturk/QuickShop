@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_images.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/categories/categories_controller.dart';
 import 'package:quick_shop/core/widgets/custom_card_category.dart';
@@ -16,18 +16,15 @@ class CategoriesView extends GetView<CategoriesController> {
       backgroundColor: Get.theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+          padding: EdgeInsets.symmetric(horizontal: screenPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 12),
-              CustomSearch(
+              SizedBox(height: screenHeight * 0.012),
+              const CustomSearch(
                 text: "Search Categories",
-                color: Get.theme.colorScheme.surface,
-                colorText: Get.theme.colorScheme.onSecondary,
-                icon: Assets.imagesSearch,
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: screenHeight * 0.012),
               GetBuilder<CategoriesController>(
                 builder: (_) {
                   return Expanded(
@@ -40,10 +37,9 @@ class CategoriesView extends GetView<CategoriesController> {
                             child: _buildCategoryList(),
                           ),
                           VerticalDivider(
-                            color:
-                                Get.theme.colorScheme.onSecondary, // لون الخط
-                            thickness: 1, // سمك الخط
-                            width: 15, // المسافة حول الخط
+                            color: Get.theme.colorScheme.onSecondary,
+                            thickness: 1,
+                            width: screenWidth * 0.05,
                           ),
                           Expanded(
                             flex: 8,
@@ -114,7 +110,7 @@ class CategoriesView extends GetView<CategoriesController> {
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Wrap(
                 spacing: 12.0, // المسافة الأفقية بين العناصر
-                runSpacing: 6.0, // المسافة العمودية بين الصفوف
+                runSpacing: 12.0, // المسافة العمودية بين الصفوف
                 children: List.generate(
                   controller.subcategories.length,
                   (index) {

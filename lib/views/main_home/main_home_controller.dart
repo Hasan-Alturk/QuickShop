@@ -21,6 +21,8 @@ class MainHomeController extends GetxController {
 
   @override
   Future<void> onInit() async {
+    userChecked = await checkUser();
+
     super.onInit();
   }
 
@@ -62,8 +64,6 @@ class MainHomeController extends GetxController {
         Get.delete<ProfileController>();
         break;
       case 4:
-        userChecked = await checkUser();
-
         if (!userChecked) {
           Get.toNamed('/login');
           return;
@@ -78,7 +78,7 @@ class MainHomeController extends GetxController {
         break;
     }
 
-    update(["MainHomeViewGetBuilder", "MainHomeViewScreenGetBuilder"]);
+    update(["main_home_screen", "bottom_navigation_bar"]);
   }
 
   Future<bool> checkUser() async {

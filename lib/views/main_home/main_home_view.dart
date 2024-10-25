@@ -24,14 +24,14 @@ class MainHomeView extends GetView<MainHomeController> {
       extendBody: true,
       body: SafeArea(
         child: GetBuilder<MainHomeController>(
-          id: "MainHomeViewScreenGetBuilder",
+          id: "main_home_screen",
           builder: (_) {
             return screens[controller.pageIndex];
           },
         ),
       ),
       bottomNavigationBar: GetBuilder<MainHomeController>(
-        id: "MainHomeViewGetBuilder",
+        id: "bottom_navigation_bar",
         builder: (_) {
           return CustomBottomNavigationBar(
             currentIndex: controller.pageIndex,

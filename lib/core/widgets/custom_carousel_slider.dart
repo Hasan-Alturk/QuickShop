@@ -1,7 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 
-class CustomCarouselSlider extends StatefulWidget {
+class CustomCarouselSlider extends StatelessWidget {
   final List<Widget> items;
   final CarouselSliderController carouselController;
   final dynamic Function(int, CarouselPageChangedReason)? onPageChanged;
@@ -14,15 +15,10 @@ class CustomCarouselSlider extends StatefulWidget {
   });
 
   @override
-  State<CustomCarouselSlider> createState() => _CustomCarouselSliderState();
-}
-
-class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
-  @override
   Widget build(BuildContext context) {
     return CarouselSlider(
-      items: widget.items,
-      carouselController: widget.carouselController,
+      items: items,
+      carouselController: carouselController,
       options: CarouselOptions(
         autoPlay: true,
         enlargeCenterPage: true,
@@ -30,8 +26,8 @@ class _CustomCarouselSliderState extends State<CustomCarouselSlider> {
         autoPlayCurve: Curves.fastLinearToSlowEaseIn,
         viewportFraction: 1,
         initialPage: 0,
-        height: 200,
-        onPageChanged: widget.onPageChanged,
+        height: screenHeight * 0.15,
+        onPageChanged: onPageChanged,
       ),
     );
   }

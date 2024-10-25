@@ -29,11 +29,8 @@ class ForYouView extends GetView<ForYouController> {
             padding: EdgeInsets.symmetric(horizontal: screenPadding),
             child: Column(
               children: [
-                CustomSearch(
+                const CustomSearch(
                   text: "Search clothes, laptops or etc",
-                  color: Get.theme.scaffoldBackgroundColor,
-                  colorText: Get.theme.colorScheme.onSecondary,
-                  icon: Assets.imagesSearch,
                 ),
                 SizedBox(height: screenHeight * 0.015),
                 Row(

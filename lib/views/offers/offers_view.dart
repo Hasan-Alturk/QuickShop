@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/offers/offers_controller.dart';
 
@@ -12,16 +13,15 @@ class OffersView extends GetView<OffersController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Offers"),
-        titleTextStyle: AppTextStyles()
-            .bold16()
-            .copyWith(color: Get.theme.primaryColor),
+        titleTextStyle:
+            AppTextStyles().bold16().copyWith(color: Get.theme.primaryColor),
       ),
       body: SafeArea(
         child: GetBuilder<OffersController>(
           id: "offers",
           builder: (_) {
             return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: screenPadding),
               child: ListView.builder(
                 itemCount: controller.offersImages.length,
                 itemBuilder: (context, index) {
@@ -30,6 +30,8 @@ class OffersView extends GetView<OffersController> {
                     child: CachedNetworkImage(
                       imageUrl: controller.offersImages[index],
                       fit: BoxFit.contain,
+                      placeholder: (context, url) =>
+                          const Center(child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
                     ),

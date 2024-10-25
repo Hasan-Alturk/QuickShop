@@ -40,6 +40,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 SizedBox(height: screenHeight * 0.012),
                 _buildCategoriesList(),
+                SizedBox(height: screenHeight * 0.012),
 
                 // قسيمة Flash Sale
                 CustomTitleHome(
@@ -48,6 +49,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 SizedBox(height: screenHeight * 0.012),
                 _buildProductGrid(controller.products),
+                SizedBox(height: screenHeight * 0.012),
 
                 // قسيمة For You
                 CustomTitleHome(
@@ -56,6 +58,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 SizedBox(height: screenHeight * 0.012),
                 _buildProductGrid(controller.products),
+                SizedBox(height: screenHeight * 0.012),
 
                 // قسيمة Popular
                 CustomTitleHome(
@@ -64,6 +67,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 SizedBox(height: screenHeight * 0.012),
                 _buildProductGrid(controller.products),
+                SizedBox(height: screenHeight * 0.012),
               ],
             ),
           ),
@@ -78,13 +82,10 @@ class HomeView extends GetView<HomeController> {
       builder: (_) {
         return Column(
           children: [
-            SizedBox(
-              height: screenHeight * 0.20,
-              child: CustomCarouselSlider(
-                items: controller.offersImages,
-                carouselController: controller.carouselController,
-                onPageChanged: controller.onPageChanged,
-              ),
+            CustomCarouselSlider(
+              items: controller.offersImages,
+              carouselController: controller.carouselController,
+              onPageChanged: controller.onPageChanged,
             ),
             SizedBox(height: screenHeight * 0.024),
             DotsIndicator(
@@ -125,8 +126,8 @@ class HomeView extends GetView<HomeController> {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 5.0,
-        mainAxisSpacing: 10.0,
-        childAspectRatio: 0.52,
+        mainAxisSpacing: 5.0,
+        childAspectRatio: 0.5,
       ),
       itemCount: products.length,
       itemBuilder: (_, index) {

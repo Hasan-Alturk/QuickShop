@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +11,14 @@ import 'package:quick_shop/core/widgets/custom_card_product.dart';
 import 'package:quick_shop/core/widgets/custom_snack_bar.dart';
 
 class HomeController extends GetxController {
-  HomeController(
-      {required this.homeRepo, required this.notificationController});
+  HomeController({
+    required this.homeRepo,
+    required this.notificationController,
+  });
 
   final HomeRepo homeRepo;
   final LocalNotificationController notificationController;
+
   bool isLoading = false;
   bool isLoadingOffers = false;
 
@@ -32,12 +33,6 @@ class HomeController extends GetxController {
   final CarouselSliderController carouselController =
       CarouselSliderController();
 
-  int selectedCategoryIndex = -1; // يبدأ من -1 لتحديد عدم وجود أي عنصر محدد
-  void selectCategory(int index) {
-    selectedCategoryIndex = index; // تحديث الفهرس المحدد
-    update(); // تحديث الواجهة
-  }
-
   int currentPage = 0;
 
   void onPageChanged(int index, CarouselPageChangedReason reason) {
@@ -48,7 +43,6 @@ class HomeController extends GetxController {
   Future<void> getOffers() async {
     try {
       isLoadingOffers = true;
-      log(isLoadingOffers.toString());
       update(["offers"]);
       Offers offers = await homeRepo.getOffers();
       for (Offer offer in offers.data) {
@@ -62,9 +56,8 @@ class HomeController extends GetxController {
           ),
         );
       }
-      isLoadingOffers = false;
-      log(isLoadingOffers.toString());
 
+      isLoadingOffers = false;
       update(["offers"]);
     } on ErrorHandler catch (e) {
       isLoadingOffers = false;
@@ -139,6 +132,7 @@ class HomeController extends GetxController {
   }
 
   void goToCategories() {
+    
     Get.toNamed("/categories");
   }
 
