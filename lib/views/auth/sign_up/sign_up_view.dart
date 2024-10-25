@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/views/auth/sign_up/sign_up_with_email_view.dart';
 import 'package:quick_shop/views/auth/sign_up/sign_up_with_phone_view.dart';
 import 'package:quick_shop/views/auth/sign_up/sign_up_controller.dart';
-import 'package:quick_shop/widgets/custom_container_auth.dart';
-import 'package:quick_shop/widgets/custom_header_auth.dart';
+import 'package:quick_shop/core/widgets/custom_container_auth.dart';
+import 'package:quick_shop/core/widgets/custom_header_auth.dart';
 
 class SignUpView extends GetView<SignUpController> {
   const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: Get.theme.colorScheme.secondary,
       body: Form(
@@ -22,7 +21,7 @@ class SignUpView extends GetView<SignUpController> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.27,
+                height: screenHeight * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
                   title: "Sign Up to access exclusive offers",
@@ -30,7 +29,6 @@ class SignUpView extends GetView<SignUpController> {
               ),
               Expanded(
                 child: Container(
-                  width: width,
                   decoration: ShapeDecoration(
                     color: Get.theme.scaffoldBackgroundColor,
                     shape: const RoundedRectangleBorder(
@@ -41,11 +39,11 @@ class SignUpView extends GetView<SignUpController> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: screenPadding),
                     child: GetBuilder<SignUpController>(builder: (_) {
                       return Column(
                         children: [
-                          SizedBox(height: height * 0.024),
+                          SizedBox(height: screenHeight * 0.024),
                           CustomContainerAuth(
                             firstText: 'Email',
                             secondText: 'Phone Number',
@@ -56,16 +54,17 @@ class SignUpView extends GetView<SignUpController> {
                                 ? Get.theme.scaffoldBackgroundColor
                                 : Get.theme.colorScheme.primaryContainer,
                             firstOnTap: () {
-                              controller.animateToPage(0);
+                              controller.jumpToPage(0);
                             },
                             secondOnTap: () {
-                              controller.animateToPage(1);
+                              controller.jumpToPage(1);
                             },
                           ),
                           Expanded(
                             child: PageView(
                               controller: controller.pageController,
                               onPageChanged: controller.onPageChanged,
+                              physics: const NeverScrollableScrollPhysics(),
                               children: const [
                                 SignUpWithEmailView(),
                                 SignUpWithPhoneView(),

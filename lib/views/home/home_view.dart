@@ -2,228 +2,150 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/views/home/home_controller.dart';
-import 'package:quick_shop/widgets/custom_card_category.dart';
-import 'package:quick_shop/widgets/custom_card_product.dart';
-import 'package:quick_shop/widgets/custom_carousel_slider.dart';
-import 'package:quick_shop/widgets/dots_indicator.dart';
-import 'package:quick_shop/widgets/custom_header_home.dart';
-import 'package:quick_shop/widgets/custom_snack_bar.dart';
-import 'package:quick_shop/widgets/custom_title_home.dart';
+import 'package:quick_shop/core/widgets/custom_card_category.dart';
+import 'package:quick_shop/core/widgets/custom_card_product.dart';
+import 'package:quick_shop/core/widgets/custom_carousel_slider.dart';
+import 'package:quick_shop/core/widgets/dots_indicator.dart';
+import 'package:quick_shop/core/widgets/custom_header_home.dart';
+import 'package:quick_shop/core/widgets/custom_title_home.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    // double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: screenPadding),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: height * 0.012),
+                SizedBox(height: screenHeight * 0.012),
                 const CustomHeaderHome(),
-                SizedBox(height: height * 0.024),
-                GetBuilder<HomeController>(
-                  builder: (_) {
-                    return ElevatedButton(
-                      onPressed: () {
-                        CustomSnackbar.showErrorSnackbar("message");
+                SizedBox(height: screenHeight * 0.024),
 
-                        // controller.notificationController.showNotification(
-                        //     'Hello', 'This is a test notification!');
-                      },
-                      child: const Text('Show Notification'),
-                    );
-                  },
-                ),
-                GetBuilder<HomeController>(
-                  builder: (_) {
-                    return ElevatedButton(
-                      onPressed: () {
-                        CustomSnackbar.showSuccessSnackbar("message");
-
-                        // controller.notificationController.showNotification(
-                        //     'Hello', 'This is a test notification!');
-                      },
-                      child: const Text('Show Notification'),
-                    );
-                  },
-                ),
+                // قسيمة العروض
                 CustomTitleHome(
                   title: "Offers",
                   onTap: () => controller.goToOffers(),
                 ),
-                SizedBox(height: height * 0.012),
-                GetBuilder<HomeController>(
-                  id: "offers",
-                  builder: (_) {
-                    return Column(
-                      children: [
-                        SizedBox(
-                          height: height * 0.20,
-                          child: CustomCarouselSlider(
-                            items: controller.offersImages,
-                            carouselController: controller.carouselController,
-                            onPageChanged: controller.onPageChanged,
-                          ),
-                        ),
-                        SizedBox(height: height * 0.024),
-                        DotsIndicator(
-                          itemsCount: controller.offersImages.length,
-                          currentPage: controller.currentPage,
-                        ),
-                      ],
-                    );
-                  },
-                ),
-                SizedBox(height: height * 0.012),
+                SizedBox(height: screenHeight * 0.012),
+                _buildOffersCarousel(),
+
+                // قائمة الفئات
                 CustomTitleHome(
                   title: "Categories",
                   onTap: () => controller.goToCategories(),
                 ),
-                SizedBox(height: height * 0.012),
-                SizedBox(
-                  height: height * 0.09,
-                  child: ListView.builder(
-                    itemCount: controller.categories.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (_, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: CustomCardCategory(
-                          image: controller.categories[index],
-                          categoryName: controller.categoriesNames[index],
-                          isSelected: false,
-                          onTap: () {},
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: height * 0.012),
+                SizedBox(height: screenHeight * 0.012),
+                _buildCategoriesList(),
+
+                // قسيمة Flash Sale
                 CustomTitleHome(
                   title: "Flash Sale",
                   onTap: () => controller.goToFlashSale(),
                 ),
-                SizedBox(height: height * 0.012),
-                SizedBox(
-                  height: height * 0.3,
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, // عدد الأعمدة
-                      crossAxisSpacing: 5.0, // المسافة بين الأعمدة
-                      mainAxisSpacing: 10.0, // المسافة بين الصفوف
-                      childAspectRatio: 0.52, // نسبة العرض إلى الارتفاع
-                    ),
-                    itemCount: controller.products.length,
-                    itemBuilder: (_, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          controller.goToProduct();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: CustomCardProduct(
-                            image: controller.products[index].image,
-                            productName: controller.products[index].productName,
-                            description: controller.products[index].description,
-                            originalPrice:
-                                controller.products[index].originalPrice,
-                            discountedPrice:
-                                controller.products[index].discountedPrice,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: height * 0.012),
+                SizedBox(height: screenHeight * 0.012),
+                _buildProductGrid(controller.products),
+
+                // قسيمة For You
                 CustomTitleHome(
                   title: "For You",
                   onTap: () => controller.goToForYou(),
                 ),
-                SizedBox(height: height * 0.012),
-                SizedBox(
-                  height: height * 0.3,
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, // عدد الأعمدة
-                      crossAxisSpacing: 5.0, // المسافة بين الأعمدة
-                      mainAxisSpacing: 10.0, // المسافة بين الصفوف
-                      childAspectRatio: 0.52, // نسبة العرض إلى الارتفاع
-                    ),
-                    itemCount: controller.products.length,
-                    itemBuilder: (_, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          controller.goToProduct();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: CustomCardProduct(
-                            image: controller.products[index].image,
-                            productName: controller.products[index].productName,
-                            description: controller.products[index].description,
-                            originalPrice:
-                                controller.products[index].originalPrice,
-                            discountedPrice:
-                                controller.products[index].discountedPrice,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                SizedBox(height: height * 0.012),
+                SizedBox(height: screenHeight * 0.012),
+                _buildProductGrid(controller.products),
+
+                // قسيمة Popular
                 CustomTitleHome(
                   title: "Popular",
                   onTap: () => controller.goToPopular(),
                 ),
-                SizedBox(height: height * 0.012),
-                SizedBox(
-                  height: height * 0.3,
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, // عدد الأعمدة
-                      crossAxisSpacing: 5.0, // المسافة بين الأعمدة
-                      mainAxisSpacing: 10.0, // المسافة بين الصفوف
-                      childAspectRatio: 0.52, // نسبة العرض إلى الارتفاع
-                    ),
-                    itemCount: controller.products.length,
-                    itemBuilder: (_, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          controller.goToProduct();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: CustomCardProduct(
-                            image: controller.products[index].image,
-                            productName: controller.products[index].productName,
-                            description: controller.products[index].description,
-                            originalPrice:
-                                controller.products[index].originalPrice,
-                            discountedPrice:
-                                controller.products[index].discountedPrice,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
+                SizedBox(height: screenHeight * 0.012),
+                _buildProductGrid(controller.products),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildOffersCarousel() {
+    return GetBuilder<HomeController>(
+      id: "offers",
+      builder: (_) {
+        return Column(
+          children: [
+            SizedBox(
+              height: screenHeight * 0.20,
+              child: CustomCarouselSlider(
+                items: controller.offersImages,
+                carouselController: controller.carouselController,
+                onPageChanged: controller.onPageChanged,
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.024),
+            DotsIndicator(
+              itemsCount: controller.offersImages.length,
+              currentPage: controller.currentPage,
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildCategoriesList() {
+    return SizedBox(
+      height: screenHeight * 0.1,
+      child: ListView.builder(
+        itemCount: controller.categories.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (_, index) {
+          return Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: CustomCardCategory(
+              image: controller.categories[index],
+              categoryName: controller.categoriesNames[index],
+              isSelected: false,
+              onTap: () {},
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildProductGrid(List<CustomCardProduct> products) {
+    return GridView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        crossAxisSpacing: 5.0,
+        mainAxisSpacing: 10.0,
+        childAspectRatio: 0.52,
+      ),
+      itemCount: products.length,
+      itemBuilder: (_, index) {
+        return GestureDetector(
+          onTap: () {
+            controller.goToProduct();
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: CustomCardProduct(
+              image: products[index].image,
+              productName: products[index].productName,
+              description: products[index].description,
+              originalPrice: products[index].originalPrice,
+              discountedPrice: products[index].discountedPrice,
+            ),
+          ),
+        );
+      },
     );
   }
 }

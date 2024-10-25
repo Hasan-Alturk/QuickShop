@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 
 class CustomGoogleFacebookIphone extends StatelessWidget {
@@ -28,7 +29,7 @@ class CustomGoogleFacebookIphone extends StatelessWidget {
                     width: 2,
                     color: Get.theme.colorScheme.onSecondary,
                   ),
-                  borderRadius: BorderRadius.circular(32),
+                  borderRadius: BorderRadius.circular(24),
                 ),
               ),
               child: SvgPicture.asset(
@@ -38,9 +39,7 @@ class CustomGoogleFacebookIphone extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(
-          width: 10,
-        ),
+        SizedBox(width: screenWidth * 0.02),
         Expanded(
           child: InkWell(
             onTap: onTapFacebook,
@@ -53,7 +52,7 @@ class CustomGoogleFacebookIphone extends StatelessWidget {
                     width: 2,
                     color: Get.theme.colorScheme.onSecondary,
                   ),
-                  borderRadius: BorderRadius.circular(32),
+                  borderRadius: BorderRadius.circular(24),
                 ),
               ),
               child: SvgPicture.asset(
@@ -63,9 +62,7 @@ class CustomGoogleFacebookIphone extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(
-          width: 10,
-        ),
+        SizedBox(width: screenWidth * 0.02),
         Expanded(
           child: Container(
             height: 50,
@@ -76,7 +73,7 @@ class CustomGoogleFacebookIphone extends StatelessWidget {
                   width: 2,
                   color: Get.theme.colorScheme.onSecondary,
                 ),
-                borderRadius: BorderRadius.circular(32),
+                borderRadius: BorderRadius.circular(24),
               ),
             ),
             child: SvgPicture.asset(

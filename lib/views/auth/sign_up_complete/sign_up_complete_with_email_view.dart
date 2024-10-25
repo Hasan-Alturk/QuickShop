@@ -1,11 +1,12 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/views/auth/sign_up_complete/sign_up_complete_controller.dart';
-import 'package:quick_shop/widgets/custom_button.dart';
-import 'package:quick_shop/widgets/custom_header_auth.dart';
-import 'package:quick_shop/widgets/custom_text_field.dart';
+import 'package:quick_shop/core/widgets/custom_button.dart';
+import 'package:quick_shop/core/widgets/custom_header_auth.dart';
+import 'package:quick_shop/core/widgets/custom_text_field.dart';
 
 class SignUpCompleteWithEmailView extends GetView<SignUpCompleteController> {
   const SignUpCompleteWithEmailView({
@@ -14,9 +15,6 @@ class SignUpCompleteWithEmailView extends GetView<SignUpCompleteController> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Get.theme.colorScheme.secondary,
       body: Form(
@@ -25,7 +23,7 @@ class SignUpCompleteWithEmailView extends GetView<SignUpCompleteController> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.27,
+                height: screenHeight * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
                   title: "Complete Sign Up",
@@ -33,7 +31,6 @@ class SignUpCompleteWithEmailView extends GetView<SignUpCompleteController> {
               ),
               Expanded(
                 child: Container(
-                  width: width,
                   decoration: ShapeDecoration(
                     color: Get.theme.scaffoldBackgroundColor,
                     shape: const RoundedRectangleBorder(
@@ -44,11 +41,11 @@ class SignUpCompleteWithEmailView extends GetView<SignUpCompleteController> {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: screenPadding),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          SizedBox(height: height * 0.024),
+                          SizedBox(height: screenHeight * 0.024),
                           CustomTextField(
                             controller: controller.nameController,
                             hint: "Name",
@@ -65,7 +62,7 @@ class SignUpCompleteWithEmailView extends GetView<SignUpCompleteController> {
                               }
                             },
                           ),
-                          SizedBox(height: height * 0.012),
+                          SizedBox(height: screenHeight * 0.012),
                           CustomTextField(
                             controller: controller.passwordController,
                             hint: "Password",
@@ -93,7 +90,7 @@ class SignUpCompleteWithEmailView extends GetView<SignUpCompleteController> {
                               }
                             },
                           ),
-                          SizedBox(height: height * 0.012),
+                          SizedBox(height: screenHeight * 0.012),
                           CustomTextField(
                             controller: controller.confirmPasswordController,
                             hint: "Confirm Password",
@@ -124,12 +121,12 @@ class SignUpCompleteWithEmailView extends GetView<SignUpCompleteController> {
                               }
                             },
                           ),
-                          SizedBox(height: height * 0.024),
+                          SizedBox(height: screenHeight * 0.024),
                           GetBuilder<SignUpCompleteController>(
-                            id: "ElevatedButton",
+                            id: "sign_up_button",
                             builder: (_) {
                               return SizedBox(
-                                width: width,
+                                width: screenWidth,
                                 height: 50,
                                 child: CustomButton(
                                   onPressed: () {

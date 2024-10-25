@@ -20,6 +20,11 @@ class CustomButton extends StatelessWidget {
       onPressed: isLoading ? null : onPressed,
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all(Get.theme.colorScheme.primary),
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(32),
+          ),
+        ),
       ),
       child: isLoading
           ? CircularProgressIndicator(

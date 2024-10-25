@@ -1,12 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/auth/verification_code/verification_code_controller.dart';
-import 'package:quick_shop/widgets/custom_button.dart';
-import 'package:quick_shop/widgets/custom_header_auth.dart';
-import 'package:quick_shop/widgets/otp_text_field.dart';
-import 'package:quick_shop/widgets/timer_button.dart';
+import 'package:quick_shop/core/widgets/custom_button.dart';
+import 'package:quick_shop/core/widgets/custom_header_auth.dart';
+import 'package:quick_shop/core/widgets/otp_text_field.dart';
+import 'package:quick_shop/core/widgets/timer_button.dart';
 
 class VerificationCodeWithEmailView
     extends GetView<VerificationCodeController> {
@@ -14,9 +17,6 @@ class VerificationCodeWithEmailView
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Get.theme.colorScheme.secondary,
       body: Form(
@@ -25,7 +25,7 @@ class VerificationCodeWithEmailView
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.27,
+                height: screenHeight * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
                   title: "Inter your OTP code",
@@ -33,7 +33,6 @@ class VerificationCodeWithEmailView
               ),
               Expanded(
                 child: Container(
-                  width: width,
                   decoration: ShapeDecoration(
                     color: Get.theme.scaffoldBackgroundColor,
                     shape: const RoundedRectangleBorder(
@@ -44,38 +43,32 @@ class VerificationCodeWithEmailView
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: screenPadding),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          SizedBox(height: height * 0.024),
-                          GetBuilder<VerificationCodeController>(
-                            builder: (_) {
-                              return OtpTextField(
-                                length: 6,
-                                onCompleted: (String code) {
-                                  controller.otp = code;
-                                },
-                                onChanged: (String code) {
-                                  controller.otp = code;
-                                },
-                              );
+                          SizedBox(height: screenHeight * 0.024),
+                          OtpTextField(
+                            length: 6,
+                            onCompleted: (String code) {
+                              controller.otp = code;
+                            },
+                            onChanged: (String code) {
+                              controller.otp = code;
                             },
                           ),
-                          SizedBox(height: height * 0.024),
+                          SizedBox(height: screenHeight * 0.024),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 'Didn’t receive code?   ',
-                                style: AppTextStyles()
-                                    .medium12()
-                                    .copyWith(
+                                style: AppTextStyles().medium12().copyWith(
                                       color: Get.theme.colorScheme.onSurface,
                                     ),
                               ),
                               GetBuilder<VerificationCodeController>(
-                                id: "TimerButton",
+                                id: "timer_button",
                                 builder: (_) {
                                   return TimerButton(
                                     label: "Resend Code",
@@ -88,12 +81,12 @@ class VerificationCodeWithEmailView
                               ),
                             ],
                           ),
-                          SizedBox(height: height * 0.024),
+                          SizedBox(height: screenHeight * 0.024),
                           GetBuilder<VerificationCodeController>(
-                            id: "ElevatedButton",
+                            id: "verify_button",
                             builder: (_) {
                               return SizedBox(
-                                width: width,
+                                width: screenWidth,
                                 height: 50,
                                 child: CustomButton(
                                   onPressed: () {

@@ -33,10 +33,9 @@ class OnBoardingController extends GetxController {
     update();
   }
 
-  void goToNextPage() {
+  void jumpToPage() {
     if (currentPage < items.length - 1) {
       currentPage++;
-
       pageController.jumpToPage(currentPage);
       update();
     } else {

@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/categories/categories_controller.dart';
-import 'package:quick_shop/widgets/custom_card_category.dart';
-import 'package:quick_shop/widgets/custom_card_sub_category_item.dart';
-import 'package:quick_shop/widgets/custom_search.dart';
+import 'package:quick_shop/core/widgets/custom_card_category.dart';
+import 'package:quick_shop/core/widgets/custom_card_sub_category_item.dart';
+import 'package:quick_shop/core/widgets/custom_search.dart';
 
 class CategoriesView extends GetView<CategoriesController> {
   const CategoriesView({super.key});

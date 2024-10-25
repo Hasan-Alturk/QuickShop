@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
-import 'package:quick_shop/widgets/custom_search.dart';
+import 'package:quick_shop/core/widgets/custom_search.dart';
 
 class CustomHeaderHome extends StatelessWidget {
   const CustomHeaderHome({

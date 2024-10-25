@@ -4,13 +4,13 @@ import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
-import 'package:quick_shop/widgets/custom_snack_bar.dart';
+import 'package:quick_shop/core/widgets/custom_snack_bar.dart';
 
 class SignUpController extends GetxController {
   final AuthRepo authRepo;
-  PageController pageController = PageController();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  PageController pageController = PageController();
 
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
@@ -22,7 +22,6 @@ class SignUpController extends GetxController {
 
   bool isLoading = false;
   bool isChanged = false;
-
   bool isRememberMeChecked = true;
 
   int currentPage = 0;
@@ -31,19 +30,16 @@ class SignUpController extends GetxController {
     required this.authRepo,
   });
 
-  void updateFullNumber(String number) {
-    fullNumber = number;
-    update();
-  }
 
   void onPageChanged(int page) {
     currentPage = page;
     update();
   }
 
-  void animateToPage(int index) {
-    pageController.animateToPage(index,
-        duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+  void jumpToPage(int index) {
+    pageController.jumpToPage(
+      index,
+    );
     onPageChanged(index);
   }
 
@@ -59,7 +55,7 @@ class SignUpController extends GetxController {
       {required String fullNumber}) async {
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
 
       final response =
           await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
@@ -67,7 +63,7 @@ class SignUpController extends GetxController {
       String token = responseData['token'];
       await Prefs.saveToken(token: token);
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
       CustomSnackbar.showSuccessSnackbar(
           'Verification code sent on Phone Number successfully');
 
@@ -77,7 +73,7 @@ class SignUpController extends GetxController {
       );
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }
@@ -85,7 +81,7 @@ class SignUpController extends GetxController {
   Future<void> goToVerificationWithEmail({required String email}) async {
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
 
       final response = await authRepo.sendVerificationWithEmail(email: email);
       Map<String, dynamic> responseData = response.data;
@@ -93,7 +89,7 @@ class SignUpController extends GetxController {
       await Prefs.saveToken(token: token);
 
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
 
       CustomSnackbar.showSuccessSnackbar(
           'Verification code sent on Email successfully');
@@ -101,7 +97,7 @@ class SignUpController extends GetxController {
       Get.toNamed("/verification_code_with_email");
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }
@@ -109,20 +105,20 @@ class SignUpController extends GetxController {
   Future signInWithGoogle() async {
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
 
       User user = await authRepo.loginWithGoogle();
 
       await Prefs.saveUser(user);
 
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
       CustomSnackbar.showSuccessSnackbar('Sign in with Google successfully');
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }
@@ -130,20 +126,20 @@ class SignUpController extends GetxController {
   Future signInWithFacebook() async {
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
 
       User user = await authRepo.loginWithFacebook();
 
       await Prefs.saveUser(user);
 
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
 
       CustomSnackbar.showSuccessSnackbar('Sign in with Facebook successfully');
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }

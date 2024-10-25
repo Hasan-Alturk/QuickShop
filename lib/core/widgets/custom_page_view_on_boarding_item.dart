@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomPageViewOnBoardingItem extends StatefulWidget {
@@ -67,7 +68,6 @@ class CustomPageViewOnBoardingItemState
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -88,11 +88,11 @@ class CustomPageViewOnBoardingItemState
             ),
           ),
         ),
-        SizedBox(height: height * 0.1),
+        SizedBox(height: screenHeight * 0.1),
         Expanded(
           flex: 1,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: screenPadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -105,7 +105,7 @@ class CustomPageViewOnBoardingItemState
                         .copyWith(color: Get.theme.colorScheme.primary),
                   ),
                 ),
-                SizedBox(height: height * 0.02),
+                SizedBox(height: screenHeight * 0.02),
                 SlideTransition(
                   position: _subtitleSlideAnimation,
                   child: Text(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomContainerAuth extends StatelessWidget {
@@ -25,7 +26,7 @@ class CustomContainerAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: screenWidth,
       height: 50,
       decoration: ShapeDecoration(
         color: Get.theme.colorScheme.primaryContainer,
@@ -61,14 +62,14 @@ class CustomContainerAuth extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              width: 10,
+            SizedBox(
+              width: screenWidth * 0.02,
             ),
             Expanded(
               child: GestureDetector(
                 onTap: secondOnTap,
                 child: Container(
-                  height: 44,
+                  height: 45,
                   decoration: ShapeDecoration(
                     color: secondColor,
                     shape: RoundedRectangleBorder(

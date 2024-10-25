@@ -4,8 +4,8 @@ import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/for_you/for_you_controller.dart';
-import 'package:quick_shop/widgets/custom_card_product.dart';
-import 'package:quick_shop/widgets/custom_search.dart';
+import 'package:quick_shop/core/widgets/custom_card_product.dart';
+import 'package:quick_shop/core/widgets/custom_search.dart';
 
 class ForYouView extends GetView<ForYouController> {
   const ForYouView({super.key});
@@ -26,7 +26,7 @@ class ForYouView extends GetView<ForYouController> {
           height: screenHeight,
           width: screenWidth,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+            padding: EdgeInsets.symmetric(horizontal: screenPadding),
             child: Column(
               children: [
                 CustomSearch(

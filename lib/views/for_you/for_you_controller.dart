@@ -1,7 +1,7 @@
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
-import 'package:quick_shop/widgets/custom_card_product.dart';
+import 'package:quick_shop/core/widgets/custom_card_product.dart';
 
 class ForYouController extends GetxController {
   String selectedSortOption = "Sorting";

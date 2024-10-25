@@ -4,26 +4,24 @@ import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
-import 'package:quick_shop/widgets/custom_snack_bar.dart';
+import 'package:quick_shop/core/widgets/custom_snack_bar.dart';
 
 class LoginController extends GetxController {
   final AuthRepo authRepo;
-  PageController pageController = PageController();
-
-  // final StorageService storageService;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  PageController pageController = PageController();
 
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   bool showTextFieldEmail = true;
-  String fullNumber = "";
-
   bool isLoading = false;
   bool isChanged = false;
-
   bool isRememberMeChecked = true;
+
+  String fullNumber = "";
 
   int currentPage = 0;
 
@@ -34,18 +32,14 @@ class LoginController extends GetxController {
     update();
   }
 
-  void animateToPage(int index) {
-    pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.decelerate,
-    );
+  void jumpToPage(int index) {
+    pageController.jumpToPage(index);
     onPageChanged(index);
   }
 
   void toggleRememberMe(bool value) {
     isRememberMeChecked = value;
-    update();
+    update(["remember_me"]);
   }
 
   void goToForgetPassword() {
@@ -59,19 +53,19 @@ class LoginController extends GetxController {
   Future signInWithGoogle() async {
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
 
       User user = await authRepo.loginWithGoogle();
       await Prefs.saveUser(user);
 
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
       CustomSnackbar.showSuccessSnackbar('Sign in with Google successfully');
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }
@@ -79,20 +73,20 @@ class LoginController extends GetxController {
   Future signInWithFacebook() async {
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
 
       User user = await authRepo.loginWithFacebook();
 
       await Prefs.saveUser(user);
 
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
       CustomSnackbar.showSuccessSnackbar('Sign in with Facebook successfully');
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }
@@ -101,7 +95,7 @@ class LoginController extends GetxController {
       {required String email, required String password}) async {
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
       User user = await authRepo.login(
         login: email,
         password: password,
@@ -109,13 +103,13 @@ class LoginController extends GetxController {
 
       await Prefs.saveUser(user);
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
       CustomSnackbar.showSuccessSnackbar('Sign in with Email successfully');
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }
@@ -124,7 +118,7 @@ class LoginController extends GetxController {
       {required String phone, required String password}) async {
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
       User user = await authRepo.login(
         login: phone,
         password: password,
@@ -132,14 +126,14 @@ class LoginController extends GetxController {
 
       await Prefs.saveUser(user);
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
       CustomSnackbar.showSuccessSnackbar(
           'Sign in with Phone Number successfully');
 
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["login_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }

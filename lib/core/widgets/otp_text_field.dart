@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class OtpTextField extends StatefulWidget {
@@ -64,7 +65,7 @@ class OtpTextFieldState extends State<OtpTextField> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(widget.length, (index) {
         return SizedBox(
-          width: 40,
+          width: screenWidth * 0.1,
           child: TextField(
             controller: controllers[index],
             focusNode: focusNodes[index],
@@ -77,12 +78,12 @@ class OtpTextFieldState extends State<OtpTextField> {
             decoration: InputDecoration(
               counterText: "",
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.0),
+                borderRadius: BorderRadius.circular(32.0),
                 borderSide:
                     BorderSide(color: Get.theme.colorScheme.onSecondary),
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.0),
+                borderRadius: BorderRadius.circular(32.0),
                 borderSide: BorderSide(color: Get.theme.colorScheme.primary),
               ),
               fillColor: Get.theme.colorScheme.surface,

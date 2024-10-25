@@ -6,7 +6,7 @@ import 'package:quick_shop/views/favourite/favourite_view.dart';
 import 'package:quick_shop/views/home/home_view.dart';
 import 'package:quick_shop/views/main_home/main_home_controller.dart';
 import 'package:quick_shop/views/profile/profile_view.dart';
-import 'package:quick_shop/widgets/custom_bottom_navigation_bar.dart';
+import 'package:quick_shop/core/widgets/custom_bottom_navigation_bar.dart';
 
 class MainHomeView extends GetView<MainHomeController> {
   MainHomeView({super.key});

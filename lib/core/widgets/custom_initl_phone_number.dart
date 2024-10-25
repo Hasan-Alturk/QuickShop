@@ -4,7 +4,7 @@ import 'package:intl_phone_field/country_picker_dialog.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
-class CustomIntlPhoneNumber extends StatelessWidget {
+class CustomIntlPhoneNumber extends StatefulWidget {
   const CustomIntlPhoneNumber({
     super.key,
     required this.controller,
@@ -16,9 +16,13 @@ class CustomIntlPhoneNumber extends StatelessWidget {
   final TextEditingController controller;
   final GlobalKey<FormState> formKey;
   final bool isChanged;
-
   final Function(String) onFullNumber;
 
+  @override
+  CustomIntlPhoneNumberState createState() => CustomIntlPhoneNumberState();
+}
+
+class CustomIntlPhoneNumberState extends State<CustomIntlPhoneNumber> {
   OutlineInputBorder outlineInputNone(BuildContext context) {
     return OutlineInputBorder(
       borderSide: BorderSide(color: Get.theme.colorScheme.onSecondary),
@@ -40,12 +44,22 @@ class CustomIntlPhoneNumber extends StatelessWidget {
     );
   }
 
+  void onFullNumberChanged(String number) {
+    // استخدام WidgetsBinding لتأجيل setState حتى بعد اكتمال التخطيط الحالي
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        setState(() {
+          widget.onFullNumber(number);
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return IntlPhoneField(
-      controller: controller,
+      controller: widget.controller,
       initialCountryCode: "TR",
-      //  languageCode: 'en',
       disableLengthCheck: true,
       pickerDialogStyle: PickerDialogStyle(
         backgroundColor: Get.theme.scaffoldBackgroundColor,
@@ -66,22 +80,20 @@ class CustomIntlPhoneNumber extends StatelessWidget {
       style: AppTextStyles()
           .medium14()
           .copyWith(color: Get.theme.colorScheme.secondary),
-      validator: (text) {
+      validator: (phone) {
         RegExp regExp = RegExp(r'^\+?[0-9]{10,15}$');
-
-        if (text == null || text.number.isEmpty) {
+        if (phone == null || phone.number.trim().isEmpty) {
           return "Phone number is required";
-        } else if (!regExp.hasMatch(text.number)) {
+        } else if (!regExp.hasMatch(phone.number)) {
           return "Enter a valid phone number";
         }
         return null;
       },
       onChanged: (phone) {
         String fullNumber = '${phone.countryCode}${phone.number}';
-        onFullNumber(fullNumber);
-
-        if (isChanged) {
-          formKey.currentState!.validate();
+        onFullNumberChanged(fullNumber);
+        if (widget.isChanged) {
+          widget.formKey.currentState!.validate();
         }
       },
     );

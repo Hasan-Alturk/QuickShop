@@ -24,7 +24,7 @@ class ProductView extends GetView<ProductController> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+            padding: EdgeInsets.symmetric(horizontal: screenPadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

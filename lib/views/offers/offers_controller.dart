@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/models/offers.dart';
 import 'package:quick_shop/core/repo/home_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
-import 'package:quick_shop/widgets/custom_snack_bar.dart';
+import 'package:quick_shop/core/widgets/custom_snack_bar.dart';
 
 class OffersController extends GetxController {
   OffersController({required this.homeRepo});

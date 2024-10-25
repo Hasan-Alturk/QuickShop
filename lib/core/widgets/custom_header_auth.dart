@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomHeaderAuth extends StatelessWidget {
@@ -31,7 +32,7 @@ class CustomHeaderAuth extends StatelessWidget {
                 image,
                 fit: BoxFit.cover,
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: screenHeight * 0.02),
               Text(
                 title,
                 style: AppTextStyles().semiBold24().copyWith(

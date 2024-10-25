@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomOrAuthWith extends StatelessWidget {
@@ -21,14 +22,14 @@ class CustomOrAuthWith extends StatelessWidget {
             thickness: 2,
           ),
         ),
-        const SizedBox(width: 10),
+        SizedBox(width: screenWidth * 0.01),
         Text(
           text,
           style: AppTextStyles().bold12().copyWith(
                 color: Get.theme.colorScheme.onSurface,
               ),
         ),
-        const SizedBox(width: 10),
+        SizedBox(width: screenWidth * 0.01),
         Expanded(
           child: Divider(
             color: Get.theme.colorScheme.onSecondary,

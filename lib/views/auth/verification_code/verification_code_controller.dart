@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
-import 'package:quick_shop/widgets/custom_snack_bar.dart';
+import 'package:quick_shop/core/widgets/custom_snack_bar.dart';
 
 class VerificationCodeController extends GetxController {
   final AuthRepo authRepo;
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+ 
   bool isLoading = false;
   String otp = "";
   String token = "";
@@ -21,13 +21,13 @@ class VerificationCodeController extends GetxController {
   }) async {
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["verify_button"]);
 
       final response =
           await authRepo.verifyOtpWithPhone(phoneNumber: fullNumber, otp: otp);
       dynamic data = response.data;
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["verify_button"]);
 
       if (data['status'] == 'approved') {
         CustomSnackbar.showSuccessSnackbar('Code accepted successfully');
@@ -38,7 +38,7 @@ class VerificationCodeController extends GetxController {
       }
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["verify_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }
@@ -50,17 +50,17 @@ class VerificationCodeController extends GetxController {
     token = (await Prefs.getToken())!;
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["verify_button"]);
 
       await authRepo.verifyOtpWithEmail(token: token, otp: otp);
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["verify_button"]);
 
       CustomSnackbar.showSuccessSnackbar('Code accepted successfully');
       Get.toNamed("/sign_up_complete_with_email");
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["verify_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }
@@ -69,15 +69,15 @@ class VerificationCodeController extends GetxController {
     token = (await Prefs.getToken())!;
     try {
       isLoading = true;
-      update(["TimerButton"]);
+      update(["timer_button"]);
       await authRepo.reSendVerifyOtpWithEmail(token: token);
       isLoading = false;
-      update(["TimerButton"]);
+      update(["timer_button"]);
       CustomSnackbar.showSuccessSnackbar(
-          'Re send verify Otp on Email successfully');
+          'Re send verify OTP on Email successfully');
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["TimerButton"]);
+      update(["timer_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }
@@ -85,33 +85,17 @@ class VerificationCodeController extends GetxController {
   Future<void> reSendVerifyOtpWithPhone({required String fullNumber}) async {
     try {
       isLoading = true;
-      update(["TimerButton"]);
+      update(["timer_button"]);
 
       await authRepo.sendVerificationWithPhone(phoneNumber: fullNumber);
       isLoading = false;
-      update(["TimerButton"]);
+      update(["timer_button"]);
 
       CustomSnackbar.showSuccessSnackbar(
-          'Re send verify Otp on Phone Number successfully');
-
-      // if (response.statusCode == 201) {
-      //   log(response.data.toString());
-      //   isLoading = false;
-      //   update();
-      //   Get.snackbar("", "تم إرسال رمز التحقق مجددا الى الرقم المحمول.");
-      // } else if (response.statusCode == 400) {
-      //   log(response.data.toString());
-      //   isLoading = false;
-      //   update();
-      //   Get.snackbar("خطأ", "تم إرسال رمز التحقق مسبقا.");
-      // } else {
-      //   isLoading = false;
-      //   update();
-      //   Get.snackbar("خطأ", "حدث خطأ غير متوقع: ${response.statusCode}");
-      // }
+          'Re send verify OTP on Phone Number successfully');
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["timer_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }

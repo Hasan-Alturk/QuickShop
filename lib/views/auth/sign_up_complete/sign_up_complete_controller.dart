@@ -4,20 +4,20 @@ import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/repo/auth_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
-import 'package:quick_shop/widgets/custom_snack_bar.dart';
+import 'package:quick_shop/core/widgets/custom_snack_bar.dart';
 
 class SignUpCompleteController extends GetxController {
   final AuthRepo authRepo;
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-  bool isLoading = false;
-  bool isChanged = false;
   String token = "";
 
+  bool isLoading = false;
+  bool isChanged = false;
   bool isRememberMeChecked = true;
 
   SignUpCompleteController({required this.authRepo});
@@ -32,7 +32,7 @@ class SignUpCompleteController extends GetxController {
 
     try {
       isLoading = true;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
       User user = await authRepo.signUp(
         token: token,
         name: name,
@@ -41,13 +41,13 @@ class SignUpCompleteController extends GetxController {
       );
       await Prefs.saveUser(user);
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
 
       CustomSnackbar.showSuccessSnackbar('Sign Up complete successfully');
       Get.offAllNamed("/main_home");
     } on ErrorHandler catch (e) {
       isLoading = false;
-      update(["ElevatedButton"]);
+      update(["sign_up_button"]);
       CustomSnackbar.showErrorSnackbar('$e');
     }
   }
