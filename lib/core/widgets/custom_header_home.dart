@@ -32,6 +32,7 @@ class CustomHeaderHome extends StatelessWidget {
             const Expanded(
               flex: 5,
               child: CustomSearch(
+                icon: Icons.search,
                 text: "Search clothes, laptops or etc",
               ),
             ),
@@ -39,6 +40,7 @@ class CustomHeaderHome extends StatelessWidget {
             const Expanded(
               flex: 2,
               child: CustomSearch(
+                icon: Icons.shopping_bag_outlined,
                 text: "Promo",
               ),
             ),

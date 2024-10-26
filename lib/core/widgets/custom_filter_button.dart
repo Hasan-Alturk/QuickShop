@@ -15,7 +15,7 @@ class CustomFilterButton extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
         height: 35,
         decoration: ShapeDecoration(
-          color: Get.theme.scaffoldBackgroundColor,
+          color: Get.theme.colorScheme.surface,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: Get.theme.colorScheme.onSecondary),
             borderRadius: BorderRadius.circular(24),

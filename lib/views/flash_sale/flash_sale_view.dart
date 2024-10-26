@@ -28,7 +28,10 @@ class FlashSaleView extends GetView<FlashSaleController> {
           padding: EdgeInsets.symmetric(horizontal: screenPadding),
           child: Column(
             children: [
-              const CustomSearch(text: "Search clothes, laptops or etc"),
+              const CustomSearch(
+                text: "Search clothes, laptops or etc",
+                icon: Icons.search,
+              ),
               SizedBox(height: screenHeight * 0.015),
               Row(
                 children: [

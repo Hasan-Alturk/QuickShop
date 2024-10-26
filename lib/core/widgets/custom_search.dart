@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
-import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class CustomSearch extends StatelessWidget {
   const CustomSearch({
     super.key,
     required this.text,
+    required this.icon,
   });
 
   final String text;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +27,7 @@ class CustomSearch extends StatelessWidget {
       ),
       child: Row(
         children: [
-          SvgPicture.asset(
-            Assets.imagesSearch,
-            fit: BoxFit.contain,
-          ),
+          Icon(icon, color: Get.theme.colorScheme.primary),
           SizedBox(width: screenWidth * 0.02),
           Expanded(
             child: Text(

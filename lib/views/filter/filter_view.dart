@@ -59,7 +59,7 @@ class FilterView extends GetView<FilterController> {
                             controller.updateCategories(category);
                           },
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         );
                       },
@@ -147,7 +147,7 @@ class FilterView extends GetView<FilterController> {
                               width: 3.0,
                               strokeAlign: BorderSide.strokeAlignOutside,
                             ),
-                            borderRadius: BorderRadius.circular(24.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         );
                       },
@@ -187,7 +187,7 @@ class FilterView extends GetView<FilterController> {
                             controller.updateSizes(size);
                           },
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(24.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         );
                       },
@@ -212,7 +212,7 @@ class FilterView extends GetView<FilterController> {
               },
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                    borderRadius: BorderRadius.circular(8.0),
                     side: BorderSide(
                       color: Get.theme.colorScheme.secondary,
                     )),
@@ -234,7 +234,7 @@ class FilterView extends GetView<FilterController> {
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24.0),
+                  borderRadius: BorderRadius.circular(8.0),
                   side: BorderSide(
                     color: Get.theme.colorScheme.secondary,
                   ),

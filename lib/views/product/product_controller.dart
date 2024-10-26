@@ -1,11 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_images.dart';
 
 class ProductController extends GetxController {
-  List<bool> selectedColors = List.filled(10, false);
-  List<String> selectedSizes = [''];
+  int currentImage = 0;
 
-  List<String> sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+  String selectedSize = "Size";
+  Color colorBorderSize = Get.theme.colorScheme.onSecondary;
+  final List<String> images = [
+    Assets.imagesBurgur,
+    Assets.imagesArduino,
+    Assets.imagesLaptop,
+  ];
+  List<bool> selectedColors = List.filled(10, false);
+
+  void onImageChange(int index) {
+    currentImage = index;
+    update(["images"]);
+  }
+
+  List<String> sizes = [
+    'X Small',
+    'Small',
+    'Medium',
+    'Larg',
+    'X Larg',
+    'XX Larg',
+    'XXX Larg'
+  ];
   final colors = [
     Colors.black,
     Colors.white,
@@ -19,12 +41,9 @@ class ProductController extends GetxController {
     Colors.teal,
   ];
 
-  void updateSizes(String size) {
-    if (selectedSizes.contains(size)) {
-      selectedSizes.remove(size); // Remove if already selected
-    } else {
-      selectedSizes.add(size); // Add if not selected
-    }
+  void updateSize(String size) {
+    selectedSize = size;
+    colorBorderSize = Get.theme.colorScheme.primary;
     update(["size"]); // Trigger update
   }
 

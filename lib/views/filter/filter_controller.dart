@@ -8,7 +8,15 @@ class FilterController extends GetxController {
   List<String> selectedCategories = [''];
 
   List<String> categories = ['Women', 'Men', 'Boys', 'Girls', 'Kids'];
-  List<String> sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+  List<String> sizes = [
+    'X Small',
+    'Small',
+    'Medium',
+    'Larg',
+    'X Larg',
+    'XX Larg',
+    'XXX Larg'
+  ];
   final colors = [
     Colors.black,
     Colors.white,

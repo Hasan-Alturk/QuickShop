@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:quick_shop/core/widgets/custom_card_product.dart';
 
 class ProductGridView extends StatelessWidget {

@@ -13,7 +13,6 @@ class CategoriesView extends GetView<CategoriesController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Get.theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: screenPadding),
@@ -22,6 +21,7 @@ class CategoriesView extends GetView<CategoriesController> {
             children: [
               SizedBox(height: screenHeight * 0.012),
               const CustomSearch(
+                icon: Icons.search,
                 text: "Search Categories",
               ),
               SizedBox(height: screenHeight * 0.012),
