@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -95,6 +97,13 @@ class HomeController extends GetxController {
       originalPrice: "50\$",
       discountedPrice: "30\$",
     ),
+    const CustomCardProduct(
+      image: Assets.imagesMadrb,
+      productName: "Electronics",
+      description: "Lorem Ipsum is simply dummy text of the ",
+      originalPrice: "",
+      discountedPrice: "30\$",
+    ),
   ];
 
   List<String> categories = [
@@ -132,7 +141,6 @@ class HomeController extends GetxController {
   }
 
   void goToCategories() {
-    
     Get.toNamed("/categories");
   }
 
@@ -150,5 +158,6 @@ class HomeController extends GetxController {
 
   void goToProduct() {
     Get.toNamed("/product");
+    log("message");
   }
 }

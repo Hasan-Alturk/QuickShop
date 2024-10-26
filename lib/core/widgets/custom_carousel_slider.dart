@@ -19,6 +19,7 @@ class CustomCarouselSlider extends StatelessWidget {
     return CarouselSlider(
       items: items,
       carouselController: carouselController,
+      disableGesture: true,
       options: CarouselOptions(
         autoPlay: true,
         enlargeCenterPage: true,

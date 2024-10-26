@@ -9,11 +9,9 @@ class CustomSearch extends StatelessWidget {
   const CustomSearch({
     super.key,
     required this.text,
-
   });
 
   final String text;
-
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +37,7 @@ class CustomSearch extends StatelessWidget {
               text,
               style: AppTextStyles()
                   .medium12()
-                  .copyWith(color: Get.theme.colorScheme.onSecondary),
+                  .copyWith(color: Get.theme.colorScheme.onSurface),
             ),
           ),
         ],

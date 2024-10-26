@@ -5,8 +5,8 @@ import 'package:quick_shop/core/widgets/custom_card_product.dart';
 
 class ForYouController extends GetxController {
   String selectedSortOption = "Sorting";
-  Color sortingContainerColor = Get.theme.colorScheme.primaryContainer;
-  Color filterContainerColor = Get.theme.colorScheme.primaryContainer;
+  Color sortingContainerColor = Get.theme.colorScheme.onSecondary;
+  Color filterContainerColor = Get.theme.colorScheme.onSecondary;
 
   void changeSortingContainer({
     required Color color,
@@ -24,8 +24,12 @@ class ForYouController extends GetxController {
     update(["FilterOptions"]);
   }
 
-  void goToFilterPage() {
+  void goToFilter() {
     Get.toNamed("/filter");
+  }
+
+  void goToProduct() {
+    Get.toNamed("/product");
   }
 
   List<CustomCardProduct> products = [

@@ -11,24 +11,24 @@ class CustomCardProduct extends StatelessWidget {
     required this.image,
     required this.productName,
     required this.description,
-    required this.originalPrice,
+    this.originalPrice,
     this.discountedPrice,
+    this.rating = 3.5,
   });
 
   final String image;
   final String productName;
   final String description;
-  final String originalPrice;
+  final String? originalPrice;
   final String? discountedPrice;
+  final double rating;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: screenHeight,
-      width: screenWidth / 2,
       decoration: ShapeDecoration(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(24),
         ),
         color: Get.theme.colorScheme.surface,
       ),
@@ -37,12 +37,12 @@ class CustomCardProduct extends StatelessWidget {
           Column(
             children: [
               SizedBox(
-                height: screenHeight * 0.2,
-                width: double.infinity,
+                height: screenHeight * 0.22,
+                width: screenWidth,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
+                    topLeft: Radius.circular(24),
+                    topRight: Radius.circular(24),
                   ),
                   child: Image.asset(
                     image,
@@ -52,7 +52,7 @@ class CustomCardProduct extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -62,42 +62,42 @@ class CustomCardProduct extends StatelessWidget {
                               color: Get.theme.colorScheme.secondary,
                             ),
                       ),
-                      SizedBox(height: screenHeight * 0.015),
+                      SizedBox(height: screenHeight * 0.005),
                       Text(
                         description,
                         style: AppTextStyles().medium12().copyWith(
                               color: Get.theme.colorScheme.onSurface,
                             ),
                       ),
-                      SizedBox(height: screenHeight * 0.015),
+                      SizedBox(height: screenHeight * 0.005),
                       Row(
                         children: [
-                          Text(
-                            originalPrice,
-                            style: AppTextStyles().medium12().copyWith(
-                                  color: Get.theme.colorScheme.onSecondary,
-                                  decoration: TextDecoration.lineThrough,
-                                ),
-                          ),
-                          SizedBox(width: screenWidth * 0.025),
                           Text(
                             discountedPrice ?? '',
                             style: AppTextStyles().semiBold16().copyWith(
                                   color: Get.theme.colorScheme.primary,
                                 ),
                           ),
+                          SizedBox(width: screenWidth * 0.025),
+                          Text(
+                            originalPrice ?? '',
+                            style: AppTextStyles().medium12().copyWith(
+                                  color: Get.theme.colorScheme.onSecondary,
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                          ),
                         ],
                       ),
-                      SizedBox(height: screenHeight * 0.015),
+                      SizedBox(height: screenHeight * 0.005),
                       RatingBar.builder(
-                        itemSize: 16,
-                        initialRating: 3.5,
+                        itemSize: 18,
+                        initialRating: rating,
                         minRating: 1,
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 5,
                         itemBuilder: (context, _) => const Icon(
-                          Icons.star,
+                          Icons.star_outlined,
                           color: Colors.amber,
                         ),
                         onRatingUpdate: (rating) {
@@ -119,19 +119,22 @@ class CustomCardProduct extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: Container(
-              margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
-              width: 40,
-              height: 40,
-              decoration: ShapeDecoration(
-                color: Get.theme.colorScheme.onPrimary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(40),
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                margin: const EdgeInsets.fromLTRB(5, 10, 5, 0),
+                width: 40,
+                height: 40,
+                decoration: ShapeDecoration(
+                  color: Get.theme.colorScheme.onPrimary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(32),
+                  ),
                 ),
-              ),
-              child: Icon(
-                Icons.favorite,
-                color: Get.theme.colorScheme.onError,
+                child: Icon(
+                  Icons.favorite,
+                  color: Get.theme.colorScheme.onError,
+                ),
               ),
             ),
           ),
