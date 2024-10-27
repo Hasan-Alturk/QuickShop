@@ -3,11 +3,24 @@ import 'package:flutter/material.dart';
 
 class FilterController extends GetxController {
   RangeValues priceRange = const RangeValues(100, 800);
-  List<bool> selectedColors = List.filled(10, false);
+  List<String> selectedColors = [''];
   List<String> selectedSizes = [''];
   List<String> selectedCategories = [''];
 
   List<String> categories = ['Women', 'Men', 'Boys', 'Girls', 'Kids'];
+  List<String> colors = [
+    'Red',
+    'Blue',
+    'Green',
+    'Yellow',
+    'Orange',
+    'Purple',
+    'Pink',
+    'Black',
+    'White',
+    'Gray',
+  ];
+
   List<String> sizes = [
     'X Small',
     'Small',
@@ -15,28 +28,20 @@ class FilterController extends GetxController {
     'Larg',
     'X Larg',
     'XX Larg',
-    'XXX Larg'
-  ];
-  final colors = [
-    Colors.black,
-    Colors.white,
-    Colors.red,
-    Colors.grey,
-    Colors.blue,
-    Colors.green,
-    Colors.yellow,
-    Colors.orange,
-    Colors.purple,
-    Colors.teal,
+    'XXX Larg',
   ];
   void updatePriceRange(RangeValues values) {
     priceRange = values;
     update(["price"]);
   }
 
-  void updateColors(int index) {
-    selectedColors[index] = !selectedColors[index];
-    update(["color"]);
+  void updateColors(String color) {
+    if (selectedColors.contains(color)) {
+      selectedColors.remove(color); // Remove if already selected
+    } else {
+      selectedColors.add(color); // Add if not selected
+    }
+    update(["color"]); // Trigger update
   }
 
   void updateSizes(String size) {

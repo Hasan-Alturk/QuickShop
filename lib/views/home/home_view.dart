@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
+import 'package:quick_shop/core/constants/app_text_styles.dart';
+import 'package:quick_shop/core/widgets/custom_card_product.dart';
 import 'package:quick_shop/core/widgets/product_grid_view.dart';
 import 'package:quick_shop/views/home/home_controller.dart';
 import 'package:quick_shop/core/widgets/custom_card_category.dart';
 import 'package:quick_shop/core/widgets/custom_carousel_slider.dart';
 import 'package:quick_shop/core/widgets/dots_indicator.dart';
 import 'package:quick_shop/core/widgets/custom_header_home.dart';
-import 'package:quick_shop/core/widgets/custom_title_home.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -20,70 +21,62 @@ class HomeView extends GetView<HomeController> {
           padding: EdgeInsets.symmetric(horizontal: screenPadding),
           child: Column(
             children: [
-              SizedBox(height: screenHeight * 0.012),
+              SizedBox(height: screenHeight * 0.01),
               const CustomHeaderHome(),
-              SizedBox(height: screenHeight * 0.024),
+              SizedBox(height: screenHeight * 0.025),
               Expanded(
                 child: ListView(
                   children: [
-                    CustomTitleHome(
-                      title: "Offers",
-                      onTap: () => controller.goToOffers(),
-                    ),
-                    SizedBox(height: screenHeight * 0.012),
+                    _buildSectionTitle("Offers", controller.goToOffers),
+                    SizedBox(height: screenHeight * 0.01),
                     _buildOffersCarousel(),
-                    CustomTitleHome(
-                      title: "Categories",
-                      onTap: () => controller.goToCategories(),
-                    ),
-                    SizedBox(height: screenHeight * 0.012),
+                    SizedBox(height: screenHeight * 0.01),
+                    _buildSectionTitle("Categories", controller.goToCategories),
+                    SizedBox(height: screenHeight * 0.01),
                     _buildCategoriesList(),
-                    SizedBox(height: screenHeight * 0.012),
-                    CustomTitleHome(
-                      title: "Flash Sale",
-                      onTap: () => controller.goToFlashSale(),
-                    ),
-                    SizedBox(height: screenHeight * 0.012),
-                    GetBuilder<HomeController>(builder: (_) {
-                      return ProductGridView(
-                        products: controller.products,
-                        onTap: () {
-                          controller.goToProduct();
-                        },
-                      );
-                    }),
-                    SizedBox(height: screenHeight * 0.012),
-                    CustomTitleHome(
-                      title: "For You",
-                      onTap: () => controller.goToForYou(),
-                    ),
-                    SizedBox(height: screenHeight * 0.012),
-                    ProductGridView(
-                      products: controller.products,
-                      onTap: () {
-                        controller.goToProduct();
-                      },
-                    ),
-                    SizedBox(height: screenHeight * 0.012),
-                    CustomTitleHome(
-                      title: "Popular",
-                      onTap: () => controller.goToPopular(),
-                    ),
-                    SizedBox(height: screenHeight * 0.012),
-                    ProductGridView(
-                      products: controller.products,
-                      onTap: () {
-                        controller.goToProduct();
-                      },
-                    ),
-                    SizedBox(height: screenHeight * 0.012),
+                    SizedBox(height: screenHeight * 0.01),
+                    _buildSectionTitle("Flash Sale", controller.goToFlashSale),
+                    SizedBox(height: screenHeight * 0.01),
+                    _buildProductGrid(controller.products),
+                    SizedBox(height: screenHeight * 0.01),
+                    _buildSectionTitle("For You", controller.goToForYou),
+                    SizedBox(height: screenHeight * 0.01),
+                    _buildProductGrid(controller.products),
+                    SizedBox(height: screenHeight * 0.01),
+                    _buildSectionTitle("Popular", controller.goToPopular),
+                    SizedBox(height: screenHeight * 0.01),
+                    _buildProductGrid(controller.products),
+                    SizedBox(height: screenHeight * 0.01),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title, VoidCallback onTap) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: AppTextStyles()
+              .semiBold16()
+              .copyWith(color: Get.theme.colorScheme.secondary),
+        ),
+        InkWell(
+          onTap: onTap,
+          child: Text(
+            "See All",
+            style: AppTextStyles()
+                .semiBold16()
+                .copyWith(color: Get.theme.colorScheme.primary),
+          ),
+        ),
+      ],
     );
   }
 
@@ -128,5 +121,16 @@ class HomeView extends GetView<HomeController> {
         },
       ),
     );
+  }
+
+  Widget _buildProductGrid(List<CustomCardProduct> products) {
+    return GetBuilder<HomeController>(builder: (_) {
+      return ProductGridView(
+        products: products,
+        onTap: () {
+          controller.goToProduct();
+        },
+      );
+    });
   }
 }

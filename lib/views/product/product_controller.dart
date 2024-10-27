@@ -7,10 +7,8 @@ class ProductController extends GetxController {
   bool isFavorite = false;
   String selectedSize = "Size";
   String selectedColor = "Color";
-
   Color colorBorderSize = Get.theme.colorScheme.onSecondary;
   Color colorBorderColor = Get.theme.colorScheme.onSecondary;
-
   List<String> images = [
     Assets.imagesBurgur,
     Assets.imagesArduino,
@@ -25,7 +23,6 @@ class ProductController extends GetxController {
     "White",
     "Yellow",
   ];
-
   List<String> sizes = [
     'X Small',
     'Small',
@@ -35,14 +32,10 @@ class ProductController extends GetxController {
     'XX Larg',
     'XXX Larg',
   ];
+
   void onImageChange(int index) {
     currentImage = index;
     update(["images"]);
-  }
-
-  void toggleFavorite() {
-    isFavorite = !isFavorite;
-    update(["favorite"]);
   }
 
   void updateSize(String size) {
@@ -54,7 +47,11 @@ class ProductController extends GetxController {
   void updateColor(String color) {
     selectedColor = color;
     colorBorderColor = Get.theme.colorScheme.primary;
-
     update(["color"]);
+  }
+
+  void toggleFavorite() {
+    isFavorite = !isFavorite;
+    update(["favorite"]);
   }
 }

@@ -15,86 +15,102 @@ class ForYouView extends GetView<ForYouController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "For You",
-          style: AppTextStyles().bold16().copyWith(
-                color: Get.theme.primaryColor,
-              ),
-        ),
-      ),
+      appBar: _buildAppBar(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: screenPadding),
           child: Column(
             children: [
-              const CustomSearch(
-                icon: Icons.search,
-                text: "Search clothes, laptops or etc",
-              ),
+              _buildSearch(),
               SizedBox(height: screenHeight * 0.015),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: GetBuilder<ForYouController>(
-                      id: "FilterOptions",
-                      builder: (_) {
-                        return CustomFilterButton(onTap: () {
-                          controller.goToFilter();
-                        });
-                      },
-                    ),
-                  ),
-                  SizedBox(width: screenWidth * 0.01),
-                  Expanded(
-                    flex: 2,
-                    child: GetBuilder<ForYouController>(
-                      id: "SortingOptions",
-                      builder: (_) {
-                        return CustomSortingButton(
-                          onTap: () {
-                            Get.bottomSheet(
-                              SortingOptionsBottomSheet(
-                                selectedOption: controller.selectedSortOption,
-                                onSelectOption: (selectedTitle) {
-                                  controller.changeSortingContainer(
-                                    color: Get.theme.colorScheme.primary,
-                                    title: selectedTitle,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                          selectedSortOption: controller.selectedSortOption,
-                          color: controller.sortingContainerColor,
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
+              _buildFilterAndSorting(),
               SizedBox(height: screenHeight * 0.015),
-              Expanded(
-                child: ListView(
-                  children: [
-                    GetBuilder<ForYouController>(
-                      id: "Products",
-                      builder: (_) {
-                        return ProductGridView(
-                          products: controller.products,
-                          onTap: () {
-                            controller.goToProduct();
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
+              _buildProductList(),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: Text(
+        "For You",
+        style: AppTextStyles().bold16().copyWith(
+              color: Get.theme.primaryColor,
+            ),
+      ),
+    );
+  }
+
+  Widget _buildSearch() {
+    return const CustomSearch(
+      icon: Icons.search,
+      text: "Search clothes, laptops or etc",
+    );
+  }
+
+  Widget _buildFilterAndSorting() {
+    return Row(
+      children: [
+        Expanded(
+          flex: 1,
+          child: GetBuilder<ForYouController>(
+            id: "FilterOptions",
+            builder: (_) {
+              return CustomFilterButton(onTap: () {
+                controller.goToFilter();
+              });
+            },
+          ),
+        ),
+        SizedBox(width: screenWidth * 0.01),
+        Expanded(
+          flex: 2,
+          child: GetBuilder<ForYouController>(
+            id: "SortingOptions",
+            builder: (_) {
+              return CustomSortingButton(
+                onTap: () {
+                  Get.bottomSheet(
+                    SortingOptionsBottomSheet(
+                      selectedOption: controller.selectedSortOption,
+                      onSelectOption: (selectedTitle) {
+                        controller.changeSortingContainer(
+                          color: Get.theme.colorScheme.primary,
+                          title: selectedTitle,
+                        );
+                      },
+                    ),
+                  );
+                },
+                selectedSortOption: controller.selectedSortOption,
+                color: controller.sortingContainerColor,
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProductList() {
+    return Expanded(
+      child: ListView(
+        children: [
+          GetBuilder<ForYouController>(
+            id: "Products",
+            builder: (_) {
+              return ProductGridView(
+                products: controller.products,
+                onTap: () {
+                  controller.goToProduct();
+                },
+              );
+            },
+          ),
+        ],
       ),
     );
   }

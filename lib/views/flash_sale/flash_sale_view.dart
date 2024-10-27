@@ -15,86 +15,102 @@ class FlashSaleView extends GetView<FlashSaleController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Flash Sale",
-          style: AppTextStyles().bold16().copyWith(
-                color: Get.theme.primaryColor,
-              ),
-        ),
-      ),
+      appBar: _buildAppBar(),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: screenPadding),
           child: Column(
             children: [
-              const CustomSearch(
-                text: "Search clothes, laptops or etc",
-                icon: Icons.search,
-              ),
+              _buildSearch(),
               SizedBox(height: screenHeight * 0.015),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: GetBuilder<FlashSaleController>(
-                      id: "FilterOptions",
-                      builder: (_) {
-                        return CustomFilterButton(onTap: () {
-                          controller.goToFilter();
-                        });
-                      },
-                    ),
-                  ),
-                  SizedBox(width: screenWidth * 0.01),
-                  Expanded(
-                    flex: 2,
-                    child: GetBuilder<FlashSaleController>(
-                      id: "SortingOptions",
-                      builder: (_) {
-                        return CustomSortingButton(
-                          onTap: () {
-                            Get.bottomSheet(
-                              SortingOptionsBottomSheet(
-                                selectedOption: controller.selectedSortOption,
-                                onSelectOption: (selectedTitle) {
-                                  controller.changeSortingContainer(
-                                    color: Get.theme.colorScheme.primary,
-                                    title: selectedTitle,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                          selectedSortOption: controller.selectedSortOption,
-                          color: controller.sortingContainerColor,
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
+              _buildFilterAndSorting(),
               SizedBox(height: screenHeight * 0.015),
-              Expanded(
-                child: ListView(
-                  children: [
-                    GetBuilder<FlashSaleController>(
-                      id: "Products",
-                      builder: (_) {
-                        return ProductGridView(
-                          products: controller.products,
-                          onTap: () {
-                            controller.goToProduct();
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
+              _buildProductList(),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: Text(
+        "Flash Sale",
+        style: AppTextStyles().bold16().copyWith(
+              color: Get.theme.primaryColor,
+            ),
+      ),
+    );
+  }
+
+  Widget _buildSearch() {
+    return const CustomSearch(
+      text: "Search clothes, laptops or etc",
+      icon: Icons.search,
+    );
+  }
+
+  Widget _buildFilterAndSorting() {
+    return Row(
+      children: [
+        Expanded(
+          flex: 1,
+          child: GetBuilder<FlashSaleController>(
+            id: "FilterOptions",
+            builder: (_) {
+              return CustomFilterButton(onTap: () {
+                controller.goToFilter();
+              });
+            },
+          ),
+        ),
+        SizedBox(width: screenWidth * 0.01),
+        Expanded(
+          flex: 2,
+          child: GetBuilder<FlashSaleController>(
+            id: "SortingOptions",
+            builder: (_) {
+              return CustomSortingButton(
+                onTap: () {
+                  Get.bottomSheet(
+                    SortingOptionsBottomSheet(
+                      selectedOption: controller.selectedSortOption,
+                      onSelectOption: (selectedTitle) {
+                        controller.changeSortingContainer(
+                          color: Get.theme.colorScheme.primary,
+                          title: selectedTitle,
+                        );
+                      },
+                    ),
+                  );
+                },
+                selectedSortOption: controller.selectedSortOption,
+                color: controller.sortingContainerColor,
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildProductList() {
+    return Expanded(
+      child: ListView(
+        children: [
+          GetBuilder<FlashSaleController>(
+            id: "Products",
+            builder: (_) {
+              return ProductGridView(
+                products: controller.products,
+                onTap: () {
+                  controller.goToProduct();
+                },
+              );
+            },
+          ),
+        ],
       ),
     );
   }

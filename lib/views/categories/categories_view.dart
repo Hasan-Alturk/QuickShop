@@ -36,11 +36,7 @@ class CategoriesView extends GetView<CategoriesController> {
                             flex: 2,
                             child: _buildCategoryList(),
                           ),
-                          VerticalDivider(
-                            color: Get.theme.colorScheme.onSecondary,
-                            thickness: 1,
-                            width: screenWidth * 0.05,
-                          ),
+                          _buildVerticalDivider(),
                           Expanded(
                             flex: 8,
                             child: _buildSubcategoryList(),
@@ -55,6 +51,14 @@ class CategoriesView extends GetView<CategoriesController> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildVerticalDivider() {
+    return VerticalDivider(
+      color: Get.theme.colorScheme.onSecondary,
+      thickness: 1,
+      width: screenWidth * 0.05,
     );
   }
 
@@ -109,8 +113,8 @@ class CategoriesView extends GetView<CategoriesController> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Wrap(
-                spacing: 12.0, // المسافة الأفقية بين العناصر
-                runSpacing: 12.0, // المسافة العمودية بين الصفوف
+                spacing: 12.0, // Horizontal spacing between items
+                runSpacing: 12.0, // Vertical spacing between rows
                 children: List.generate(
                   controller.subcategories.length,
                   (index) {

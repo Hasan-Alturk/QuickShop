@@ -14,35 +14,43 @@ class SplashView extends GetView<SplashController> {
       backgroundColor: Get.theme.colorScheme.primary,
       body: Stack(
         children: [
-          Container(
-            height: screenHeight,
-            width: screenWidth,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(Assets.imagesSplach),
-                repeat: ImageRepeat.repeat,
+          _buildSplashBackground(),
+          _buildSplashContent(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSplashBackground() {
+    return Container(
+      height: screenHeight,
+      width: screenWidth,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(Assets.imagesSplach),
+          repeat: ImageRepeat.repeat,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSplashContent() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Obx(
+            () => Opacity(
+              opacity: controller.fadeAnimation.value,
+              child: SvgPicture.asset(
+                Assets.imagesLogoWhite,
               ),
             ),
           ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Obx(
-                  () => Opacity(
-                    opacity: controller.fadeAnimation.value,
-                    child: SvgPicture.asset(
-                      Assets.imagesLogoWhite,
-                    ),
-                  ),
-                ),
-                SizedBox(height: screenHeight * 0.05),
-                CircularProgressIndicator(
-                  strokeWidth: 3,
-                  color: Get.theme.colorScheme.onPrimary,
-                ),
-              ],
-            ),
+          SizedBox(height: screenHeight * 0.05),
+          CircularProgressIndicator(
+            strokeWidth: 3,
+            color: Get.theme.colorScheme.onPrimary,
           ),
         ],
       ),

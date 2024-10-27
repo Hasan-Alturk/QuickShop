@@ -11,11 +11,7 @@ class OffersView extends GetView<OffersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Offers"),
-        titleTextStyle:
-            AppTextStyles().bold16().copyWith(color: Get.theme.primaryColor),
-      ),
+      appBar: _buildAppBar(),
       body: SafeArea(
         child: GetBuilder<OffersController>(
           id: "offers",
@@ -25,22 +21,33 @@ class OffersView extends GetView<OffersController> {
               child: ListView.builder(
                 itemCount: controller.offersImages.length,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: CachedNetworkImage(
-                      imageUrl: controller.offersImages[index],
-                      fit: BoxFit.contain,
-                      placeholder: (context, url) =>
-                          const Center(child: CircularProgressIndicator()),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
-                  );
+                  return _buildOfferItem(controller.offersImages[index]);
                 },
               ),
             );
           },
         ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      title: const Text("Offers"),
+      titleTextStyle:
+          AppTextStyles().bold16().copyWith(color: Get.theme.primaryColor),
+    );
+  }
+
+  Widget _buildOfferItem(String imageUrl) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
+        fit: BoxFit.contain,
+        placeholder: (context, url) =>
+            const Center(child: CircularProgressIndicator()),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );
   }

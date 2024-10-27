@@ -15,100 +15,106 @@ class OnBoardingView extends GetView<OnBoardingController> {
       body: SafeArea(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                GetBuilder<OnBoardingController>(
-                  builder: (_) {
-                    return Visibility(
-                      visible:
-                          controller.currentPage != controller.items.length - 1,
-                      maintainSize: true,
-                      maintainAnimation: true,
-                      maintainState: true,
-                      child: InkWell(
-                        onTap: () {
-                          controller.goToHome();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(screenPadding),
-                          child: Text(
-                            'skip',
-                            style: AppTextStyles().semiBold16().copyWith(
-                                  color: Get.theme.colorScheme.secondary,
-                                ),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
+            _buildSkipButton(),
             Expanded(
-              child: PageView.builder(
-                controller: controller.pageController,
-                onPageChanged: controller.onPageChanged,
-                itemCount: controller.items.length,
-                itemBuilder: (context, index) {
-                  return CustomPageViewOnBoardingItem(
-                    image: controller.items[index].image,
-                    title: controller.items[index].title,
-                    subtitle: controller.items[index].subTitle,
-                  );
-                },
-              ),
+              child: _buildPageView(),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: screenPadding),
-              child: GetBuilder<OnBoardingController>(
-                builder: (_) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      DotsIndicator(
-                        itemsCount: controller.items.length,
-                        currentPage: controller.currentPage,
-                      ),
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          SizedBox(
-                            width: 50,
-                            height: 50,
-                            child: CircularProgressIndicator(
-                              value: (controller.currentPage + 1) /
-                                  controller.items.length,
-                              strokeWidth: 2,
-                              backgroundColor: Colors.transparent,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                controller.currentPage ==
-                                        controller.items.length - 1
-                                    ? Get.theme.primaryColor
-                                    : Get.theme.colorScheme.onSecondary,
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              controller.jumpToPage();
-                            },
-                            child: Icon(
-                              Icons.arrow_forward_rounded,
-                              color: Get.theme.colorScheme.primary,
-                              size: 40,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ),
+            _buildBottomIndicator(),
             SizedBox(height: screenHeight * 0.02),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildSkipButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        GetBuilder<OnBoardingController>(
+          builder: (_) {
+            return Visibility(
+              visible: controller.currentPage != controller.items.length - 1,
+              maintainSize: true,
+              maintainAnimation: true,
+              maintainState: true,
+              child: InkWell(
+                onTap: controller.goToHome,
+                child: Padding(
+                  padding: EdgeInsets.all(screenPadding),
+                  child: Text(
+                    'skip',
+                    style: AppTextStyles().semiBold16().copyWith(
+                          color: Get.theme.colorScheme.secondary,
+                        ),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildPageView() {
+    return PageView.builder(
+      controller: controller.pageController,
+      onPageChanged: controller.onPageChanged,
+      itemCount: controller.items.length,
+      itemBuilder: (context, index) {
+        return CustomPageViewOnBoardingItem(
+          image: controller.items[index].image,
+          title: controller.items[index].title,
+          subtitle: controller.items[index].subTitle,
+        );
+      },
+    );
+  }
+
+  Widget _buildBottomIndicator() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: screenPadding),
+      child: GetBuilder<OnBoardingController>(
+        builder: (_) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DotsIndicator(
+                itemsCount: controller.items.length,
+                currentPage: controller.currentPage,
+              ),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: CircularProgressIndicator(
+                      value: (controller.currentPage + 1) /
+                          controller.items.length,
+                      strokeWidth: 2,
+                      backgroundColor: Colors.transparent,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        controller.currentPage == controller.items.length - 1
+                            ? Get.theme.primaryColor
+                            : Get.theme.colorScheme.onSecondary,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: controller.jumpToPage,
+                    child: Icon(
+                      Icons.arrow_forward_rounded,
+                      color: Get.theme.colorScheme.primary,
+                      size: 40,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+        },
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
+import 'package:quick_shop/core/widgets/custom_button.dart';
 import 'package:quick_shop/core/widgets/dots_indicator.dart';
 import 'package:quick_shop/views/product/product_controller.dart';
 
@@ -19,10 +20,20 @@ class ProductView extends GetView<ProductController> {
           children: [
             _buildImageSlider(),
             SizedBox(height: screenHeight * 0.01),
-            _buildOptionsRow(),
+            Row(
+              children: [
+                _buildSizeButton(),
+                SizedBox(width: screenWidth * 0.05),
+                _buildColorButton(),
+                SizedBox(width: screenWidth * 0.05),
+                _buildFavoriteIcon(),
+              ],
+            ),
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: _buildActionButtons(),
     );
   }
 
@@ -73,25 +84,84 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  Widget _buildOptionsRow() {
-    return Row(
-      children: [
-        _buildSizeButton(),
-        SizedBox(width: screenWidth * 0.05),
-        _buildColorButton(),
-        SizedBox(width: screenWidth * 0.05),
-        _buildFavoriteIcon(),
-      ],
-    );
-  }
-
   Widget _buildSizeButton() {
     return Expanded(
       child: GetBuilder<ProductController>(
         id: "size",
         builder: (_) {
           return ElevatedButton(
-            onPressed: _showSizeOptions,
+            onPressed: () => Get.bottomSheet(
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: screenPadding),
+                decoration: BoxDecoration(
+                  color: Get.theme.scaffoldBackgroundColor,
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(32)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: screenHeight * 0.012),
+                    Center(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: screenWidth * 0.1,
+                            height: screenHeight * 0.005,
+                            decoration: BoxDecoration(
+                              color: Get.theme.colorScheme.onSecondary,
+                              borderRadius: BorderRadius.circular(32),
+                            ),
+                          ),
+                          SizedBox(height: screenHeight * 0.012),
+                          Text(
+                            "Select Size",
+                            style: AppTextStyles().semiBold24().copyWith(
+                                  color: Get.theme.colorScheme.secondary,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.012),
+                    GetBuilder<ProductController>(
+                      id: "size",
+                      builder: (_) {
+                        return Wrap(
+                          spacing: 10.0,
+                          runSpacing: 10.0,
+                          children: controller.sizes.map((size) {
+                            return ChoiceChip(
+                              showCheckmark: false,
+                              label: Text(
+                                size,
+                                style: TextStyle(
+                                  color: controller.selectedSize == size
+                                      ? Get.theme.colorScheme.onPrimary
+                                      : Get.theme.colorScheme.secondary,
+                                ),
+                              ),
+                              selected: controller.selectedSize == size,
+                              onSelected: (bool selected) {
+                                if (selected) {
+                                  controller.updateSize(size);
+                                }
+                              },
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              selectedColor: Get.theme.colorScheme.primary,
+                            );
+                          }).toList(),
+                        );
+                      },
+                    ),
+                    SizedBox(height: screenHeight * 0.1),
+                  ],
+                ),
+              ),
+            ),
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
@@ -114,186 +184,98 @@ class ProductView extends GetView<ProductController> {
 
   Widget _buildColorButton() {
     return GetBuilder<ProductController>(
-        id: "color",
-        builder: (_) {
-          return Expanded(
-            child: ElevatedButton(
-              onPressed: _showColorOptions,
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  side: BorderSide(color: controller.colorBorderColor),
-                ),
-                foregroundColor: Get.theme.colorScheme.primary,
-                backgroundColor: Get.theme.colorScheme.surface,
-              ),
-              child: Text(
-                controller.selectedColor,
-                style: AppTextStyles().normal14().copyWith(
-                      color: Get.theme.colorScheme.secondary,
-                    ),
-              ),
-            ),
-          );
-        });
-  }
-
-  void _showColorOptions() {
-    Get.bottomSheet(
-      isScrollControlled: true,
-      Container(
-        padding: EdgeInsets.symmetric(horizontal: screenPadding),
-        decoration: BoxDecoration(
-          color: Get.theme.scaffoldBackgroundColor,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(height: screenHeight * 0.012),
-            Center(child: _buildColorSheetHeader()),
-            SizedBox(height: screenHeight * 0.012),
-            _buildColorChoices(),
-            SizedBox(height: screenHeight * 0.1),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _showSizeOptions() {
-    Get.bottomSheet(
-      Container(
-        padding: EdgeInsets.symmetric(horizontal: screenPadding),
-        decoration: BoxDecoration(
-          color: Get.theme.scaffoldBackgroundColor,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SizedBox(height: screenHeight * 0.012),
-            Center(child: _buildSizeSheetHeader()),
-            SizedBox(height: screenHeight * 0.012),
-            _buildSizeChoices(),
-            SizedBox(height: screenHeight * 0.1),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildColorSheetHeader() {
-    return Column(
-      children: [
-        Container(
-          width: screenWidth * 0.1,
-          height: screenHeight * 0.005,
-          decoration: BoxDecoration(
-            color: Get.theme.colorScheme.onSecondary,
-            borderRadius: BorderRadius.circular(32),
-          ),
-        ),
-        SizedBox(height: screenHeight * 0.012),
-        Text(
-          "Select Color",
-          style: AppTextStyles().semiBold24().copyWith(
-                color: Get.theme.colorScheme.secondary,
-              ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSizeSheetHeader() {
-    return Column(
-      children: [
-        Container(
-          width: screenWidth * 0.1,
-          height: screenHeight * 0.005,
-          decoration: BoxDecoration(
-            color: Get.theme.colorScheme.onSecondary,
-            borderRadius: BorderRadius.circular(32),
-          ),
-        ),
-        SizedBox(height: screenHeight * 0.012),
-        Text(
-          "Select Size",
-          style: AppTextStyles().semiBold24().copyWith(
-                color: Get.theme.colorScheme.secondary,
-              ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSizeChoices() {
-    return GetBuilder<ProductController>(
-      id: "size",
-      builder: (_) {
-        return Wrap(
-          spacing: 12.0,
-          runSpacing: 6.0,
-          children: controller.sizes.map((size) {
-            return ChoiceChip(
-              showCheckmark: false,
-              label: Text(
-                size,
-                style: TextStyle(
-                  color: controller.selectedSize == size
-                      ? Get.theme.colorScheme.onPrimary
-                      : Get.theme.colorScheme.secondary,
-                ),
-              ),
-              selected: controller.selectedSize == size,
-              onSelected: (bool selected) {
-                if (selected) {
-                  controller.updateSize(size);
-                }
-              },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              selectedColor: Get.theme.colorScheme.primary,
-            );
-          }).toList(),
-        );
-      },
-    );
-  }
-
-  Widget _buildColorChoices() {
-    return GetBuilder<ProductController>(
       id: "color",
       builder: (_) {
-        return Wrap(
-          spacing: 12.0,
-          runSpacing: 6.0,
-          children: controller.colors.map((color) {
-            return ChoiceChip(
-              showCheckmark: false,
-              label: Text(
-                color,
-                style: TextStyle(
-                  color: controller.selectedColor == color
-                      ? Get.theme.colorScheme.onPrimary
-                      : Get.theme.colorScheme.secondary,
+        return Expanded(
+          child: ElevatedButton(
+            onPressed: () => Get.bottomSheet(
+              isScrollControlled: true,
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: screenPadding),
+                decoration: BoxDecoration(
+                  color: Get.theme.scaffoldBackgroundColor,
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(32)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(height: screenHeight * 0.012),
+                    Center(
+                      child: Column(
+                        children: [
+                          Container(
+                            width: screenWidth * 0.1,
+                            height: screenHeight * 0.005,
+                            decoration: BoxDecoration(
+                              color: Get.theme.colorScheme.onSecondary,
+                              borderRadius: BorderRadius.circular(32),
+                            ),
+                          ),
+                          SizedBox(height: screenHeight * 0.012),
+                          Text(
+                            "Select Color",
+                            style: AppTextStyles().semiBold24().copyWith(
+                                  color: Get.theme.colorScheme.secondary,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.012),
+                    GetBuilder<ProductController>(
+                      id: "color",
+                      builder: (_) {
+                        return Wrap(
+                          spacing: 10.0,
+                          runSpacing: 10.0,
+                          children: controller.colors.map((color) {
+                            return ChoiceChip(
+                              showCheckmark: false,
+                              label: Text(
+                                color,
+                                style: TextStyle(
+                                  color: controller.selectedColor == color
+                                      ? Get.theme.colorScheme.onPrimary
+                                      : Get.theme.colorScheme.secondary,
+                                ),
+                              ),
+                              selected: controller.selectedColor == color,
+                              onSelected: (bool selected) {
+                                if (selected) {
+                                  controller.updateColor(color);
+                                }
+                              },
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              selectedColor: Get.theme.colorScheme.primary,
+                            );
+                          }).toList(),
+                        );
+                      },
+                    ),
+                    SizedBox(height: screenHeight * 0.1),
+                  ],
                 ),
               ),
-              selected: controller.selectedColor == color,
-              onSelected: (bool selected) {
-                if (selected) {
-                  controller.updateColor(color);
-                }
-              },
+            ),
+            style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
+                side: BorderSide(color: controller.colorBorderColor),
               ),
-              selectedColor: Get.theme.colorScheme.primary,
-            );
-          }).toList(),
+              foregroundColor: Get.theme.colorScheme.primary,
+              backgroundColor: Get.theme.colorScheme.surface,
+            ),
+            child: Text(
+              controller.selectedColor,
+              style: AppTextStyles().normal14().copyWith(
+                    color: Get.theme.colorScheme.secondary,
+                  ),
+            ),
+          ),
         );
       },
     );
@@ -320,6 +302,26 @@ class ProductView extends GetView<ProductController> {
                     ? Get.theme.colorScheme.onError
                     : Get.theme.colorScheme.secondary,
               ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  GetBuilder<ProductController> _buildActionButtons() {
+    return GetBuilder<ProductController>(
+      id: "add_to_cart",
+      builder: (_) {
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenPadding),
+          child: SizedBox(
+            width: screenWidth,
+            height: 50,
+            child: CustomButton(
+              onPressed: () {},
+              text: "Add To Cart",
+              isLoading: false,
             ),
           ),
         );
