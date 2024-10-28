@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
-import 'package:quick_shop/core/widgets/custom_card_product.dart';
+import 'package:quick_shop/core/models/product.dart';
 import 'package:quick_shop/core/widgets/product_grid_view.dart';
 import 'package:quick_shop/views/home/home_controller.dart';
 import 'package:quick_shop/core/widgets/custom_card_category.dart';
@@ -123,7 +123,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildProductGrid(List<CustomCardProduct> products) {
+  Widget _buildProductGrid(List<Product> products) {
     return GetBuilder<HomeController>(builder: (_) {
       return ProductGridView(
         products: products,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:quick_shop/core/models/product.dart';
 import 'package:quick_shop/core/widgets/custom_card_product.dart';
 
 class ProductGridView extends StatelessWidget {
-  final List<CustomCardProduct> products; // final List<Product> products;
+  final List<Product> products;
   final void Function() onTap; // تغيير هنا لتأخذ الفهرس
 
   const ProductGridView({
@@ -30,8 +31,8 @@ class ProductGridView extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: CustomCardProduct(
-              image: product.image,
-              productName: product.productName,
+              image: product.images[0],
+              title: product.title,
               description: product.description,
               originalPrice: product.originalPrice,
               discountedPrice: product.discountedPrice,

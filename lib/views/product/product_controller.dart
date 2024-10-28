@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
+import 'package:quick_shop/core/models/product.dart';
 
 class ProductController extends GetxController {
   int currentImage = 0;
@@ -9,12 +10,22 @@ class ProductController extends GetxController {
   String selectedColor = "Color";
   Color colorBorderSize = Get.theme.colorScheme.onSecondary;
   Color colorBorderColor = Get.theme.colorScheme.onSecondary;
-  List<String> images = [
-    Assets.imagesBurgur,
-    Assets.imagesArduino,
-    Assets.imagesBurgur,
-    Assets.imagesLaptop,
-  ];
+
+  Product product = Product(
+    images: [
+      Assets.imagesBurgur,
+      Assets.imagesArduino,
+      Assets.imagesBurgur,
+      Assets.imagesLaptop,
+    ],
+    title: "Burgur",
+    description:
+        "Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.",
+    originalPrice: "\$12.99",
+    discountedPrice: "\$45.99",
+    rating: 5,
+  );
+
   List<String> colors = [
     "Red",
     "Green",

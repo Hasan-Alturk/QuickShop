@@ -32,6 +32,7 @@ class CustomSearch extends StatelessWidget {
           Expanded(
             child: Text(
               text,
+              maxLines: 1,
               style: AppTextStyles()
                   .medium12()
                   .copyWith(color: Get.theme.colorScheme.onSurface),

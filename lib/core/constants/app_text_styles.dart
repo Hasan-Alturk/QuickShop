@@ -8,8 +8,8 @@ class AppTextStyles {
     double scaleFactor = getScaleFactor(Get.context!);
     double responsiveFontSize = fontSize * scaleFactor;
 
-    double lowerLimit = fontSize * 0.95;
-    double upperLimit = fontSize * 1.05;
+    double lowerLimit = fontSize * 0.85;
+    double upperLimit = fontSize * 1.15;
 
     return responsiveFontSize.clamp(lowerLimit, upperLimit);
   }
@@ -46,7 +46,7 @@ class AppTextStyles {
 
   TextStyle bold12() {
     return TextStyle(
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w700,
       fontSize: getResponsiveFontSize(fontSize: 12),
     );
   }
@@ -103,6 +103,13 @@ class AppTextStyles {
   }
 
   // Normal
+
+  TextStyle normal24() {
+    return TextStyle(
+      fontWeight: FontWeight.w400,
+      fontSize: getResponsiveFontSize(fontSize: 24),
+    );
+  }
 
   TextStyle normal16() {
     return TextStyle(

@@ -6,20 +6,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/models/offers.dart';
+import 'package:quick_shop/core/models/product.dart';
 import 'package:quick_shop/core/repo/home_repo.dart';
 import 'package:quick_shop/core/services/error_handler.dart';
 import 'package:quick_shop/core/services/local_notification_controller.dart';
-import 'package:quick_shop/core/widgets/custom_card_product.dart';
 import 'package:quick_shop/core/widgets/custom_snack_bar.dart';
+import 'package:quick_shop/views/main_home/main_home_controller.dart';
 
 class HomeController extends GetxController {
   HomeController({
+    required this.mainController,
     required this.homeRepo,
     required this.notificationController,
   });
 
   final HomeRepo homeRepo;
   final LocalNotificationController notificationController;
+  final MainHomeController mainController;
 
   bool isLoading = false;
   bool isLoadingOffers = false;
@@ -68,44 +71,64 @@ class HomeController extends GetxController {
     }
   }
 
-  List<CustomCardProduct> products = [
-    const CustomCardProduct(
-      image: Assets.imagesBurgur,
-      productName: "Burgur",
+  List<Product> products = [
+    Product(
+      images: [
+        Assets.imagesArduino,
+        Assets.imagesBurgur,
+        Assets.imagesLaptop,
+      ],
+      title: "Arduino",
       description: "Lorem Ipsum is simply dummy text of the ",
-      originalPrice: "45\$",
-      discountedPrice: "20\$",
+      originalPrice: "195\$",
+      discountedPrice: "130\$",
     ),
-    const CustomCardProduct(
-      image: Assets.imagesLaptop,
-      productName: "Laptop",
+    Product(
+      images: [
+        Assets.imagesLaptop,
+        Assets.imagesArduino,
+        Assets.imagesBurgur,
+      ],
+      title: "laptop",
       description: "Lorem Ipsum is simply dummy text of the ",
-      originalPrice: "90\$",
-      discountedPrice: "60\$",
+      originalPrice: "15\$",
+      discountedPrice: "10\$",
     ),
-    const CustomCardProduct(
-      image: Assets.imagesMadrb,
-      productName: "Madrb",
+    Product(
+      images: [
+        Assets.imagesBurgur,
+        Assets.imagesArduino,
+        Assets.imagesLaptop,
+      ],
+      title: "Burgur",
       description: "Lorem Ipsum is simply dummy text of the ",
-      originalPrice: "500\$",
-      discountedPrice: "210\$",
+      originalPrice: "150\$",
+      discountedPrice: "120\$",
     ),
-    const CustomCardProduct(
-      image: Assets.imagesDress,
-      productName: "Dress",
+    Product(
+      images: [
+        Assets.imagesArduino,
+        Assets.imagesBurgur,
+        Assets.imagesLaptop,
+      ],
+      title: "Arduino",
       description: "Lorem Ipsum is simply dummy text of the ",
-      originalPrice: "50\$",
-      discountedPrice: "30\$",
+      originalPrice: "195\$",
+      discountedPrice: "130\$",
     ),
-    const CustomCardProduct(
-      image: Assets.imagesMadrb,
-      productName: "Electronics",
+    Product(
+      images: [
+        Assets.imagesDress,
+        Assets.imagesArduino,
+        Assets.imagesBurgur,
+        Assets.imagesLaptop,
+      ],
+      title: "dress",
       description: "Lorem Ipsum is simply dummy text of the ",
-      originalPrice: "",
-      discountedPrice: "30\$",
+      originalPrice: "15\$",
+      discountedPrice: "10\$",
     ),
   ];
-
   List<String> categories = [
     Assets.imagesFashion,
     Assets.imagesElectronics,
@@ -141,7 +164,7 @@ class HomeController extends GetxController {
   }
 
   void goToCategories() {
-    Get.toNamed("/categories");
+    mainController.changePage(1);
   }
 
   void goToFlashSale() {

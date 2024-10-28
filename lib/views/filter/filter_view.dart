@@ -40,6 +40,7 @@ class FilterView extends GetView<FilterController> {
                 _buildSectionTitle('Size'),
                 SizedBox(height: screenHeight * 0.012),
                 _buildSizeChips(),
+                SizedBox(height: screenHeight * 0.1),
               ],
             ),
           ),
@@ -52,7 +53,6 @@ class FilterView extends GetView<FilterController> {
 
   AppBar _buildAppBar() {
     return AppBar(
-      backgroundColor: Get.theme.colorScheme.onPrimary,
       title: Text(
         "Filter",
         style: AppTextStyles().bold16().copyWith(

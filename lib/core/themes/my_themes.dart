@@ -21,7 +21,7 @@ class MyThemes {
         ),
         appBarTheme: const AppBarTheme(
           centerTitle: true,
-          color: AppColors.whiteColorLight,
+          color: AppColors.lightColorLight,
           iconTheme: IconThemeData(
             color: AppColors.primaryColorLight,
           ),

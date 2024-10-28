@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
@@ -29,6 +30,10 @@ class ProductView extends GetView<ProductController> {
                 _buildFavoriteIcon(),
               ],
             ),
+            SizedBox(height: screenHeight * 0.01),
+            _buildProductDetails(),
+            SizedBox(height: screenHeight * 0.01),
+            _builds(),
           ],
         ),
       ),
@@ -62,9 +67,9 @@ class ProductView extends GetView<ProductController> {
               height: screenHeight * 0.4,
               child: PageView.builder(
                 onPageChanged: controller.onImageChange,
-                itemCount: controller.images.length,
+                itemCount: controller.product.images.length,
                 itemBuilder: (context, index) => Image.asset(
-                  controller.images[index],
+                  controller.product.images[index],
                   fit: BoxFit.fill,
                 ),
               ),
@@ -74,7 +79,7 @@ class ProductView extends GetView<ProductController> {
               left: 0,
               right: 0,
               child: DotsIndicator(
-                itemsCount: controller.images.length,
+                itemsCount: controller.product.images.length,
                 currentPage: controller.currentImage,
               ),
             ),
@@ -146,10 +151,18 @@ class ProductView extends GetView<ProductController> {
                               onSelected: (bool selected) {
                                 if (selected) {
                                   controller.updateSize(size);
+                                  Future.delayed(
+                                    const Duration(milliseconds: 300),
+                                    () {
+                                      Get.back();
+                                    },
+                                  );
                                 }
                               },
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(
+                                  8.0,
+                                ),
                               ),
                               selectedColor: Get.theme.colorScheme.primary,
                             );
@@ -165,7 +178,10 @@ class ProductView extends GetView<ProductController> {
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                side: BorderSide(color: controller.colorBorderSize),
+                side: BorderSide(
+                  color: controller.colorBorderSize,
+                  width: 2,
+                ),
               ),
               foregroundColor: Get.theme.colorScheme.primary,
               backgroundColor: Get.theme.colorScheme.surface,
@@ -245,6 +261,12 @@ class ProductView extends GetView<ProductController> {
                               onSelected: (bool selected) {
                                 if (selected) {
                                   controller.updateColor(color);
+                                  Future.delayed(
+                                    const Duration(milliseconds: 300),
+                                    () {
+                                      Get.back();
+                                    },
+                                  );
                                 }
                               },
                               shape: RoundedRectangleBorder(
@@ -264,7 +286,10 @@ class ProductView extends GetView<ProductController> {
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                side: BorderSide(color: controller.colorBorderColor),
+                side: BorderSide(
+                  color: controller.colorBorderColor,
+                  width: 2,
+                ),
               ),
               foregroundColor: Get.theme.colorScheme.primary,
               backgroundColor: Get.theme.colorScheme.surface,
@@ -293,7 +318,11 @@ class ProductView extends GetView<ProductController> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Get.theme.colorScheme.surface,
-              border: Border.all(color: Get.theme.colorScheme.onSecondary),
+              border: Border.all(
+                  color: controller.isFavorite
+                      ? Get.theme.colorScheme.primary
+                      : Get.theme.colorScheme.onSecondary,
+                  width: 2),
             ),
             child: Center(
               child: Icon(
@@ -324,6 +353,87 @@ class ProductView extends GetView<ProductController> {
               isLoading: false,
             ),
           ),
+        );
+      },
+    );
+  }
+
+  Widget _buildProductDetails() {
+    return GetBuilder<ProductController>(
+      builder: (_) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              controller.product.title,
+              style: AppTextStyles().semiBold24().copyWith(
+                    color: Get.theme.colorScheme.secondary,
+                  ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    RatingBar.builder(
+                      initialRating: controller.product.rating,
+                      minRating: 1,
+                      direction: Axis.horizontal,
+                      itemSize: 18,
+                      allowHalfRating: true,
+                      ignoreGestures: true,
+                      itemCount: 5,
+                      itemBuilder: (context, _) => const Icon(
+                        Icons.star_outlined,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {},
+                    ),
+                    SizedBox(width: screenWidth * 0.02),
+                    Text(
+                      "(2525)",
+                      style: AppTextStyles().normal12().copyWith(
+                            color: Get.theme.colorScheme.onSurface,
+                          ),
+                    ),
+                  ],
+                ),
+                Text(
+                  controller.product.originalPrice,
+                  style: AppTextStyles().normal24().copyWith(
+                        color: Get.theme.primaryColor,
+                      ),
+                ),
+              ],
+            ),
+            Text(
+              "See Reviews ...",
+              style: AppTextStyles()
+                  .bold12()
+                  .copyWith(color: Get.theme.primaryColor),
+            ),
+            SizedBox(height: screenHeight * 0.03),
+            Text(
+              controller.product.description,
+              softWrap: true,
+              maxLines: 5,
+              style: AppTextStyles()
+                  .normal14()
+                  .copyWith(color: Get.theme.colorScheme.secondary),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _builds() {
+    return GetBuilder<ProductController>(
+      builder: (_) {
+        return Column(
+          children: [
+            SizedBox(height: screenHeight * 0.03),
+          ],
         );
       },
     );

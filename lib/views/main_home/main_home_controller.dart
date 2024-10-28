@@ -6,6 +6,7 @@ import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
 import 'package:quick_shop/views/cart/cart_binding.dart';
 import 'package:quick_shop/views/cart/cart_controller.dart';
 import 'package:quick_shop/views/categories/categories_binding.dart';
+import 'package:quick_shop/views/categories/categories_controller.dart';
 import 'package:quick_shop/views/favourite/favourite_binding.dart';
 import 'package:quick_shop/views/favourite/favourite_controller.dart';
 import 'package:quick_shop/views/home/home_binding.dart';
@@ -34,10 +35,11 @@ class MainHomeController extends GetxController {
         log("Home");
         HomeBinding().dependencies();
 
-        Get.delete<CategoriesBinding>();
+        Get.delete<CategoriesController>();
         Get.delete<CartController>();
         Get.delete<FavouriteController>();
         Get.delete<ProfileController>();
+
         break;
       case 1:
         log("Categories");
@@ -51,7 +53,7 @@ class MainHomeController extends GetxController {
         log("Cart");
         CartBinding().dependencies();
         Get.delete<HomeController>();
-        Get.delete<CategoriesBinding>();
+        Get.delete<CategoriesController>();
         Get.delete<FavouriteController>();
         Get.delete<ProfileController>();
         break;
@@ -59,7 +61,7 @@ class MainHomeController extends GetxController {
         log("Favourite");
         FavouriteBinding().dependencies();
         Get.delete<HomeController>();
-        Get.delete<CategoriesBinding>();
+        Get.delete<CategoriesController>();
         Get.delete<CartController>();
         Get.delete<ProfileController>();
         break;
@@ -72,7 +74,7 @@ class MainHomeController extends GetxController {
 
         ProfileBinding().dependencies();
         Get.delete<HomeController>();
-        Get.delete<CategoriesBinding>();
+        Get.delete<CategoriesController>();
         Get.delete<CartController>();
         Get.delete<FavouriteController>();
         break;

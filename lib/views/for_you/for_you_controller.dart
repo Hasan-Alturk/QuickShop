@@ -1,7 +1,7 @@
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
-import 'package:quick_shop/core/widgets/custom_card_product.dart';
+import 'package:quick_shop/core/models/product.dart';
 
 class ForYouController extends GetxController {
   String selectedSortOption = "Sorting";
@@ -32,41 +32,62 @@ class ForYouController extends GetxController {
     Get.toNamed("/product");
   }
 
-  List<CustomCardProduct> products = [
-    const CustomCardProduct(
-      image: Assets.imagesArduino,
-      productName: "Arduino",
+  List<Product> products = [
+    Product(
+      images: [
+        Assets.imagesArduino,
+        Assets.imagesBurgur,
+        Assets.imagesLaptop,
+      ],
+      title: "Arduino",
       description: "Lorem Ipsum is simply dummy text of the ",
       originalPrice: "195\$",
       discountedPrice: "130\$",
     ),
-    const CustomCardProduct(
-      image: Assets.imagesBurgur,
-      productName: "Burgur",
+    Product(
+      images: [
+        Assets.imagesLaptop,
+        Assets.imagesArduino,
+        Assets.imagesBurgur,
+      ],
+      title: "laptop",
       description: "Lorem Ipsum is simply dummy text of the ",
-      originalPrice: "45\$",
-      discountedPrice: "20\$",
+      originalPrice: "15\$",
+      discountedPrice: "10\$",
     ),
-    const CustomCardProduct(
-      image: Assets.imagesLaptop,
-      productName: "Laptop",
+    Product(
+      images: [
+        Assets.imagesBurgur,
+        Assets.imagesArduino,
+        Assets.imagesLaptop,
+      ],
+      title: "Burgur",
       description: "Lorem Ipsum is simply dummy text of the ",
-      originalPrice: "90\$",
-      discountedPrice: "60\$",
+      originalPrice: "150\$",
+      discountedPrice: "120\$",
     ),
-    const CustomCardProduct(
-      image: Assets.imagesMadrb,
-      productName: "Madrb",
+    Product(
+      images: [
+        Assets.imagesArduino,
+        Assets.imagesBurgur,
+        Assets.imagesLaptop,
+      ],
+      title: "Arduino",
       description: "Lorem Ipsum is simply dummy text of the ",
-      originalPrice: "500\$",
-      discountedPrice: "210\$",
+      originalPrice: "195\$",
+      discountedPrice: "130\$",
     ),
-    const CustomCardProduct(
-      image: Assets.imagesDress,
-      productName: "Dress",
+    Product(
+      images: [
+        Assets.imagesDress,
+        Assets.imagesArduino,
+        Assets.imagesBurgur,
+        Assets.imagesLaptop,
+      ],
+      title: "dress",
       description: "Lorem Ipsum is simply dummy text of the ",
-      originalPrice: "50\$",
-      discountedPrice: "30\$",
+      originalPrice: "15\$",
+      discountedPrice: "10\$",
     ),
   ];
 }

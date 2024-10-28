@@ -9,17 +9,17 @@ class CustomCardProduct extends StatelessWidget {
   const CustomCardProduct({
     super.key,
     required this.image,
-    required this.productName,
+    required this.title,
     required this.description,
-    this.originalPrice,
+    required this.originalPrice,
     this.discountedPrice,
     this.rating = 3.5,
   });
 
   final String image;
-  final String productName;
+  final String title;
   final String description;
-  final String? originalPrice;
+  final String originalPrice;
   final String? discountedPrice;
   final double rating;
 
@@ -57,7 +57,7 @@ class CustomCardProduct extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        productName,
+                        title,
                         style: AppTextStyles().bold16().copyWith(
                               color: Get.theme.colorScheme.secondary,
                             ),
@@ -80,7 +80,7 @@ class CustomCardProduct extends StatelessWidget {
                           ),
                           SizedBox(width: screenWidth * 0.025),
                           Text(
-                            originalPrice ?? '',
+                            originalPrice,
                             style: AppTextStyles().medium12().copyWith(
                                   color: Get.theme.colorScheme.onSecondary,
                                   decoration: TextDecoration.lineThrough,
@@ -96,6 +96,7 @@ class CustomCardProduct extends StatelessWidget {
                         direction: Axis.horizontal,
                         allowHalfRating: true,
                         itemCount: 5,
+                        ignoreGestures: true,
                         itemBuilder: (context, _) => const Icon(
                           Icons.star_outlined,
                           color: Colors.amber,
