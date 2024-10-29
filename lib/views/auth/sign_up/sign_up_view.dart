@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
-import 'package:quick_shop/core/constants/app_images.dart';
+import 'package:quick_shop/core/constants/assets.dart';
 import 'package:quick_shop/views/auth/sign_up/sign_up_with_email_view.dart';
 import 'package:quick_shop/views/auth/sign_up/sign_up_with_phone_view.dart';
 import 'package:quick_shop/views/auth/sign_up/sign_up_controller.dart';

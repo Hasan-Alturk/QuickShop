@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_images.dart';
+import 'package:quick_shop/core/constants/assets.dart';
 import 'package:quick_shop/core/models/offers.dart';
 import 'package:quick_shop/core/models/product.dart';
 import 'package:quick_shop/core/repo/home_repo.dart';

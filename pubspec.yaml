@@ -45,7 +45,6 @@ dependencies:
   intl_phone_field: ^3.2.0
   pushy_flutter: ^2.0.27
   shared_preferences: ^2.3.2
-  skeletonizer: ^1.4.2
 
 
 dev_dependencies:
@@ -117,9 +116,12 @@ flutter:
           weight: 400
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
 flutter_assets:
   assets_path: assets/images/
-  output_path: lib/core/constants
-  filename: app_images.dart
-  field_prefix: null
+  output_path: lib/core/constants/
+  filename: assets.dart
+  field_prefix:
+
+
  

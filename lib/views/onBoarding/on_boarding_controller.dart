@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/models/items_on_boarding.dart';
-import 'package:quick_shop/core/constants/app_images.dart';
+import 'package:quick_shop/core/constants/assets.dart';
 
 class OnBoardingController extends GetxController {
   PageController pageController = PageController();

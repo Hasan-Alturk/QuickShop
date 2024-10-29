@@ -1,6 +1,6 @@
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_images.dart';
+import 'package:quick_shop/core/constants/assets.dart';
 import 'package:quick_shop/core/models/product.dart';
 
 class ForYouController extends GetxController {

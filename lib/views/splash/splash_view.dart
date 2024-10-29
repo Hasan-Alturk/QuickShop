@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
-import 'package:quick_shop/core/constants/app_images.dart';
+import 'package:quick_shop/core/constants/assets.dart';
 import 'package:quick_shop/views/splash/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
@@ -22,16 +22,20 @@ class SplashView extends GetView<SplashController> {
   }
 
   Widget _buildSplashBackground() {
-    return Container(
-      height: screenHeight,
-      width: screenWidth,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(Assets.imagesSplach),
-          repeat: ImageRepeat.repeat,
-        ),
-      ),
+    return Image.asset(
+      Assets.imagesSplach,
+      repeat: ImageRepeat.repeat,
     );
+    // Container(
+    //   height: screenHeight,
+    //   width: screenWidth,
+    //   decoration: const BoxDecoration(
+    //     image: DecorationImage(
+    //       image: AssetImage(Assets.imagesSplach),
+    //       repeat: ImageRepeat.repeat,
+    //     ),
+    //   ),
+    // );
   }
 
   Widget _buildSplashContent() {

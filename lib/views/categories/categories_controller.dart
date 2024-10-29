@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_images.dart';
+import 'package:quick_shop/core/constants/assets.dart';
 
 class CategoriesController extends GetxController {
   int selectedCategoryIndex = -1; // يبدأ من -1 لتحديد عدم وجود أي عنصر محدد
