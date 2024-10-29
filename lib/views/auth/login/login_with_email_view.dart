@@ -21,15 +21,14 @@ class LoginWithEmailView extends GetView<LoginController> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomTextField(
             controller: controller.emailController,
             hint: "Email",
             prefixIcon: Assets.imagesEmail,
             validator: (text) {
-              RegExp regExp =
-                  RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
-    
+              RegExp regExp = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
+
               if (text == null || text.isEmpty) {
                 return "Email is required";
               } else if (!regExp.hasMatch(text)) {
@@ -43,7 +42,7 @@ class LoginWithEmailView extends GetView<LoginController> {
               }
             },
           ),
-          SizedBox(height: screenHeight * 0.012),
+          SizedBox(height: context.screenHeight * 0.012),
           CustomTextField(
             controller: controller.passwordController,
             hint: "Password",
@@ -65,7 +64,7 @@ class LoginWithEmailView extends GetView<LoginController> {
               }
             },
           ),
-          SizedBox(height: screenHeight * 0.012),
+          SizedBox(height: context.screenHeight * 0.012),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -108,12 +107,12 @@ class LoginWithEmailView extends GetView<LoginController> {
               )
             ],
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           GetBuilder<LoginController>(
             id: "login_button",
             builder: (_) {
               return SizedBox(
-                width: screenWidth,
+                width: context.screenWidth,
                 height: 50,
                 child: CustomButton(
                   onPressed: () {
@@ -132,9 +131,9 @@ class LoginWithEmailView extends GetView<LoginController> {
               );
             },
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           const CustomOrAuthWith(text: "Or login with"),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomGoogleFacebookIphone(
             onTapGoogle: () {
               controller.signInWithGoogle();
@@ -143,7 +142,7 @@ class LoginWithEmailView extends GetView<LoginController> {
               controller.signInWithFacebook();
             },
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomBottomAuth(
             title: 'Didn’t have an account ?',
             subTitle: '  Sign Up',

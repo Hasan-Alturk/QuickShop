@@ -34,23 +34,24 @@ class Prefs {
 
   // get Theme
   static Future<ThemeData> getTheme() async {
-    try {
-      final Brightness brightness =
-          WidgetsBinding.instance.platformDispatcher.platformBrightness;
-      final theme = prefs.getString("theme");
+    return MyThemes.customLightTheme();
+    // try {
+    //   final Brightness brightness =
+    //       WidgetsBinding.instance.platformDispatcher.platformBrightness;
+    //   final theme = prefs.getString("theme");
 
-      if (theme == "light") {
-        return MyThemes.customLightTheme();
-      } else if (theme == "dark") {
-        return MyThemes.customDarkTheme();
-      } else {
-        return brightness == Brightness.dark
-            ? MyThemes.customDarkTheme()
-            : MyThemes.customLightTheme();
-      }
-    } catch (e) {
-      return MyThemes.customLightTheme();
-    }
+    //   if (theme == "light") {
+    //     return MyThemes.customLightTheme();
+    //   } else if (theme == "dark") {
+    //     return MyThemes.customDarkTheme();
+    //   } else {
+    //     return brightness == Brightness.dark
+    //         ? MyThemes.customDarkTheme()
+    //         : MyThemes.customLightTheme();
+    //   }
+    // } catch (e) {
+    //   return MyThemes.customLightTheme();
+    // }
   }
 
   // Save Token

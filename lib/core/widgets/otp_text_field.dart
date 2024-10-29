@@ -65,7 +65,7 @@ class OtpTextFieldState extends State<OtpTextField> {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(widget.length, (index) {
         return SizedBox(
-          width: screenWidth * 0.1,
+          width: context.screenWidth * 0.1,
           child: TextField(
             controller: controllers[index],
             focusNode: focusNodes[index],

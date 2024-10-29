@@ -22,7 +22,7 @@ class LoginWithPhoneView extends GetView<LoginController> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomIntlPhoneNumber(
             controller: controller.phoneController,
             formKey: controller.formKey,
@@ -31,7 +31,7 @@ class LoginWithPhoneView extends GetView<LoginController> {
               controller.fullNumber = fullNumber;
             },
           ),
-          SizedBox(height: screenHeight * 0.012),
+          SizedBox(height: context.screenHeight * 0.012),
           CustomTextField(
             controller: controller.passwordController,
             hint: "Password",
@@ -53,7 +53,7 @@ class LoginWithPhoneView extends GetView<LoginController> {
               }
             },
           ),
-          SizedBox(height: screenHeight * 0.012),
+          SizedBox(height: context.screenHeight * 0.012),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -96,12 +96,12 @@ class LoginWithPhoneView extends GetView<LoginController> {
               )
             ],
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           GetBuilder<LoginController>(
             id: "login_button",
             builder: (_) {
               return SizedBox(
-                width: screenWidth,
+                width: context.screenWidth,
                 height: 50,
                 child: CustomButton(
                   onPressed: () {
@@ -120,9 +120,9 @@ class LoginWithPhoneView extends GetView<LoginController> {
               );
             },
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           const CustomOrAuthWith(text: "Or login with"),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomGoogleFacebookIphone(
             onTapGoogle: () {
               controller.signInWithGoogle();
@@ -131,7 +131,7 @@ class LoginWithPhoneView extends GetView<LoginController> {
               controller.signInWithFacebook();
             },
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomBottomAuth(
             title: 'Didn’t have an account ?',
             subTitle: '  Sign Up',

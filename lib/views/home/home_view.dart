@@ -21,32 +21,32 @@ class HomeView extends GetView<HomeController> {
           padding: EdgeInsets.symmetric(horizontal: screenPadding),
           child: Column(
             children: [
-              SizedBox(height: screenHeight * 0.01),
+              SizedBox(height: context.screenHeight * 0.02),
               const CustomHeaderHome(),
-              SizedBox(height: screenHeight * 0.025),
+              SizedBox(height: context.screenHeight * 0.05),
               Expanded(
                 child: ListView(
                   children: [
                     _buildSectionTitle("Offers", controller.goToOffers),
-                    SizedBox(height: screenHeight * 0.01),
-                    _buildOffersCarousel(),
-                    SizedBox(height: screenHeight * 0.01),
+                    SizedBox(height: context.screenHeight * 0.01),
+                    _buildOffersCarousel(context),
+                    SizedBox(height: context.screenHeight * 0.01),
                     _buildSectionTitle("Categories", controller.goToCategories),
-                    SizedBox(height: screenHeight * 0.01),
-                    _buildCategoriesList(),
-                    SizedBox(height: screenHeight * 0.01),
+                    SizedBox(height: context.screenHeight * 0.01),
+                    _buildCategoriesList(context),
+                    SizedBox(height: context.screenHeight * 0.01),
                     _buildSectionTitle("Flash Sale", controller.goToFlashSale),
-                    SizedBox(height: screenHeight * 0.01),
+                    SizedBox(height: context.screenHeight * 0.01),
                     _buildProductGrid(controller.products),
-                    SizedBox(height: screenHeight * 0.01),
+                    SizedBox(height: context.screenHeight * 0.01),
                     _buildSectionTitle("For You", controller.goToForYou),
-                    SizedBox(height: screenHeight * 0.01),
+                    SizedBox(height: context.screenHeight * 0.01),
                     _buildProductGrid(controller.products),
-                    SizedBox(height: screenHeight * 0.01),
+                    SizedBox(height: context.screenHeight * 0.01),
                     _buildSectionTitle("Popular", controller.goToPopular),
-                    SizedBox(height: screenHeight * 0.01),
+                    SizedBox(height: context.screenHeight * 0.01),
                     _buildProductGrid(controller.products),
-                    SizedBox(height: screenHeight * 0.01),
+                    SizedBox(height: context.screenHeight * 0.01),
                   ],
                 ),
               ),
@@ -80,7 +80,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildOffersCarousel() {
+  Widget _buildOffersCarousel(BuildContext context) {
     return GetBuilder<HomeController>(
       id: "offers",
       builder: (_) {
@@ -91,7 +91,7 @@ class HomeView extends GetView<HomeController> {
               carouselController: controller.carouselController,
               onPageChanged: controller.onPageChanged,
             ),
-            SizedBox(height: screenHeight * 0.024),
+            SizedBox(height: context.screenHeight * 0.024),
             DotsIndicator(
               itemsCount: controller.offersImages.length,
               currentPage: controller.currentPage,
@@ -102,9 +102,9 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildCategoriesList() {
+  Widget _buildCategoriesList(BuildContext context) {
     return SizedBox(
-      height: screenHeight * 0.09,
+      height: context.screenHeight * 0.09,
       child: ListView.builder(
         itemCount: controller.categories.length,
         scrollDirection: Axis.horizontal,

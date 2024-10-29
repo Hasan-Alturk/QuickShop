@@ -39,7 +39,7 @@ class CustomGoogleFacebookIphone extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(width: screenWidth * 0.02),
+        SizedBox(width: context.screenWidth * 0.02),
         Expanded(
           child: InkWell(
             onTap: onTapFacebook,
@@ -62,7 +62,7 @@ class CustomGoogleFacebookIphone extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(width: screenWidth * 0.02),
+        SizedBox(width: context.screenWidth * 0.02),
         Expanded(
           child: Container(
             height: 50,

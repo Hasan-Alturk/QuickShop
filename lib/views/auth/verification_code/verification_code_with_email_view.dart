@@ -23,7 +23,7 @@ class VerificationCodeWithEmailView
           child: Column(
             children: [
               SizedBox(
-                height: screenHeight * 0.27,
+                height: context.screenHeight * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
                   title: "Inter your OTP code",
@@ -45,7 +45,7 @@ class VerificationCodeWithEmailView
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          SizedBox(height: screenHeight * 0.024),
+                          SizedBox(height: context.screenHeight * 0.024),
                           OtpTextField(
                             length: 6,
                             onCompleted: (String code) {
@@ -55,7 +55,7 @@ class VerificationCodeWithEmailView
                               controller.otp = code;
                             },
                           ),
-                          SizedBox(height: screenHeight * 0.024),
+                          SizedBox(height: context.screenHeight * 0.024),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -79,12 +79,12 @@ class VerificationCodeWithEmailView
                               ),
                             ],
                           ),
-                          SizedBox(height: screenHeight * 0.024),
+                          SizedBox(height: context.screenHeight * 0.024),
                           GetBuilder<VerificationCodeController>(
                             id: "verify_button",
                             builder: (_) {
                               return SizedBox(
-                                width: screenWidth,
+                                width: context.screenWidth,
                                 height: 50,
                                 child: CustomButton(
                                   onPressed: () {

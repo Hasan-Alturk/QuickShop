@@ -15,6 +15,7 @@ class CustomSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       height: 50,
       padding: EdgeInsets.symmetric(horizontal: screenPadding),
@@ -28,7 +29,7 @@ class CustomSearch extends StatelessWidget {
       child: Row(
         children: [
           Icon(icon, color: Get.theme.colorScheme.primary),
-          SizedBox(width: screenWidth * 0.02),
+          SizedBox(width: context.screenWidth * 0.02),
           Expanded(
             child: Text(
               text,

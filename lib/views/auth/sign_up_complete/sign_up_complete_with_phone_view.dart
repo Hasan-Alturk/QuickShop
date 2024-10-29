@@ -15,6 +15,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Get.theme.colorScheme.secondary,
       body: Form(
@@ -23,7 +24,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
           child: Column(
             children: [
               SizedBox(
-                height: screenHeight * 0.27,
+                height: context.screenHeight * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
                   title: "Complete Sign Up",
@@ -45,7 +46,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          SizedBox(height: screenHeight * 0.024),
+                          SizedBox(height: context.screenHeight * 0.024),
                           CustomTextField(
                             controller: controller.nameController,
                             hint: "Name",
@@ -62,7 +63,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
                               }
                             },
                           ),
-                          SizedBox(height: screenHeight * 0.012),
+                          SizedBox(height: context.screenHeight * 0.012),
                           CustomTextField(
                             controller: controller.passwordController,
                             hint: "Password",
@@ -90,7 +91,7 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
                               }
                             },
                           ),
-                          SizedBox(height: screenHeight * 0.012),
+                          SizedBox(height: context.screenHeight * 0.012),
                           CustomTextField(
                             controller: controller.confirmPasswordController,
                             hint: "Confirm Password",
@@ -121,12 +122,12 @@ class SignUpCompleteWithPhoneView extends GetView<SignUpCompleteController> {
                               }
                             },
                           ),
-                          SizedBox(height: screenHeight * 0.024),
+                          SizedBox(height: context.screenHeight * 0.024),
                           GetBuilder<SignUpCompleteController>(
                             id: "sign_up_button",
                             builder: (_) {
                               return SizedBox(
-                                width: screenWidth,
+                                width: context.screenWidth,
                                 height: 50,
                                 child: CustomButton(
                                   onPressed: () {

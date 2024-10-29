@@ -16,6 +16,7 @@ class CustomCarouselSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return CarouselSlider(
       items: items,
       carouselController: carouselController,
@@ -27,7 +28,7 @@ class CustomCarouselSlider extends StatelessWidget {
         autoPlayCurve: Curves.fastLinearToSlowEaseIn,
         viewportFraction: 1,
         initialPage: 0,
-        height: screenHeight * 0.15,
+        height: context.screenHeight * 0.15,
         onPageChanged: onPageChanged,
       ),
     );

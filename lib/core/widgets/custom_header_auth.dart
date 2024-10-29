@@ -32,7 +32,7 @@ class CustomHeaderAuth extends StatelessWidget {
                 image,
                 fit: BoxFit.cover,
               ),
-              SizedBox(height: screenHeight * 0.02),
+              SizedBox(height: context.screenHeight * 0.02),
               Text(
                 title,
                 style: AppTextStyles().semiBold24().copyWith(

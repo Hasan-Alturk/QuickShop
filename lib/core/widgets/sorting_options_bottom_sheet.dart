@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
 class SortingOptionsBottomSheet extends StatelessWidget {
@@ -28,8 +29,8 @@ class SortingOptionsBottomSheet extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  width: Get.width * 0.1,
-                  height: Get.height * 0.005,
+                  width: context.screenWidth * 0.1,
+                  height: context.screenHeight * 0.005,
                   decoration: BoxDecoration(
                     color: Get.theme.colorScheme.onSecondary,
                     borderRadius: BorderRadius.circular(32),

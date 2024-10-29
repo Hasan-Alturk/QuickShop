@@ -68,6 +68,7 @@ class CustomPageViewOnBoardingItemState
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -88,7 +89,7 @@ class CustomPageViewOnBoardingItemState
             ),
           ),
         ),
-        SizedBox(height: screenHeight * 0.1),
+        SizedBox(height: context.screenHeight * 0.1),
         Expanded(
           flex: 1,
           child: Padding(
@@ -105,7 +106,7 @@ class CustomPageViewOnBoardingItemState
                         .copyWith(color: Get.theme.colorScheme.primary),
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.02),
+                SizedBox(height: context.screenHeight * 0.02),
                 SlideTransition(
                   position: _subtitleSlideAnimation,
                   child: Text(

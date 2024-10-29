@@ -22,9 +22,9 @@ class ForYouView extends GetView<ForYouController> {
           child: Column(
             children: [
               _buildSearch(),
-              SizedBox(height: screenHeight * 0.015),
-              _buildFilterAndSorting(),
-              SizedBox(height: screenHeight * 0.015),
+              SizedBox(height: context.screenHeight * 0.015),
+              _buildFilterAndSorting(context),
+              SizedBox(height: context.screenHeight * 0.015),
               _buildProductList(),
             ],
           ),
@@ -51,7 +51,7 @@ class ForYouView extends GetView<ForYouController> {
     );
   }
 
-  Widget _buildFilterAndSorting() {
+  Widget _buildFilterAndSorting(BuildContext context) {
     return Row(
       children: [
         Expanded(
@@ -65,7 +65,7 @@ class ForYouView extends GetView<ForYouController> {
             },
           ),
         ),
-        SizedBox(width: screenWidth * 0.01),
+        SizedBox(width: context.screenWidth * 0.01),
         Expanded(
           flex: 2,
           child: GetBuilder<ForYouController>(

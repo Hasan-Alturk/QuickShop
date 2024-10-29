@@ -22,9 +22,9 @@ class PopularView extends GetView<PopularController> {
           child: Column(
             children: [
               _buildSearch(),
-              SizedBox(height: screenHeight * 0.015),
-              _buildFilterAndSorting(),
-              SizedBox(height: screenHeight * 0.015),
+              SizedBox(height: context.screenHeight * 0.015),
+              _buildFilterAndSorting(context),
+              SizedBox(height: context.screenHeight * 0.015),
               _buildProductList(),
             ],
           ),
@@ -51,7 +51,7 @@ class PopularView extends GetView<PopularController> {
     );
   }
 
-  Widget _buildFilterAndSorting() {
+  Widget _buildFilterAndSorting( BuildContext context) {
     return Row(
       children: [
         Expanded(
@@ -65,7 +65,7 @@ class PopularView extends GetView<PopularController> {
             },
           ),
         ),
-        SizedBox(width: screenWidth * 0.01),
+        SizedBox(width: context.screenWidth * 0.01),
         Expanded(
           flex: 2,
           child: GetBuilder<PopularController>(

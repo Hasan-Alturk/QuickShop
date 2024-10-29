@@ -29,7 +29,7 @@ class QuickShop extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: MyThemes.customLightTheme(),
-      darkTheme: MyThemes.customDarkTheme(),
+      // darkTheme: MyThemes.customDarkTheme(),
       locale: const Locale("en"),
       //    translations: MyTranslation(),
       initialBinding: SplashBinding(),

@@ -21,7 +21,7 @@ class SignUpView extends GetView<SignUpController> {
           child: Column(
             children: [
               SizedBox(
-                height: screenHeight * 0.27,
+                height: context.screenHeight * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
                   title: "Sign Up to access exclusive offers",
@@ -43,7 +43,7 @@ class SignUpView extends GetView<SignUpController> {
                     child: GetBuilder<SignUpController>(builder: (_) {
                       return Column(
                         children: [
-                          SizedBox(height: screenHeight * 0.024),
+                          SizedBox(height: context.screenHeight * 0.024),
                           CustomContainerAuth(
                             firstText: 'Email',
                             secondText: 'Phone Number',

@@ -26,7 +26,7 @@ class CustomContainerAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: screenWidth,
+      width: context.screenWidth,
       height: 50,
       decoration: ShapeDecoration(
         color: Get.theme.colorScheme.primaryContainer,
@@ -63,7 +63,7 @@ class CustomContainerAuth extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: screenWidth * 0.02,
+              width: context.screenWidth * 0.02,
             ),
             Expanded(
               child: GestureDetector(

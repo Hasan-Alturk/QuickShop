@@ -28,7 +28,7 @@ class CustomHeaderHome extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: screenHeight * 0.012),
+        SizedBox(height: context.screenHeight * 0.012),
         Row(
           children: [
             const Expanded(
@@ -38,7 +38,7 @@ class CustomHeaderHome extends StatelessWidget {
                 text: "Search clothes, laptops or etc",
               ),
             ),
-            SizedBox(width: screenWidth * 0.01),
+            SizedBox(width: context.screenWidth * 0.01),
             const Expanded(
               flex: 2,
               child: CustomSearch(

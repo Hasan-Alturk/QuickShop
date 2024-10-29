@@ -71,12 +71,13 @@ class SplashController extends GetxController
 
   void getData() async {
     try {
-      final savedLocale = await Prefs.getLocale();
+      //  final savedLocale = await Prefs.getLocale();
       final savedTheme = await Prefs.getTheme();
 
-      if (savedLocale != null) {
-        Get.updateLocale(savedLocale);
-      }
+      // if (savedLocale != null) {
+      //   Get.updateLocale(savedLocale);
+
+      // }
 
       Get.changeTheme(savedTheme);
 

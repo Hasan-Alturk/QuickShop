@@ -22,14 +22,14 @@ class CustomOrAuthWith extends StatelessWidget {
             thickness: 2,
           ),
         ),
-        SizedBox(width: screenWidth * 0.01),
+        SizedBox(width: context.screenWidth * 0.01),
         Text(
           text,
           style: AppTextStyles().bold12().copyWith(
                 color: Get.theme.colorScheme.onSurface,
               ),
         ),
-        SizedBox(width: screenWidth * 0.01),
+        SizedBox(width: context.screenWidth * 0.01),
         Expanded(
           child: Divider(
             color: Get.theme.colorScheme.onSecondary,

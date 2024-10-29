@@ -14,31 +14,25 @@ class SplashView extends GetView<SplashController> {
       backgroundColor: Get.theme.colorScheme.primary,
       body: Stack(
         children: [
-          _buildSplashBackground(),
-          _buildSplashContent(),
+          _buildSplashBackground(context), // تمرير context
+          _buildSplashContent(context),    // تمرير context
         ],
       ),
     );
   }
 
-  Widget _buildSplashBackground() {
-    return Image.asset(
-      Assets.imagesSplach,
-      repeat: ImageRepeat.repeat,
+  Widget _buildSplashBackground(BuildContext context) {
+    return SizedBox(
+      height: context.screenHeight,
+      width: context.screenWidth,
+      child: Image.asset(
+        Assets.imagesSplach,
+        repeat: ImageRepeat.repeat,
+      ),
     );
-    // Container(
-    //   height: screenHeight,
-    //   width: screenWidth,
-    //   decoration: const BoxDecoration(
-    //     image: DecorationImage(
-    //       image: AssetImage(Assets.imagesSplach),
-    //       repeat: ImageRepeat.repeat,
-    //     ),
-    //   ),
-    // );
   }
 
-  Widget _buildSplashContent() {
+  Widget _buildSplashContent(BuildContext context) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +45,7 @@ class SplashView extends GetView<SplashController> {
               ),
             ),
           ),
-          SizedBox(height: screenHeight * 0.05),
+          SizedBox(height: context.screenHeight * 0.05),
           CircularProgressIndicator(
             strokeWidth: 3,
             color: Get.theme.colorScheme.onPrimary,

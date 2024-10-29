@@ -19,12 +19,12 @@ class CategoriesView extends GetView<CategoriesController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: screenHeight * 0.012),
+              SizedBox(height: context.screenHeight * 0.02),
               const CustomSearch(
                 icon: Icons.search,
                 text: "Search Categories",
               ),
-              SizedBox(height: screenHeight * 0.012),
+              SizedBox(height: context.screenHeight * 0.012),
               GetBuilder<CategoriesController>(
                 builder: (_) {
                   return Expanded(
@@ -36,7 +36,7 @@ class CategoriesView extends GetView<CategoriesController> {
                             flex: 2,
                             child: _buildCategoryList(),
                           ),
-                          _buildVerticalDivider(),
+                          _buildVerticalDivider(context),
                           Expanded(
                             flex: 8,
                             child: _buildSubcategoryList(),
@@ -54,11 +54,11 @@ class CategoriesView extends GetView<CategoriesController> {
     );
   }
 
-  Widget _buildVerticalDivider() {
+  Widget _buildVerticalDivider(BuildContext context) {
     return VerticalDivider(
       color: Get.theme.colorScheme.onSecondary,
       thickness: 1,
-      width: screenWidth * 0.05,
+      width: context.screenWidth * 0.05,
     );
   }
 

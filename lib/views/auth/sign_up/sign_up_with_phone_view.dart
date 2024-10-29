@@ -20,7 +20,7 @@ class SignUpWithPhoneView extends GetView<SignUpController> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomIntlPhoneNumber(
             controller: controller.phoneController,
             formKey: controller.formKey,
@@ -29,12 +29,12 @@ class SignUpWithPhoneView extends GetView<SignUpController> {
               controller.fullNumber = fullNumber;
             },
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           GetBuilder<SignUpController>(
             id: "sign_up_button",
             builder: (_) {
               return SizedBox(
-                width: screenWidth,
+                width: context.screenWidth,
                 height: 50,
                 child: CustomButton(
                   onPressed: () {
@@ -52,9 +52,9 @@ class SignUpWithPhoneView extends GetView<SignUpController> {
               );
             },
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           const CustomOrAuthWith(text: "Or Sign Up with"),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomGoogleFacebookIphone(
             onTapGoogle: () {
               controller.signInWithGoogle();
@@ -63,7 +63,7 @@ class SignUpWithPhoneView extends GetView<SignUpController> {
               controller.signInWithFacebook();
             },
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomBottomAuth(
             title: 'Already have an account ?',
             subTitle: '  Login',

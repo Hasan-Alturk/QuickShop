@@ -20,7 +20,7 @@ class SignUpWithEmailView extends GetView<SignUpController> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomTextField(
             controller: controller.emailController,
             hint: "Email",
@@ -42,12 +42,12 @@ class SignUpWithEmailView extends GetView<SignUpController> {
               }
             },
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           GetBuilder<SignUpController>(
             id: "sign_up_button",
             builder: (_) {
               return SizedBox(
-                width: screenWidth,
+                width: context.screenWidth,
                 height: 50,
                 child: CustomButton(
                   onPressed: () {
@@ -65,9 +65,9 @@ class SignUpWithEmailView extends GetView<SignUpController> {
               );
             },
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           const CustomOrAuthWith(text: "Or Sign Up with"),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomGoogleFacebookIphone(
             onTapGoogle: () {
               controller.signInWithGoogle();
@@ -76,7 +76,7 @@ class SignUpWithEmailView extends GetView<SignUpController> {
               controller.signInWithFacebook();
             },
           ),
-          SizedBox(height: screenHeight * 0.024),
+          SizedBox(height: context.screenHeight * 0.024),
           CustomBottomAuth(
             title: 'Already have an account ?',
             subTitle: '  Login',

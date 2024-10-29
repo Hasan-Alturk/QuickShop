@@ -19,34 +19,34 @@ class ProductView extends GetView<ProductController> {
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(
-            screenPadding, 0, screenPadding, screenHeight * 0.1),
+            screenPadding, 0, screenPadding, context.screenHeight * 0.1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildImageSlider(),
-            SizedBox(height: screenHeight * 0.01),
+            _buildImageSlider(context),
+            SizedBox(height: context.screenHeight * 0.01),
             Row(
               children: [
-                _buildSizeButton(),
-                SizedBox(width: screenWidth * 0.05),
-                _buildColorButton(),
-                SizedBox(width: screenWidth * 0.05),
-                _buildFavoriteIcon(),
+                _buildSizeButton(context),
+                SizedBox(width: context.screenWidth * 0.05),
+                _buildColorButton(context),
+                SizedBox(width: context.screenWidth * 0.05),
+                _buildFavoriteIcon(context),
               ],
             ),
-            SizedBox(height: screenHeight * 0.01),
-            _buildProductDetails(),
-            SizedBox(height: screenHeight * 0.01),
+            SizedBox(height: context.screenHeight * 0.01),
+            _buildProductDetails(context),
+            SizedBox(height: context.screenHeight * 0.01),
             _buildDivider(),
-            _buildInfo(title: "Item Details", onTap: () {}),
-            _buildInfo(title: "Shippimg Info", onTap: () {}),
-            _buildInfo(title: "Supports", onTap: () {}),
-            _buildYouCanAlsoLikeThis(),
+            _buildInfo(context, title: "Item Details", onTap: () {}),
+            _buildInfo(context, title: "Shippimg Info", onTap: () {}),
+            _buildInfo(context, title: "Supports", onTap: () {}),
+            _buildYouCanAlsoLikeThis(context),
           ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: _buildActionButtons(),
+      floatingActionButton: _buildActionButtons(context),
     );
   }
 
@@ -65,14 +65,14 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  Widget _buildImageSlider() {
+  Widget _buildImageSlider(BuildContext context) {
     return GetBuilder<ProductController>(
       id: "images",
       builder: (_) {
         return Stack(
           children: [
             SizedBox(
-              height: screenHeight * 0.4,
+              height: context.screenHeight * 0.4,
               child: PageView.builder(
                 onPageChanged: controller.onImageChange,
                 itemCount: controller.product.images.length,
@@ -97,7 +97,7 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  Widget _buildSizeButton() {
+  Widget _buildSizeButton(BuildContext context) {
     return Expanded(
       child: GetBuilder<ProductController>(
         id: "size",
@@ -115,19 +115,19 @@ class ProductView extends GetView<ProductController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(height: screenHeight * 0.012),
+                    SizedBox(height: context.screenHeight * 0.012),
                     Center(
                       child: Column(
                         children: [
                           Container(
-                            width: screenWidth * 0.1,
-                            height: screenHeight * 0.005,
+                            width: context.screenWidth * 0.1,
+                            height: context.screenHeight * 0.005,
                             decoration: BoxDecoration(
                               color: Get.theme.colorScheme.onSecondary,
                               borderRadius: BorderRadius.circular(32),
                             ),
                           ),
-                          SizedBox(height: screenHeight * 0.012),
+                          SizedBox(height: context.screenHeight * 0.012),
                           Text(
                             "Select Size",
                             style: AppTextStyles().semiBold24().copyWith(
@@ -137,7 +137,7 @@ class ProductView extends GetView<ProductController> {
                         ],
                       ),
                     ),
-                    SizedBox(height: screenHeight * 0.012),
+                    SizedBox(height: context.screenHeight * 0.012),
                     GetBuilder<ProductController>(
                       id: "size",
                       builder: (_) {
@@ -178,7 +178,7 @@ class ProductView extends GetView<ProductController> {
                         );
                       },
                     ),
-                    SizedBox(height: screenHeight * 0.1),
+                    SizedBox(height: context.screenHeight * 0.1),
                   ],
                 ),
               ),
@@ -206,7 +206,7 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  Widget _buildColorButton() {
+  Widget _buildColorButton(BuildContext context) {
     return GetBuilder<ProductController>(
       id: "color",
       builder: (_) {
@@ -225,19 +225,19 @@ class ProductView extends GetView<ProductController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(height: screenHeight * 0.012),
+                    SizedBox(height: context.screenHeight * 0.012),
                     Center(
                       child: Column(
                         children: [
                           Container(
-                            width: screenWidth * 0.1,
-                            height: screenHeight * 0.005,
+                            width: context.screenWidth * 0.1,
+                            height: context.screenHeight * 0.005,
                             decoration: BoxDecoration(
                               color: Get.theme.colorScheme.onSecondary,
                               borderRadius: BorderRadius.circular(32),
                             ),
                           ),
-                          SizedBox(height: screenHeight * 0.012),
+                          SizedBox(height: context.screenHeight * 0.012),
                           Text(
                             "Select Color",
                             style: AppTextStyles().semiBold24().copyWith(
@@ -247,7 +247,7 @@ class ProductView extends GetView<ProductController> {
                         ],
                       ),
                     ),
-                    SizedBox(height: screenHeight * 0.012),
+                    SizedBox(height: context.screenHeight * 0.012),
                     GetBuilder<ProductController>(
                       id: "color",
                       builder: (_) {
@@ -286,7 +286,7 @@ class ProductView extends GetView<ProductController> {
                         );
                       },
                     ),
-                    SizedBox(height: screenHeight * 0.1),
+                    SizedBox(height: context.screenHeight * 0.1),
                   ],
                 ),
               ),
@@ -314,7 +314,7 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  Widget _buildFavoriteIcon() {
+  Widget _buildFavoriteIcon(BuildContext context) {
     return GetBuilder<ProductController>(
       id: "favorite",
       builder: (_) {
@@ -346,7 +346,7 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  Widget _buildProductDetails() {
+  Widget _buildProductDetails(BuildContext context) {
     return GetBuilder<ProductController>(
       builder: (_) {
         return Column(
@@ -369,7 +369,7 @@ class ProductView extends GetView<ProductController> {
                 ),
               ],
             ),
-            SizedBox(height: screenHeight * 0.001),
+            SizedBox(height: context.screenHeight * 0.001),
             Row(
               children: [
                 RatingBar.builder(
@@ -386,7 +386,7 @@ class ProductView extends GetView<ProductController> {
                   ),
                   onRatingUpdate: (rating) {},
                 ),
-                SizedBox(width: screenWidth * 0.02),
+                SizedBox(width: context.screenWidth * 0.02),
                 Text(
                   "(2525)",
                   style: AppTextStyles().normal12().copyWith(
@@ -395,14 +395,14 @@ class ProductView extends GetView<ProductController> {
                 ),
               ],
             ),
-            SizedBox(height: screenHeight * 0.01),
+            SizedBox(height: context.screenHeight * 0.01),
             Text(
               "See Reviews ...",
               style: AppTextStyles()
                   .bold12()
                   .copyWith(color: Get.theme.primaryColor),
             ),
-            SizedBox(height: screenHeight * 0.03),
+            SizedBox(height: context.screenHeight * 0.03),
             Text(
               controller.product.description,
               softWrap: true,
@@ -417,7 +417,8 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  Widget _buildInfo({
+  Widget _buildInfo(
+    BuildContext context, {
     required String title,
     required void Function() onTap,
   }) {
@@ -425,7 +426,7 @@ class ProductView extends GetView<ProductController> {
       onTap: onTap,
       child: Column(
         children: [
-          SizedBox(height: screenHeight * 0.01),
+          SizedBox(height: context.screenHeight * 0.01),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -442,7 +443,7 @@ class ProductView extends GetView<ProductController> {
               )
             ],
           ),
-          SizedBox(height: screenHeight * 0.01),
+          SizedBox(height: context.screenHeight * 0.01),
           _buildDivider(),
         ],
       ),
@@ -455,18 +456,18 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  Widget _buildYouCanAlsoLikeThis() {
+  Widget _buildYouCanAlsoLikeThis(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: screenHeight * 0.01),
+        SizedBox(height: context.screenHeight * 0.01),
         Text(
           "You can also like this",
           style: AppTextStyles().semiBold18().copyWith(
                 color: Get.theme.colorScheme.secondary,
               ),
         ),
-        SizedBox(height: screenHeight * 0.01),
+        SizedBox(height: context.screenHeight * 0.01),
         ProductGridView(
             products: controller.products,
             onTap: (index) {
@@ -478,14 +479,14 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  GetBuilder<ProductController> _buildActionButtons() {
+  GetBuilder<ProductController> _buildActionButtons(BuildContext context) {
     return GetBuilder<ProductController>(
       id: "add_to_cart",
       builder: (_) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: screenPadding),
           child: SizedBox(
-            width: screenWidth,
+            width: context.screenWidth,
             height: 50,
             child: CustomButton(
               onPressed: () {},

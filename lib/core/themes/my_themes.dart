@@ -28,10 +28,10 @@ class MyThemes {
         ));
   }
 
-  static ThemeData customDarkTheme() {
-    return ThemeData(
-      fontFamily: "Alexandria",
-      useMaterial3: true,
-    );
-  }
+  // static ThemeData customDarkTheme() {
+  //   return ThemeData(
+  //     fontFamily: "Alexandria",
+  //     useMaterial3: true,
+  //   );
+  // }
 }

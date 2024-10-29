@@ -21,7 +21,7 @@ class LoginView extends GetView<LoginController> {
           child: Column(
             children: [
               SizedBox(
-                height: screenHeight * 0.27,
+                height: context.screenHeight * 0.27,
                 child: const CustomHeaderAuth(
                   image: Assets.imagesLogoWhiteSmall,
                   title: "Unlock your shopping adventure",
@@ -44,7 +44,7 @@ class LoginView extends GetView<LoginController> {
                       builder: (_) {
                         return Column(
                           children: [
-                            SizedBox(height: screenHeight * 0.024),
+                            SizedBox(height: context.screenHeight * 0.024),
                             CustomContainerAuth(
                               firstText: 'Email',
                               secondText: 'Phone Number',

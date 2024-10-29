@@ -20,7 +20,7 @@ class OnBoardingView extends GetView<OnBoardingController> {
               child: _buildPageView(),
             ),
             _buildBottomIndicator(),
-            SizedBox(height: screenHeight * 0.02),
+            SizedBox(height: context.screenHeight * 0.02),
           ],
         ),
       ),

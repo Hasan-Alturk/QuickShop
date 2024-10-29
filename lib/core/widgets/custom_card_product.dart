@@ -37,8 +37,8 @@ class CustomCardProduct extends StatelessWidget {
           Column(
             children: [
               SizedBox(
-                height: screenHeight * 0.22,
-                width: screenWidth,
+                height: context.screenHeight * 0.22,
+                width: context.screenWidth,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(24),
@@ -62,14 +62,14 @@ class CustomCardProduct extends StatelessWidget {
                               color: Get.theme.colorScheme.secondary,
                             ),
                       ),
-                      SizedBox(height: screenHeight * 0.005),
+                      SizedBox(height: context.screenHeight * 0.005),
                       Text(
                         description,
                         style: AppTextStyles().medium12().copyWith(
                               color: Get.theme.colorScheme.onSurface,
                             ),
                       ),
-                      SizedBox(height: screenHeight * 0.005),
+                      SizedBox(height: context.screenHeight * 0.005),
                       Row(
                         children: [
                           Text(
@@ -78,7 +78,7 @@ class CustomCardProduct extends StatelessWidget {
                                   color: Get.theme.colorScheme.primary,
                                 ),
                           ),
-                          SizedBox(width: screenWidth * 0.025),
+                          SizedBox(width: context.screenWidth * 0.025),
                           Text(
                             originalPrice,
                             style: AppTextStyles().medium12().copyWith(
@@ -88,7 +88,7 @@ class CustomCardProduct extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(height: screenHeight * 0.005),
+                      SizedBox(height: context.screenHeight * 0.005),
                       RatingBar.builder(
                         itemSize: 18,
                         initialRating: rating,
@@ -105,7 +105,7 @@ class CustomCardProduct extends StatelessWidget {
                           log(rating.toString());
                         },
                       ),
-                      SizedBox(height: screenHeight * 0.005),
+                      SizedBox(height: context.screenHeight * 0.005),
                       Text(
                         'Based on 800 reviews',
                         style: AppTextStyles()
