@@ -1,10 +1,6 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
-  /// Assets for imagesActiveIcon
-  /// assets/images/active_icon.svg
-  static const String imagesActiveIcon = "assets/images/active_icon.svg";
 
   /// Assets for imagesAppIcon
   /// assets/images/app_icon.png
@@ -21,14 +17,6 @@ class Assets {
   /// Assets for imagesBurgur
   /// assets/images/burgur.png
   static const String imagesBurgur = "assets/images/burgur.png";
-
-  /// Assets for imagesCart
-  /// assets/images/cart.svg
-  static const String imagesCart = "assets/images/cart.svg";
-
-  /// Assets for imagesCategories
-  /// assets/images/Categories.svg
-  static const String imagesCategories = "assets/images/Categories.svg";
 
   /// Assets for imagesDress
   /// assets/images/dress.png
@@ -50,10 +38,6 @@ class Assets {
   /// assets/images/fashion.svg
   static const String imagesFashion = "assets/images/fashion.svg";
 
-  /// Assets for imagesFavourite
-  /// assets/images/favourite.svg
-  static const String imagesFavourite = "assets/images/favourite.svg";
-
   /// Assets for imagesFood
   /// assets/images/food.svg
   static const String imagesFood = "assets/images/food.svg";
@@ -61,14 +45,6 @@ class Assets {
   /// Assets for imagesGoogle
   /// assets/images/google.svg
   static const String imagesGoogle = "assets/images/google.svg";
-
-  /// Assets for imagesHeaderAuth
-  /// assets/images/header_auth.svg
-  static const String imagesHeaderAuth = "assets/images/header_auth.svg";
-
-  /// Assets for imagesHome
-  /// assets/images/home.svg
-  static const String imagesHome = "assets/images/home.svg";
 
   /// Assets for imagesLaptop
   /// assets/images/laptop.png
@@ -80,7 +56,8 @@ class Assets {
 
   /// Assets for imagesLogoHorizontal
   /// assets/images/logo_horizontal.svg
-  static const String imagesLogoHorizontal = "assets/images/logo_horizontal.svg";
+  static const String imagesLogoHorizontal =
+      "assets/images/logo_horizontal.svg";
 
   /// Assets for imagesLogoWhite
   /// assets/images/logo_white.svg
@@ -88,7 +65,8 @@ class Assets {
 
   /// Assets for imagesLogoWhiteSmall
   /// assets/images/logo_white_small.svg
-  static const String imagesLogoWhiteSmall = "assets/images/logo_white_small.svg";
+  static const String imagesLogoWhiteSmall =
+      "assets/images/logo_white_small.svg";
 
   /// Assets for imagesMadrb
   /// assets/images/madrb.png
@@ -97,14 +75,6 @@ class Assets {
   /// Assets for imagesName
   /// assets/images/name.svg
   static const String imagesName = "assets/images/name.svg";
-
-  /// Assets for imagesNotification
-  /// assets/images/notification.svg
-  static const String imagesNotification = "assets/images/notification.svg";
-
-  /// Assets for imagesNotificationWithRed
-  /// assets/images/notification_with_red.svg
-  static const String imagesNotificationWithRed = "assets/images/notification_with_red.svg";
 
   /// Assets for imagesOnBoarding1
   /// assets/images/on_boarding_1.png
@@ -126,21 +96,9 @@ class Assets {
   /// assets/images/phone.svg
   static const String imagesPhone = "assets/images/phone.svg";
 
-  /// Assets for imagesProfile
-  /// assets/images/profile.svg
-  static const String imagesProfile = "assets/images/profile.svg";
-
-  /// Assets for imagesPromo
-  /// assets/images/promo.svg
-  static const String imagesPromo = "assets/images/promo.svg";
-
   /// Assets for imagesSchool
   /// assets/images/school.svg
   static const String imagesSchool = "assets/images/school.svg";
-
-  /// Assets for imagesSearch
-  /// assets/images/search.svg
-  static const String imagesSearch = "assets/images/search.svg";
 
   /// Assets for imagesShoes
   /// assets/images/shoes.svg
@@ -158,4 +116,3 @@ class Assets {
   /// assets/images/sub_cati.png
   static const String imagesSubCati = "assets/images/sub_cati.png";
 }
-

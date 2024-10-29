@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
 import 'package:quick_shop/core/widgets/custom_search.dart';
@@ -20,9 +21,10 @@ class CustomHeaderHome extends StatelessWidget {
               Assets.imagesLogoHorizontal,
               fit: BoxFit.cover,
             ),
-            SvgPicture.asset(
-              Assets.imagesNotification,
-              fit: BoxFit.cover,
+            Icon(
+              Icons.notifications,
+              color: Get.theme.colorScheme.primary,
+              size: 24,
             ),
           ],
         ),
