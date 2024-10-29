@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -5,6 +7,7 @@ import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/core/widgets/custom_button.dart';
 import 'package:quick_shop/core/widgets/dots_indicator.dart';
+import 'package:quick_shop/core/widgets/product_grid_view.dart';
 import 'package:quick_shop/views/product/product_controller.dart';
 
 class ProductView extends GetView<ProductController> {
@@ -15,7 +18,8 @@ class ProductView extends GetView<ProductController> {
     return Scaffold(
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: screenPadding),
+        padding: EdgeInsets.fromLTRB(
+            screenPadding, 0, screenPadding, screenHeight * 0.1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -33,7 +37,11 @@ class ProductView extends GetView<ProductController> {
             SizedBox(height: screenHeight * 0.01),
             _buildProductDetails(),
             SizedBox(height: screenHeight * 0.01),
-            _builds(),
+            _buildDivider(),
+            _buildInfo(title: "Item Details", onTap: () {}),
+            _buildInfo(title: "Shippimg Info", onTap: () {}),
+            _buildInfo(title: "Supports", onTap: () {}),
+            _buildYouCanAlsoLikeThis(),
           ],
         ),
       ),
@@ -338,65 +346,20 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  GetBuilder<ProductController> _buildActionButtons() {
-    return GetBuilder<ProductController>(
-      id: "add_to_cart",
-      builder: (_) {
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenPadding),
-          child: SizedBox(
-            width: screenWidth,
-            height: 50,
-            child: CustomButton(
-              onPressed: () {},
-              text: "Add To Cart",
-              isLoading: false,
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   Widget _buildProductDetails() {
     return GetBuilder<ProductController>(
       builder: (_) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              controller.product.title,
-              style: AppTextStyles().semiBold24().copyWith(
-                    color: Get.theme.colorScheme.secondary,
-                  ),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    RatingBar.builder(
-                      initialRating: controller.product.rating,
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      itemSize: 18,
-                      allowHalfRating: true,
-                      ignoreGestures: true,
-                      itemCount: 5,
-                      itemBuilder: (context, _) => const Icon(
-                        Icons.star_outlined,
-                        color: Colors.amber,
+                Text(
+                  controller.product.title,
+                  style: AppTextStyles().semiBold24().copyWith(
+                        color: Get.theme.colorScheme.secondary,
                       ),
-                      onRatingUpdate: (rating) {},
-                    ),
-                    SizedBox(width: screenWidth * 0.02),
-                    Text(
-                      "(2525)",
-                      style: AppTextStyles().normal12().copyWith(
-                            color: Get.theme.colorScheme.onSurface,
-                          ),
-                    ),
-                  ],
                 ),
                 Text(
                   controller.product.originalPrice,
@@ -406,6 +369,33 @@ class ProductView extends GetView<ProductController> {
                 ),
               ],
             ),
+            SizedBox(height: screenHeight * 0.001),
+            Row(
+              children: [
+                RatingBar.builder(
+                  initialRating: controller.product.rating,
+                  minRating: 1,
+                  direction: Axis.horizontal,
+                  itemSize: 18,
+                  allowHalfRating: true,
+                  ignoreGestures: true,
+                  itemCount: 5,
+                  itemBuilder: (context, _) => const Icon(
+                    Icons.star_outlined,
+                    color: Colors.amber,
+                  ),
+                  onRatingUpdate: (rating) {},
+                ),
+                SizedBox(width: screenWidth * 0.02),
+                Text(
+                  "(2525)",
+                  style: AppTextStyles().normal12().copyWith(
+                        color: Get.theme.colorScheme.onSurface,
+                      ),
+                ),
+              ],
+            ),
+            SizedBox(height: screenHeight * 0.01),
             Text(
               "See Reviews ...",
               style: AppTextStyles()
@@ -427,13 +417,82 @@ class ProductView extends GetView<ProductController> {
     );
   }
 
-  Widget _builds() {
+  Widget _buildInfo({
+    required String title,
+    required void Function() onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          SizedBox(height: screenHeight * 0.01),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: AppTextStyles().semiBold16().copyWith(
+                      color: Get.theme.colorScheme.secondary,
+                    ),
+              ),
+              Icon(
+                Icons.arrow_forward_ios,
+                size: 24,
+                color: Get.theme.colorScheme.primary,
+              )
+            ],
+          ),
+          SizedBox(height: screenHeight * 0.01),
+          _buildDivider(),
+        ],
+      ),
+    );
+  }
+
+  Divider _buildDivider() {
+    return Divider(
+      color: Get.theme.colorScheme.onSecondary,
+    );
+  }
+
+  Widget _buildYouCanAlsoLikeThis() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: screenHeight * 0.01),
+        Text(
+          "You can also like this",
+          style: AppTextStyles().semiBold18().copyWith(
+                color: Get.theme.colorScheme.secondary,
+              ),
+        ),
+        SizedBox(height: screenHeight * 0.01),
+        ProductGridView(
+            products: controller.products,
+            onTap: (index) {
+              final selectedProduct = controller.products[index];
+              log("Selected Product: ${selectedProduct.title}"); // تسجيل المنتج
+              controller.goToProduct(selectedProduct);
+            }),
+      ],
+    );
+  }
+
+  GetBuilder<ProductController> _buildActionButtons() {
     return GetBuilder<ProductController>(
+      id: "add_to_cart",
       builder: (_) {
-        return Column(
-          children: [
-            SizedBox(height: screenHeight * 0.03),
-          ],
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenPadding),
+          child: SizedBox(
+            width: screenWidth,
+            height: 50,
+            child: CustomButton(
+              onPressed: () {},
+              text: "Add To Cart",
+              isLoading: false,
+            ),
+          ),
         );
       },
     );

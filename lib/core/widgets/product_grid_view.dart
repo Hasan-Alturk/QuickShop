@@ -4,7 +4,7 @@ import 'package:quick_shop/core/widgets/custom_card_product.dart';
 
 class ProductGridView extends StatelessWidget {
   final List<Product> products;
-  final void Function() onTap; // تغيير هنا لتأخذ الفهرس
+  final void Function(int) onTap; // تغيير onTap ليقبل فهرس العنصر
 
   const ProductGridView({
     super.key,
@@ -27,7 +27,7 @@ class ProductGridView extends StatelessWidget {
       itemBuilder: (_, index) {
         final product = products[index];
         return GestureDetector(
-          onTap: onTap,
+          onTap: () => onTap(index), // تمرير فهرس العنصر إلى onTap
           child: Padding(
             padding: const EdgeInsets.all(4.0),
             child: CustomCardProduct(

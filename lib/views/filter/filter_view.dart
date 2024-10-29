@@ -14,7 +14,8 @@ class FilterView extends GetView<FilterController> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenPadding),
+            padding: EdgeInsets.fromLTRB(
+                screenPadding, 0, screenPadding, screenHeight * 0.1),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -40,7 +41,6 @@ class FilterView extends GetView<FilterController> {
                 _buildSectionTitle('Size'),
                 SizedBox(height: screenHeight * 0.012),
                 _buildSizeChips(),
-                SizedBox(height: screenHeight * 0.1),
               ],
             ),
           ),
@@ -71,7 +71,7 @@ class FilterView extends GetView<FilterController> {
     );
   }
 
-  Widget _buildDivider() {
+  Divider _buildDivider() {
     return Divider(color: Get.theme.colorScheme.onSecondary);
   }
 

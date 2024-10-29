@@ -28,8 +28,8 @@ class ForYouController extends GetxController {
     Get.toNamed("/filter");
   }
 
-  void goToProduct() {
-    Get.toNamed("/product");
+  void goToProduct(Product product) {
+    Get.toNamed("/product", arguments: product);
   }
 
   List<Product> products = [

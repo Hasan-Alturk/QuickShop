@@ -59,6 +59,13 @@ class AppTextStyles {
     );
   }
 
+  TextStyle semiBold18() {
+    return TextStyle(
+      fontWeight: FontWeight.w600,
+      fontSize: getResponsiveFontSize(fontSize: 18),
+    );
+  }
+
   TextStyle semiBold16() {
     return TextStyle(
       fontWeight: FontWeight.w600,

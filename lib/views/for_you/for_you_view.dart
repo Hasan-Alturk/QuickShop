@@ -104,8 +104,10 @@ class ForYouView extends GetView<ForYouController> {
             builder: (_) {
               return ProductGridView(
                 products: controller.products,
-                onTap: () {
-                  controller.goToProduct();
+                onTap: (index) {
+                  final selectedProduct = controller.products[index];
+                  controller
+                      .goToProduct(selectedProduct); // تمرير المنتج المحدد
                 },
               );
             },

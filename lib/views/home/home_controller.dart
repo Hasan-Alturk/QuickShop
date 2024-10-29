@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -179,8 +177,7 @@ class HomeController extends GetxController {
     Get.toNamed("/popular");
   }
 
-  void goToProduct() {
-    Get.toNamed("/product");
-    log("message");
+  void goToProduct(Product product) {
+    Get.toNamed("/product", arguments: product);
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
@@ -30,9 +28,8 @@ class PopularController extends GetxController {
     Get.toNamed("/filter");
   }
 
-  void goToProduct() {
-    Get.toNamed("/product");
-    log("message");
+  void goToProduct(Product product) {
+    Get.toNamed("/product", arguments: product);
   }
 
   List<Product> products = [

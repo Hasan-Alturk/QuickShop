@@ -126,9 +126,10 @@ class HomeView extends GetView<HomeController> {
   Widget _buildProductGrid(List<Product> products) {
     return GetBuilder<HomeController>(builder: (_) {
       return ProductGridView(
-        products: products,
-        onTap: () {
-          controller.goToProduct();
+        products: controller.products,
+        onTap: (index) {
+          final selectedProduct = controller.products[index];
+          controller.goToProduct(selectedProduct); // تمرير المنتج المحدد
         },
       );
     });

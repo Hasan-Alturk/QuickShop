@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_images.dart';
@@ -11,20 +12,14 @@ class ProductController extends GetxController {
   Color colorBorderSize = Get.theme.colorScheme.onSecondary;
   Color colorBorderColor = Get.theme.colorScheme.onSecondary;
 
-  Product product = Product(
-    images: [
-      Assets.imagesBurgur,
-      Assets.imagesArduino,
-      Assets.imagesBurgur,
-      Assets.imagesLaptop,
-    ],
-    title: "Burgur",
-    description:
-        "Short dress in soft cotton jersey with decorative buttons down the front and a wide, frill-trimmed square neckline with concealed elastication. Elasticated seam under the bust and short puff sleeves with a small frill trim.",
-    originalPrice: "\$12.99",
-    discountedPrice: "\$45.99",
-    rating: 5,
-  );
+  late Product product;
+
+  @override
+  void onInit() {
+    super.onInit();
+    product = Get.arguments;
+    log("Current Product: ${product.title}");
+  }
 
   List<String> colors = [
     "Red",
@@ -42,6 +37,57 @@ class ProductController extends GetxController {
     'X Larg',
     'XX Larg',
     'XXX Larg',
+  ];
+
+  List<Product> products = [
+    Product(
+      images: [
+        Assets.imagesArduino,
+        Assets.imagesArduino,
+        Assets.imagesArduino,
+        Assets.imagesArduino,
+      ],
+      title: "Arduino",
+      description: "Lorem Ipsum is simply dummy text of the ",
+      originalPrice: "195\$",
+      discountedPrice: "130\$",
+    ),
+    Product(
+      images: [
+        Assets.imagesLaptop,
+        Assets.imagesLaptop,
+        Assets.imagesLaptop,
+        Assets.imagesLaptop,
+      ],
+      title: "laptop",
+      description: "Lorem Ipsum is simply dummy text of the ",
+      originalPrice: "15\$",
+      discountedPrice: "10\$",
+    ),
+    Product(
+      images: [
+        Assets.imagesBurgur,
+        Assets.imagesBurgur,
+        Assets.imagesBurgur,
+        Assets.imagesBurgur,
+      ],
+      title: "Burgur",
+      description: "Lorem Ipsum is simply dummy text of the ",
+      originalPrice: "150\$",
+      discountedPrice: "120\$",
+    ),
+    Product(
+      images: [
+        Assets.imagesDress,
+        Assets.imagesDress,
+        Assets.imagesDress,
+        Assets.imagesDress,
+      ],
+      title: "Dress",
+      description: "Lorem Ipsum is simply dummy text of the ",
+      originalPrice: "15\$",
+      discountedPrice: "10\$",
+    ),
   ];
 
   void onImageChange(int index) {
@@ -64,5 +110,11 @@ class ProductController extends GetxController {
   void toggleFavorite() {
     isFavorite = !isFavorite;
     update(["favorite"]);
+  }
+
+  void goToProduct(Product newProduct) {
+    Get.toNamed("/product", arguments: newProduct);
+
+    log("Navigating to product: ${product.title}");
   }
 }
