@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class CustomContainerAuth extends StatelessWidget {
   const CustomContainerAuth({

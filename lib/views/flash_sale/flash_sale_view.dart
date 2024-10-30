@@ -8,6 +8,7 @@ import 'package:quick_shop/core/widgets/custom_sorting_button.dart';
 import 'package:quick_shop/core/widgets/product_grid_view.dart';
 import 'package:quick_shop/core/widgets/sorting_options_bottom_sheet.dart';
 import 'package:quick_shop/views/flash_sale/flash_sale_controller.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class FlashSaleView extends GetView<FlashSaleController> {
   const FlashSaleView({super.key});

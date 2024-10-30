@@ -9,6 +9,7 @@ import 'package:quick_shop/core/widgets/custom_card_category.dart';
 import 'package:quick_shop/core/widgets/custom_carousel_slider.dart';
 import 'package:quick_shop/core/widgets/dots_indicator.dart';
 import 'package:quick_shop/core/widgets/custom_header_home.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});

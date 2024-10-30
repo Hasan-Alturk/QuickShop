@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/assets.dart';
 import 'package:quick_shop/views/auth/sign_up/sign_up_controller.dart';
 import 'package:quick_shop/core/widgets/custom_bottom_auth.dart';
@@ -9,6 +8,7 @@ import 'package:quick_shop/core/widgets/custom_button.dart';
 import 'package:quick_shop/core/widgets/custom_google_facebook_iphone.dart';
 import 'package:quick_shop/core/widgets/custom_or_auth_with.dart';
 import 'package:quick_shop/core/widgets/custom_text_field.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class SignUpWithEmailView extends GetView<SignUpController> {
   const SignUpWithEmailView({

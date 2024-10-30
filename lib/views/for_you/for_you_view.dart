@@ -8,6 +8,7 @@ import 'package:quick_shop/core/widgets/product_grid_view.dart';
 import 'package:quick_shop/core/widgets/sorting_options_bottom_sheet.dart';
 import 'package:quick_shop/views/for_you/for_you_controller.dart';
 import 'package:quick_shop/core/widgets/custom_search.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class ForYouView extends GetView<ForYouController> {
   const ForYouView({super.key});

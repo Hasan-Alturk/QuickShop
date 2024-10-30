@@ -9,6 +9,7 @@ import 'package:quick_shop/core/widgets/custom_button.dart';
 import 'package:quick_shop/core/widgets/dots_indicator.dart';
 import 'package:quick_shop/core/widgets/product_grid_view.dart';
 import 'package:quick_shop/views/product/product_controller.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class ProductView extends GetView<ProductController> {
   const ProductView({super.key});
@@ -41,6 +42,7 @@ class ProductView extends GetView<ProductController> {
             _buildInfo(context, title: "Item Details", onTap: () {}),
             _buildInfo(context, title: "Shippimg Info", onTap: () {}),
             _buildInfo(context, title: "Supports", onTap: () {}),
+            SizedBox(height: context.screenHeight * 0.03),
             _buildYouCanAlsoLikeThis(context),
           ],
         ),
@@ -53,7 +55,7 @@ class ProductView extends GetView<ProductController> {
   AppBar _buildAppBar() {
     return AppBar(
       title: Text(
-        "Product",
+        controller.product.title,
         style: AppTextStyles().bold16().copyWith(color: Get.theme.primaryColor),
       ),
       actions: [
@@ -104,82 +106,84 @@ class ProductView extends GetView<ProductController> {
         builder: (_) {
           return ElevatedButton(
             onPressed: () => Get.bottomSheet(
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: screenPadding),
-                decoration: BoxDecoration(
-                  color: Get.theme.scaffoldBackgroundColor,
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(32)),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(height: context.screenHeight * 0.012),
-                    Center(
-                      child: Column(
-                        children: [
-                          Container(
-                            width: context.screenWidth * 0.1,
-                            height: context.screenHeight * 0.005,
-                            decoration: BoxDecoration(
-                              color: Get.theme.colorScheme.onSecondary,
-                              borderRadius: BorderRadius.circular(32),
+              isScrollControlled: true,
+              SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: screenPadding),
+                  decoration: BoxDecoration(
+                    color: Get.theme.scaffoldBackgroundColor,
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(32)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: context.screenHeight * 0.02),
+                      Center(
+                        child: Column(
+                          children: [
+                            Container(
+                              width: context.screenWidth * 0.1,
+                              height: context.screenHeight * 0.005,
+                              decoration: BoxDecoration(
+                                color: Get.theme.colorScheme.onSecondary,
+                                borderRadius: BorderRadius.circular(32),
+                              ),
                             ),
-                          ),
-                          SizedBox(height: context.screenHeight * 0.012),
-                          Text(
-                            "Select Size",
-                            style: AppTextStyles().semiBold24().copyWith(
-                                  color: Get.theme.colorScheme.secondary,
-                                ),
-                          ),
-                        ],
+                            SizedBox(height: context.screenHeight * 0.012),
+                            Text(
+                              "Select Size",
+                              style: AppTextStyles().semiBold24().copyWith(
+                                    color: Get.theme.colorScheme.secondary,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(height: context.screenHeight * 0.012),
-                    GetBuilder<ProductController>(
-                      id: "size",
-                      builder: (_) {
-                        return Wrap(
-                          spacing: 10.0,
-                          runSpacing: 10.0,
-                          children: controller.sizes.map((size) {
-                            return ChoiceChip(
-                              showCheckmark: false,
-                              label: Text(
-                                size,
-                                style: TextStyle(
-                                  color: controller.selectedSize == size
-                                      ? Get.theme.colorScheme.onPrimary
-                                      : Get.theme.colorScheme.secondary,
+                      SizedBox(height: context.screenHeight * 0.012),
+                      GetBuilder<ProductController>(
+                        id: "size",
+                        builder: (_) {
+                          return Wrap(
+                            spacing: 10.0,
+                            runSpacing: 10.0,
+                            children: controller.sizes.map((size) {
+                              return ChoiceChip(
+                                showCheckmark: false,
+                                label: Text(
+                                  size,
+                                  style: TextStyle(
+                                    color: controller.selectedSize == size
+                                        ? Get.theme.colorScheme.onPrimary
+                                        : Get.theme.colorScheme.secondary,
+                                  ),
                                 ),
-                              ),
-                              selected: controller.selectedSize == size,
-                              onSelected: (bool selected) {
-                                if (selected) {
-                                  controller.updateSize(size);
-                                  Future.delayed(
-                                    const Duration(milliseconds: 300),
-                                    () {
-                                      Get.back();
-                                    },
-                                  );
-                                }
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  8.0,
+                                selected: controller.selectedSize == size,
+                                onSelected: (bool selected) {
+                                  if (selected) {
+                                    controller.updateSize(size);
+                                    Future.delayed(
+                                      const Duration(milliseconds: 300),
+                                      () {
+                                        Get.back();
+                                      },
+                                    );
+                                  }
+                                },
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    8.0,
+                                  ),
                                 ),
-                              ),
-                              selectedColor: Get.theme.colorScheme.primary,
-                            );
-                          }).toList(),
-                        );
-                      },
-                    ),
-                    SizedBox(height: context.screenHeight * 0.1),
-                  ],
+                                selectedColor: Get.theme.colorScheme.primary,
+                              );
+                            }).toList(),
+                          );
+                        },
+                      ),
+                      SizedBox(height: context.screenHeight * 0.05),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -214,80 +218,82 @@ class ProductView extends GetView<ProductController> {
           child: ElevatedButton(
             onPressed: () => Get.bottomSheet(
               isScrollControlled: true,
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: screenPadding),
-                decoration: BoxDecoration(
-                  color: Get.theme.scaffoldBackgroundColor,
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(32)),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SizedBox(height: context.screenHeight * 0.012),
-                    Center(
-                      child: Column(
-                        children: [
-                          Container(
-                            width: context.screenWidth * 0.1,
-                            height: context.screenHeight * 0.005,
-                            decoration: BoxDecoration(
-                              color: Get.theme.colorScheme.onSecondary,
-                              borderRadius: BorderRadius.circular(32),
+              SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: screenPadding),
+                  decoration: BoxDecoration(
+                    color: Get.theme.scaffoldBackgroundColor,
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(32)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: context.screenHeight * 0.02),
+                      Center(
+                        child: Column(
+                          children: [
+                            Container(
+                              width: context.screenWidth * 0.1,
+                              height: context.screenHeight * 0.005,
+                              decoration: BoxDecoration(
+                                color: Get.theme.colorScheme.onSecondary,
+                                borderRadius: BorderRadius.circular(32),
+                              ),
                             ),
-                          ),
-                          SizedBox(height: context.screenHeight * 0.012),
-                          Text(
-                            "Select Color",
-                            style: AppTextStyles().semiBold24().copyWith(
-                                  color: Get.theme.colorScheme.secondary,
-                                ),
-                          ),
-                        ],
+                            SizedBox(height: context.screenHeight * 0.012),
+                            Text(
+                              "Select Color",
+                              style: AppTextStyles().semiBold24().copyWith(
+                                    color: Get.theme.colorScheme.secondary,
+                                  ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(height: context.screenHeight * 0.012),
-                    GetBuilder<ProductController>(
-                      id: "color",
-                      builder: (_) {
-                        return Wrap(
-                          spacing: 10.0,
-                          runSpacing: 10.0,
-                          children: controller.colors.map((color) {
-                            return ChoiceChip(
-                              showCheckmark: false,
-                              label: Text(
-                                color,
-                                style: TextStyle(
-                                  color: controller.selectedColor == color
-                                      ? Get.theme.colorScheme.onPrimary
-                                      : Get.theme.colorScheme.secondary,
+                      SizedBox(height: context.screenHeight * 0.012),
+                      GetBuilder<ProductController>(
+                        id: "color",
+                        builder: (_) {
+                          return Wrap(
+                            spacing: 10.0,
+                            runSpacing: 10.0,
+                            children: controller.colors.map((color) {
+                              return ChoiceChip(
+                                showCheckmark: false,
+                                label: Text(
+                                  color,
+                                  style: TextStyle(
+                                    color: controller.selectedColor == color
+                                        ? Get.theme.colorScheme.onPrimary
+                                        : Get.theme.colorScheme.secondary,
+                                  ),
                                 ),
-                              ),
-                              selected: controller.selectedColor == color,
-                              onSelected: (bool selected) {
-                                if (selected) {
-                                  controller.updateColor(color);
-                                  Future.delayed(
-                                    const Duration(milliseconds: 300),
-                                    () {
-                                      Get.back();
-                                    },
-                                  );
-                                }
-                              },
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              selectedColor: Get.theme.colorScheme.primary,
-                            );
-                          }).toList(),
-                        );
-                      },
-                    ),
-                    SizedBox(height: context.screenHeight * 0.1),
-                  ],
+                                selected: controller.selectedColor == color,
+                                onSelected: (bool selected) {
+                                  if (selected) {
+                                    controller.updateColor(color);
+                                    Future.delayed(
+                                      const Duration(milliseconds: 300),
+                                      () {
+                                        Get.back();
+                                      },
+                                    );
+                                  }
+                                },
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                selectedColor: Get.theme.colorScheme.primary,
+                              );
+                            }).toList(),
+                          );
+                        },
+                      ),
+                      SizedBox(height: context.screenHeight * 0.05),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -396,11 +402,16 @@ class ProductView extends GetView<ProductController> {
               ],
             ),
             SizedBox(height: context.screenHeight * 0.01),
-            Text(
-              "See Reviews ...",
-              style: AppTextStyles()
-                  .bold12()
-                  .copyWith(color: Get.theme.primaryColor),
+            GestureDetector(
+              onTap: () {
+                controller.goToRatingReview();
+              },
+              child: Text(
+                "See Reviews ...",
+                style: AppTextStyles()
+                    .bold12()
+                    .copyWith(color: Get.theme.primaryColor),
+              ),
             ),
             SizedBox(height: context.screenHeight * 0.03),
             Text(
@@ -460,7 +471,6 @@ class ProductView extends GetView<ProductController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: context.screenHeight * 0.01),
         Text(
           "You can also like this",
           style: AppTextStyles().semiBold18().copyWith(

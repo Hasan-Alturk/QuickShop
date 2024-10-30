@@ -42,6 +42,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   get: ^4.6.6
   google_sign_in: ^6.2.1
+  image_picker: ^1.1.2
   intl_phone_field: ^3.2.0
   pushy_flutter: ^2.0.27
   shared_preferences: ^2.3.2

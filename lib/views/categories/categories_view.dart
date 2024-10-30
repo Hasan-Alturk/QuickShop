@@ -6,6 +6,7 @@ import 'package:quick_shop/views/categories/categories_controller.dart';
 import 'package:quick_shop/core/widgets/custom_card_category.dart';
 import 'package:quick_shop/core/widgets/custom_card_sub_category_item.dart';
 import 'package:quick_shop/core/widgets/custom_search.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class CategoriesView extends GetView<CategoriesController> {
   const CategoriesView({super.key});

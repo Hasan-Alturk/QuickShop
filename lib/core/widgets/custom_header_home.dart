@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/assets.dart';
 import 'package:quick_shop/core/widgets/custom_search.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class CustomHeaderHome extends StatelessWidget {
   const CustomHeaderHome({
@@ -28,7 +28,7 @@ class CustomHeaderHome extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: context.screenHeight * 0.012),
+        SizedBox(height: context.screenHeight * 0.02),
         Row(
           children: [
             const Expanded(

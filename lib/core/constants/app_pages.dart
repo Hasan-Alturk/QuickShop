@@ -35,6 +35,8 @@ import 'package:quick_shop/views/product/product_binding.dart';
 import 'package:quick_shop/views/product/product_view.dart';
 import 'package:quick_shop/views/profile/profile_binding.dart';
 import 'package:quick_shop/views/profile/profile_view.dart';
+import 'package:quick_shop/views/review/rating_review_binding.dart';
+import 'package:quick_shop/views/review/rating_review_view.dart';
 import 'package:quick_shop/views/splash/splash_binding.dart';
 import 'package:quick_shop/views/splash/splash_view.dart';
 
@@ -152,5 +154,11 @@ List<GetPage> appPages = [
     name: "/product",
     page: () => const ProductView(),
     binding: ProductBinding(),
+  ),
+
+  GetPage(
+    name: "/rating_review",
+    page: () => const RatingReviewView(),
+    binding: RatingReviewBinding(),
   ),
 ];

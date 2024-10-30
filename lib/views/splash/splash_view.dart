@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/assets.dart';
 import 'package:quick_shop/views/splash/splash_controller.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class SplashView extends GetView<SplashController> {
   const SplashView({super.key});
@@ -15,7 +15,7 @@ class SplashView extends GetView<SplashController> {
       body: Stack(
         children: [
           _buildSplashBackground(context), // تمرير context
-          _buildSplashContent(context),    // تمرير context
+          _buildSplashContent(context), // تمرير context
         ],
       ),
     );

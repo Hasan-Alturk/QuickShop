@@ -5,6 +5,7 @@ import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/onBoarding/on_boarding_controller.dart';
 import 'package:quick_shop/core/widgets/dots_indicator.dart';
 import 'package:quick_shop/core/widgets/custom_page_view_on_boarding_item.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class OnBoardingView extends GetView<OnBoardingController> {
   const OnBoardingView({super.key});

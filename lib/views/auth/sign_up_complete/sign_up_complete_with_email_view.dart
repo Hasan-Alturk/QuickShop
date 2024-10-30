@@ -7,6 +7,7 @@ import 'package:quick_shop/views/auth/sign_up_complete/sign_up_complete_controll
 import 'package:quick_shop/core/widgets/custom_button.dart';
 import 'package:quick_shop/core/widgets/custom_header_auth.dart';
 import 'package:quick_shop/core/widgets/custom_text_field.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class SignUpCompleteWithEmailView extends GetView<SignUpCompleteController> {
   const SignUpCompleteWithEmailView({

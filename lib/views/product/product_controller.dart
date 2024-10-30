@@ -112,9 +112,13 @@ class ProductController extends GetxController {
     update(["favorite"]);
   }
 
+  void goToRatingReview() {
+    Get.toNamed("/rating_review");
+  }
+
   void goToProduct(Product newProduct) {
     Get.toNamed("/product", arguments: newProduct);
 
-    log("Navigating to product: ${product.title}");
+    log("Navigating to product: ${newProduct.title}");
   }
 }

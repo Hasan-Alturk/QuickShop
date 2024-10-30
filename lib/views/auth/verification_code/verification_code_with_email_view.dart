@@ -8,6 +8,7 @@ import 'package:quick_shop/core/widgets/custom_button.dart';
 import 'package:quick_shop/core/widgets/custom_header_auth.dart';
 import 'package:quick_shop/core/widgets/otp_text_field.dart';
 import 'package:quick_shop/core/widgets/timer_button.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class VerificationCodeWithEmailView
     extends GetView<VerificationCodeController> {

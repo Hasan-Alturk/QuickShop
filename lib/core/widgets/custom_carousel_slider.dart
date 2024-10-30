@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:quick_shop/core/constants/app_constants.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class CustomCarouselSlider extends StatelessWidget {
   final List<Widget> items;

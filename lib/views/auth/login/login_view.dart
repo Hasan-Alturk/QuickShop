@@ -7,6 +7,7 @@ import 'package:quick_shop/views/auth/login/login_with_email_view.dart';
 import 'package:quick_shop/views/auth/login/login_with_phone_view.dart';
 import 'package:quick_shop/core/widgets/custom_container_auth.dart';
 import 'package:quick_shop/core/widgets/custom_header_auth.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
