@@ -1,13 +1,12 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/core/widgets/custom_button.dart';
-import 'package:quick_shop/core/widgets/dots_indicator.dart';
-import 'package:quick_shop/core/widgets/product_grid_view.dart';
+import 'package:quick_shop/core/widgets/custom_rating.dart';
+import 'package:quick_shop/core/widgets/custom_dots_indicator.dart';
+import 'package:quick_shop/core/widgets/custom_product_grid_view.dart';
 import 'package:quick_shop/views/product/product_controller.dart';
 import 'package:quick_shop/core/services/plugin_media_que.dart';
 
@@ -19,8 +18,7 @@ class ProductView extends GetView<ProductController> {
     return Scaffold(
       appBar: _buildAppBar(),
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(
-            screenPadding, 0, screenPadding, context.screenHeight * 0.1),
+        padding: EdgeInsets.all(screenPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,13 +35,14 @@ class ProductView extends GetView<ProductController> {
             ),
             SizedBox(height: context.screenHeight * 0.01),
             _buildProductDetails(context),
-            SizedBox(height: context.screenHeight * 0.01),
+            SizedBox(height: context.screenHeight * 0.03),
             _buildDivider(),
             _buildInfo(context, title: "Item Details", onTap: () {}),
             _buildInfo(context, title: "Shippimg Info", onTap: () {}),
             _buildInfo(context, title: "Supports", onTap: () {}),
             SizedBox(height: context.screenHeight * 0.03),
             _buildYouCanAlsoLikeThis(context),
+            SizedBox(height: context.screenHeight * 0.06),
           ],
         ),
       ),
@@ -88,7 +87,7 @@ class ProductView extends GetView<ProductController> {
               bottom: 10,
               left: 0,
               right: 0,
-              child: DotsIndicator(
+              child: CustomDotsIndicator(
                 itemsCount: controller.product.images.length,
                 currentPage: controller.currentImage,
               ),
@@ -145,8 +144,8 @@ class ProductView extends GetView<ProductController> {
                         id: "size",
                         builder: (_) {
                           return Wrap(
-                            spacing: 10.0,
-                            runSpacing: 10.0,
+                            spacing: screenPadding,
+                            runSpacing: screenPadding,
                             children: controller.sizes.map((size) {
                               return ChoiceChip(
                                 showCheckmark: false,
@@ -257,8 +256,8 @@ class ProductView extends GetView<ProductController> {
                         id: "color",
                         builder: (_) {
                           return Wrap(
-                            spacing: 10.0,
-                            runSpacing: 10.0,
+                            spacing: screenPadding,
+                            runSpacing: screenPadding,
                             children: controller.colors.map((color) {
                               return ChoiceChip(
                                 showCheckmark: false,
@@ -378,19 +377,9 @@ class ProductView extends GetView<ProductController> {
             SizedBox(height: context.screenHeight * 0.001),
             Row(
               children: [
-                RatingBar.builder(
-                  initialRating: controller.product.rating,
-                  minRating: 1,
-                  direction: Axis.horizontal,
+                CustomRating(
+                  isReadOnly: true,
                   itemSize: 18,
-                  allowHalfRating: true,
-                  ignoreGestures: true,
-                  itemCount: 5,
-                  itemBuilder: (context, _) => const Icon(
-                    Icons.star_outlined,
-                    color: Colors.amber,
-                  ),
-                  onRatingUpdate: (rating) {},
                 ),
                 SizedBox(width: context.screenWidth * 0.02),
                 Text(
@@ -409,7 +398,7 @@ class ProductView extends GetView<ProductController> {
               child: Text(
                 "See Reviews ...",
                 style: AppTextStyles()
-                    .bold12()
+                    .semiBold14()
                     .copyWith(color: Get.theme.primaryColor),
               ),
             ),
@@ -478,7 +467,7 @@ class ProductView extends GetView<ProductController> {
               ),
         ),
         SizedBox(height: context.screenHeight * 0.01),
-        ProductGridView(
+        CustomProductGridView(
             products: controller.products,
             onTap: (index) {
               final selectedProduct = controller.products[index];

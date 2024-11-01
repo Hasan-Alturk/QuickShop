@@ -5,16 +5,29 @@ import 'package:quick_shop/core/models/user.dart';
 import 'package:quick_shop/core/services/shared_preferences_singleton.dart';
 import 'package:quick_shop/views/cart/cart_binding.dart';
 import 'package:quick_shop/views/cart/cart_controller.dart';
+import 'package:quick_shop/views/cart/cart_view.dart';
 import 'package:quick_shop/views/categories/categories_binding.dart';
 import 'package:quick_shop/views/categories/categories_controller.dart';
+import 'package:quick_shop/views/categories/categories_view.dart';
 import 'package:quick_shop/views/favourite/favourite_binding.dart';
 import 'package:quick_shop/views/favourite/favourite_controller.dart';
+import 'package:quick_shop/views/favourite/favourite_view.dart';
 import 'package:quick_shop/views/home/home_binding.dart';
 import 'package:quick_shop/views/home/home_controller.dart';
+import 'package:quick_shop/views/home/home_view.dart';
 import 'package:quick_shop/views/profile/profile_binding.dart';
 import 'package:quick_shop/views/profile/profile_controller.dart';
+import 'package:quick_shop/views/profile/profile_view.dart';
 
 class MainHomeController extends GetxController {
+  final List<Widget> screens = const [
+    HomeView(),
+    CategoriesView(),
+    CartView(),
+    FavouriteView(),
+    ProfileView(),
+  ];
+
   PageController pageController = PageController();
 
   int pageIndex = 0;

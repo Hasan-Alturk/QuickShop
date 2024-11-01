@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/onBoarding/on_boarding_controller.dart';
-import 'package:quick_shop/core/widgets/dots_indicator.dart';
-import 'package:quick_shop/core/widgets/custom_page_view_on_boarding_item.dart';
+import 'package:quick_shop/core/widgets/custom_dots_indicator.dart';
+import 'package:quick_shop/views/onBoarding/widgets/page_view_on_boarding_item.dart';
 import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class OnBoardingView extends GetView<OnBoardingController> {
@@ -64,7 +64,7 @@ class OnBoardingView extends GetView<OnBoardingController> {
       onPageChanged: controller.onPageChanged,
       itemCount: controller.items.length,
       itemBuilder: (context, index) {
-        return CustomPageViewOnBoardingItem(
+        return PageViewOnBoardingItem(
           image: controller.items[index].image,
           title: controller.items[index].title,
           subtitle: controller.items[index].subTitle,
@@ -81,7 +81,7 @@ class OnBoardingView extends GetView<OnBoardingController> {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              DotsIndicator(
+              CustomDotsIndicator(
                 itemsCount: controller.items.length,
                 currentPage: controller.currentPage,
               ),

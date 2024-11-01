@@ -5,13 +5,14 @@ class CustomRating extends StatelessWidget {
   const CustomRating({
     super.key,
     required this.isReadOnly,
+    required this.itemSize,
   });
   final bool isReadOnly;
-
+  final double itemSize;
   @override
   Widget build(BuildContext context) {
     return RatingBar.builder(
-      itemSize: 18,
+      itemSize: itemSize,
       initialRating: 3.5,
       minRating: 1,
       direction: Axis.horizontal,

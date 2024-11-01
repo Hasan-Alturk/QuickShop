@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/core/services/plugin_media_que.dart';
 
-class CustomContainerAuth extends StatelessWidget {
-  const CustomContainerAuth({
+class ContainerAuth extends StatelessWidget {
+  const ContainerAuth({
     super.key,
     required this.firstText,
     required this.secondText,
@@ -35,7 +35,7 @@ class CustomContainerAuth extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(6.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -43,7 +43,7 @@ class CustomContainerAuth extends StatelessWidget {
               child: GestureDetector(
                 onTap: firstOnTap,
                 child: Container(
-                  height: 44,
+                  height: 50,
                   decoration: ShapeDecoration(
                     color: firstColor,
                     shape: RoundedRectangleBorder(
@@ -69,7 +69,7 @@ class CustomContainerAuth extends StatelessWidget {
               child: GestureDetector(
                 onTap: secondOnTap,
                 child: Container(
-                  height: 45,
+                  height: 50,
                   decoration: ShapeDecoration(
                     color: secondColor,
                     shape: RoundedRectangleBorder(

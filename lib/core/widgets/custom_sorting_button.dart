@@ -1,7 +1,8 @@
-// custom_sorting_button.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class CustomSortingButton extends StatelessWidget {
   final void Function() onTap;
@@ -20,8 +21,13 @@ class CustomSortingButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-        height: 35,
+        padding: EdgeInsets.fromLTRB(
+          screenPadding / 2,
+          screenPadding / 4,
+          screenPadding / 2,
+          screenPadding / 4,
+        ),
+        height: 40,
         decoration: ShapeDecoration(
           color: Get.theme.colorScheme.surface,
           shape: RoundedRectangleBorder(
@@ -32,7 +38,7 @@ class CustomSortingButton extends StatelessWidget {
         child: Row(
           children: [
             Icon(Icons.swap_vert_sharp, color: Get.theme.colorScheme.primary),
-            const SizedBox(width: 4),
+            SizedBox(width: context.screenWidth * 0.01),
             Text(
               selectedSortOption,
               style: AppTextStyles().semiBold14().copyWith(

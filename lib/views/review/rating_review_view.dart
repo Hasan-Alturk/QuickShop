@@ -29,7 +29,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
       title: Text(
         "Ratings & Reviews",
         style: AppTextStyles()
-            .semiBold16()
+            .bold16()
             .copyWith(color: Get.theme.colorScheme.primary),
       ),
     );
@@ -49,7 +49,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
             _buildReviewFilterRow(context),
             SizedBox(height: context.screenHeight * 0.01),
             _buildReviewList(),
-            SizedBox(height: context.screenHeight * 0.1),
+            SizedBox(height: context.screenHeight * 0.08),
           ],
         ),
       ),
@@ -211,6 +211,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
                 Spacer(),
                 CustomRating(
                   isReadOnly: true,
+                  itemSize: 18,
                 ),
               ],
             ),
@@ -256,7 +257,7 @@ class RatingReviewView extends GetView<RatingReviewController> {
       id: "write_review",
       builder: (_) {
         return Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenPadding),
+          padding: EdgeInsets.all(screenPadding),
           child: SizedBox(
             width: context.screenWidth,
             height: 50,

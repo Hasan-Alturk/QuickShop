@@ -47,7 +47,7 @@ class LoginController extends GetxController {
   }
 
   void goToSignUp() {
-    Get.toNamed('/sign_up');
+    Get.offAndToNamed('/sign_up');
   }
 
   Future signInWithGoogle() async {

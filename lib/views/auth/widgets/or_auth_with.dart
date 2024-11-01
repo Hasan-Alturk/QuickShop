@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/core/services/plugin_media_que.dart';
 
-class CustomOrAuthWith extends StatelessWidget {
-  const CustomOrAuthWith({
+class OrAuthWith extends StatelessWidget {
+  const OrAuthWith({
     super.key,
     required this.text,
   });

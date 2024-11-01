@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
-class CustomBottomAuth extends StatelessWidget {
-  const CustomBottomAuth({
+class BottomAuth extends StatelessWidget {
+  const BottomAuth({
     super.key,
     required this.title,
     required this.subTitle,

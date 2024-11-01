@@ -117,7 +117,7 @@ class ProductController extends GetxController {
   }
 
   void goToProduct(Product newProduct) {
-    Get.toNamed("/product", arguments: newProduct);
+    // Get.toNamed("/product", arguments: newProduct);
 
     log("Navigating to product: ${newProduct.title}");
   }

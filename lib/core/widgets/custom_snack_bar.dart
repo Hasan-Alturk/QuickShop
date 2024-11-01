@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 
 class CustomSnackbar {
   static void showErrorSnackbar(String message) {
@@ -26,11 +27,10 @@ class CustomSnackbar {
       backgroundColor: Get.theme.colorScheme.secondary,
       colorText: Get.theme.colorScheme.onPrimary, // لون النص
       borderRadius: 32, // لتدوير الحواف
-      margin: const EdgeInsets.all(16), // هامش من كل الجوانب
-      padding: const EdgeInsets.symmetric(
-          vertical: 16, horizontal: 20), // مسافات داخلية أكبر
-      animationDuration: const Duration(milliseconds: 200),
-      duration: const Duration(seconds: 3), // مدة عرض الإشعار
+      margin: const EdgeInsets.all(screenPadding), // هامش من كل الجوانب
+      padding: const EdgeInsets.all(screenPadding), // مسافات داخلية أكبر
+      animationDuration: Duration(milliseconds: 200),
+      duration: Duration(seconds: 3), // مدة عرض الإشعار
       forwardAnimationCurve: Curves.linear,
       reverseAnimationCurve: Curves.linear,
       backgroundGradient: LinearGradient(
@@ -74,9 +74,8 @@ class CustomSnackbar {
       backgroundColor: Get.theme.colorScheme.secondary,
       colorText: Get.theme.colorScheme.onPrimary, // لون النص
       borderRadius: 32, // لتدوير الحواف
-      margin: const EdgeInsets.all(16), // هامش من كل الجوانب
-      padding: const EdgeInsets.symmetric(
-          vertical: 16, horizontal: 20), // مسافات داخلية أكبر
+      margin: const EdgeInsets.all(screenPadding), // هامش من كل الجوانب
+      padding: const EdgeInsets.all(screenPadding), // مسافات داخلية أكبر
       animationDuration: const Duration(milliseconds: 200),
       duration: const Duration(seconds: 3), // مدة عرض الإشعار
       forwardAnimationCurve: Curves.linear,

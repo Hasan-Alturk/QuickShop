@@ -67,7 +67,7 @@ class CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           size: 30,
           color: isActive
               ? Get.theme.colorScheme.onPrimary
-              : Get.theme.colorScheme.onSecondary.withOpacity(0.7),
+              : Get.theme.colorScheme.onSecondary.withOpacity(0.5),
         ),
       ),
     );

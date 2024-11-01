@@ -13,4 +13,7 @@ class AppColors {
   static const Color seconderyColorLight = Color(0xFF64748B);
   static const Color nonActiveColorLight = Color(0xFFE2E8F0);
   static const Color containerColorLight = Color(0xFFCBD5E1);
+
+
+  
 }

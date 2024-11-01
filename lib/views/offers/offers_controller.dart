@@ -7,7 +7,7 @@ import 'package:quick_shop/core/widgets/custom_snack_bar.dart';
 class OffersController extends GetxController {
   OffersController({required this.homeRepo});
   final HomeRepo homeRepo;
-  bool isLoadingOffers = false;
+  bool isLoadingOffers = true;
   final List<String> offersImages = [];
 
   @override
@@ -18,8 +18,7 @@ class OffersController extends GetxController {
 
   Future<void> getOffers() async {
     try {
-      isLoadingOffers = true;
-      update(["offers"]);
+      await Future.delayed(Duration(seconds: 2));
       Offers offers = await homeRepo.getOffers();
       for (Offer offer in offers.data) {
         offersImages.add(offer.xxlargeUrl);

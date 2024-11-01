@@ -30,7 +30,6 @@ class SignUpController extends GetxController {
     required this.authRepo,
   });
 
-
   void onPageChanged(int page) {
     currentPage = page;
     update();
@@ -44,7 +43,7 @@ class SignUpController extends GetxController {
   }
 
   void goToLogin() {
-    Get.toNamed('/login');
+    Get.offAndToNamed('/login');
   }
 
   void goToSetNewPassword() {

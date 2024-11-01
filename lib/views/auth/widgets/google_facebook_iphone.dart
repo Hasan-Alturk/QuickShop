@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/assets.dart';
 import 'package:quick_shop/core/services/plugin_media_que.dart';
 
-class CustomGoogleFacebookIphone extends StatelessWidget {
-  const CustomGoogleFacebookIphone({
+class GoogleFacebookIphone extends StatelessWidget {
+  const GoogleFacebookIphone({
     super.key,
     required this.onTapGoogle,
     required this.onTapFacebook,

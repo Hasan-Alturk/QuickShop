@@ -7,10 +7,12 @@ class LoginBinding extends Bindings {
   @override
   void dependencies() {
     Get.put(AuthRepo(Get.find<Dio>()));
-    Get.put(LoginController(
-      authRepo: Get.find<AuthRepo>(),
-      //  storageService: Get.find<StorageService>(),
-    ));
+    Get.put(
+      LoginController(
+        authRepo: Get.find<AuthRepo>(),
+      ),
+      // permanent: true,
+    );
     // Get.put(LoginController());
     //  Get.lazyPut<RegisterController>(() => RegisterController());
   }

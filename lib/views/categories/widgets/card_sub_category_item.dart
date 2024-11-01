@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
-class CustomCardSubCategoryItem extends StatelessWidget {
-  const CustomCardSubCategoryItem({
+class CardSubCategoryItem extends StatelessWidget {
+  const CardSubCategoryItem({
     super.key,
     required this.image,
     required this.categoryName,
-    required this.onTap, // إضافة حدث عند الضغط
+    required this.onTap,
   });
 
   final String image;
   final String categoryName;
-  final void Function() onTap; // حدث الضغط
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap, // استدعاء حدث الضغط عند الضغط
+      onTap: onTap,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -35,7 +36,7 @@ class CustomCardSubCategoryItem extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: context.screenHeight * 0.01),
           Text(
             categoryName,
             style: AppTextStyles().medium10().copyWith(

@@ -14,8 +14,8 @@ class SplashView extends GetView<SplashController> {
       backgroundColor: Get.theme.colorScheme.primary,
       body: Stack(
         children: [
-          _buildSplashBackground(context), // تمرير context
-          _buildSplashContent(context), // تمرير context
+          _buildSplashBackground(context), 
+          _buildSplashContent(context),
         ],
       ),
     );

@@ -3,27 +3,27 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 
-class CustomCardCategory extends StatelessWidget {
-  const CustomCardCategory({
+class CardCategory extends StatelessWidget {
+  const CardCategory({
     super.key,
     required this.image,
     required this.categoryName,
-    required this.isSelected, 
+    required this.isSelected,
     required this.onTap,
   });
 
   final String image;
   final String categoryName;
   final bool isSelected;
-  final void Function() onTap; 
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap, 
+      onTap: onTap,
       child: Container(
-        width: 65,
-        height: 65,
+        width: 60,
+        height: 60,
         decoration: ShapeDecoration(
           color: isSelected
               ? Get.theme.colorScheme.primary

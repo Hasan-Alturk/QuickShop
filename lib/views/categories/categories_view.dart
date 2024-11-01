@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/views/categories/categories_controller.dart';
-import 'package:quick_shop/core/widgets/custom_card_category.dart';
-import 'package:quick_shop/core/widgets/custom_card_sub_category_item.dart';
+import 'package:quick_shop/views/categories/widgets/card_category.dart';
+import 'package:quick_shop/views/categories/widgets/card_sub_category_item.dart';
 import 'package:quick_shop/core/widgets/custom_search.dart';
 import 'package:quick_shop/core/services/plugin_media_que.dart';
 
@@ -16,41 +16,54 @@ class CategoriesView extends GetView<CategoriesController> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenPadding),
+          padding: EdgeInsets.all(screenPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: context.screenHeight * 0.02),
               const CustomSearch(
                 icon: Icons.search,
                 text: "Search Categories",
               ),
               SizedBox(height: context.screenHeight * 0.012),
-              GetBuilder<CategoriesController>(
-                builder: (_) {
-                  return Expanded(
-                    child: Padding(
+              Expanded(
+                child: GetBuilder<CategoriesController>(
+                  builder: (_) {
+                    return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 6),
                       child: Row(
                         children: [
-                          Expanded(
-                            flex: 2,
-                            child: _buildCategoryList(),
-                          ),
+                          _buildCategoryList(),
                           _buildVerticalDivider(context),
-                          Expanded(
-                            flex: 8,
-                            child: _buildSubcategoryList(),
-                          ),
+                          _buildSubcategoryList(),
                         ],
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildCategoryList() {
+    return Expanded(
+      flex: 2,
+      child: ListView.builder(
+        itemCount: controller.categories.length,
+        itemBuilder: (_, index) {
+          return Padding(
+            padding: EdgeInsets.symmetric(vertical: screenPadding / 4),
+            child: CardCategory(
+              image: controller.categories[index],
+              categoryName: controller.categoriesNames[index],
+              isSelected: controller.selectedCategoryIndex == index,
+              onTap: () => controller.selectCategory(index),
+            ),
+          );
+        },
       ),
     );
   }
@@ -63,37 +76,20 @@ class CategoriesView extends GetView<CategoriesController> {
     );
   }
 
-  Widget _buildCategoryList() {
-    return ListView.builder(
-      itemCount: controller.categories.length,
-      scrollDirection: Axis.vertical,
-      itemBuilder: (_, index) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: CustomCardCategory(
-            image: controller.categories[index],
-            categoryName: controller.categoriesNames[index],
-            isSelected: controller.selectedCategoryIndex == index,
-            onTap: () => controller.selectCategory(index),
-          ),
-        );
-      },
-    );
-  }
-
   Widget _buildSubcategoryList() {
-    return ListView(
-      children: [
-        _buildExpansionTile(title: "Jackets"),
-        _buildExpansionTile(title: "Sweater"),
-        _buildExpansionTile(title: "Coats"),
-      ],
+    return Expanded(
+      flex: 8,
+      child: ListView(
+        children: [
+          _buildExpansionTile(title: "Jackets"),
+          _buildExpansionTile(title: "Sweater"),
+          _buildExpansionTile(title: "Coats"),
+        ],
+      ),
     );
   }
 
-  Widget _buildExpansionTile({
-    required String title,
-  }) {
+  Widget _buildExpansionTile({required String title}) {
     return GetBuilder<CategoriesController>(
       builder: (_) {
         return ExpansionTile(
@@ -112,14 +108,14 @@ class CategoriesView extends GetView<CategoriesController> {
           },
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: EdgeInsets.symmetric(vertical: screenPadding / 2),
               child: Wrap(
-                spacing: 12.0, // Horizontal spacing between items
-                runSpacing: 12.0, // Vertical spacing between rows
+                spacing: screenPadding,
+                runSpacing: screenPadding,
                 children: List.generate(
                   controller.subcategories.length,
                   (index) {
-                    return CustomCardSubCategoryItem(
+                    return CardSubCategoryItem(
                       image: controller.subcategories[index],
                       categoryName: controller.subcategoriesNames[index],
                       onTap: () {},

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
+import 'package:quick_shop/core/services/plugin_media_que.dart';
 
 class CustomFilterButton extends StatelessWidget {
   final void Function() onTap;
@@ -12,8 +14,13 @@ class CustomFilterButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-        height: 35,
+        padding: EdgeInsets.fromLTRB(
+          screenPadding / 2,
+          screenPadding / 4,
+          screenPadding / 2,
+          screenPadding / 4,
+        ),
+        height: 40,
         decoration: ShapeDecoration(
           color: Get.theme.colorScheme.surface,
           shape: RoundedRectangleBorder(
@@ -25,7 +32,7 @@ class CustomFilterButton extends StatelessWidget {
           children: [
             Icon(Icons.filter_list_outlined,
                 color: Get.theme.colorScheme.primary),
-            const SizedBox(width: 4),
+            SizedBox(width: context.screenWidth * 0.01),
             Text(
               "Filter",
               style: AppTextStyles().semiBold14().copyWith(

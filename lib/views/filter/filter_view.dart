@@ -15,8 +15,7 @@ class FilterView extends GetView<FilterController> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(
-                screenPadding, 0, screenPadding, context.screenHeight * 0.1),
+            padding: EdgeInsets.all(screenPadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -119,8 +118,8 @@ class FilterView extends GetView<FilterController> {
     return GetBuilder<FilterController>(
       id: "category",
       builder: (_) => Wrap(
-        spacing: 10.0,
-        runSpacing: 10.0,
+        spacing: screenPadding,
+        runSpacing: screenPadding,
         children: controller.categories.map(
           (category) {
             return ChoiceChip(
@@ -152,8 +151,8 @@ class FilterView extends GetView<FilterController> {
     return GetBuilder<FilterController>(
       id: "color",
       builder: (_) => Wrap(
-        spacing: 10.0,
-        runSpacing: 10.0,
+        spacing: screenPadding,
+        runSpacing: screenPadding,
         children: controller.colors.map(
           (color) {
             return ChoiceChip(
@@ -185,8 +184,8 @@ class FilterView extends GetView<FilterController> {
     return GetBuilder<FilterController>(
       id: "size",
       builder: (_) => Wrap(
-        spacing: 10.0,
-        runSpacing: 10.0,
+        spacing: screenPadding,
+        runSpacing: screenPadding,
         children: controller.sizes.map(
           (size) {
             return ChoiceChip(

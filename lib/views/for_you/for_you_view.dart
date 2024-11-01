@@ -4,8 +4,8 @@ import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
 import 'package:quick_shop/core/widgets/custom_filter_button.dart';
 import 'package:quick_shop/core/widgets/custom_sorting_button.dart';
-import 'package:quick_shop/core/widgets/product_grid_view.dart';
-import 'package:quick_shop/core/widgets/sorting_options_bottom_sheet.dart';
+import 'package:quick_shop/core/widgets/custom_product_grid_view.dart';
+import 'package:quick_shop/core/widgets/custom_sorting_bottom_sheet.dart';
 import 'package:quick_shop/views/for_you/for_you_controller.dart';
 import 'package:quick_shop/core/widgets/custom_search.dart';
 import 'package:quick_shop/core/services/plugin_media_que.dart';
@@ -19,7 +19,7 @@ class ForYouView extends GetView<ForYouController> {
       appBar: _buildAppBar(),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenPadding),
+          padding: EdgeInsets.all(screenPadding),
           child: Column(
             children: [
               _buildSearch(),
@@ -75,7 +75,8 @@ class ForYouView extends GetView<ForYouController> {
               return CustomSortingButton(
                 onTap: () {
                   Get.bottomSheet(
-                    SortingOptionsBottomSheet(
+                    isScrollControlled: true,
+                    CustomSortingBottomSheet(
                       selectedOption: controller.selectedSortOption,
                       onSelectOption: (selectedTitle) {
                         controller.changeSortingContainer(
@@ -103,7 +104,7 @@ class ForYouView extends GetView<ForYouController> {
           GetBuilder<ForYouController>(
             id: "Products",
             builder: (_) {
-              return ProductGridView(
+              return CustomProductGridView(
                 products: controller.products,
                 onTap: (index) {
                   final selectedProduct = controller.products[index];

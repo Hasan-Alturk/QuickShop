@@ -78,8 +78,8 @@ class HomeController extends GetxController {
       ],
       title: "Arduino",
       description: "Lorem Ipsum is simply dummy text of the ",
-      originalPrice: "195\$",
-      discountedPrice: "130\$",
+      originalPrice: "130\$",
+      discountedPrice: "",
     ),
     Product(
       images: [

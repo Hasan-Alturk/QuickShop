@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
+import 'package:quick_shop/core/constants/assets.dart';
 import 'package:quick_shop/core/services/plugin_media_que.dart';
 
-class CustomHeaderAuth extends StatelessWidget {
-  const CustomHeaderAuth({
+class HeaderAuth extends StatelessWidget {
+  const HeaderAuth({
     super.key,
     required this.title,
-    required this.image,
   });
-  final String image;
   final String title;
 
   @override
@@ -29,12 +28,13 @@ class CustomHeaderAuth extends StatelessWidget {
           child: Column(
             children: [
               SvgPicture.asset(
-                image,
+                Assets.imagesLogoWhiteSmall,
                 fit: BoxFit.cover,
               ),
               SizedBox(height: context.screenHeight * 0.02),
               Text(
                 title,
+                maxLines: 2,
                 style: AppTextStyles().semiBold24().copyWith(
                       color: Get.theme.colorScheme.onPrimary,
                     ),
