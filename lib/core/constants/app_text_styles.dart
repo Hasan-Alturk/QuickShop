@@ -37,6 +37,14 @@ class AppTextStyles {
   }
 
   // Bold
+
+  TextStyle bold20() {
+    return TextStyle(
+      fontWeight: FontWeight.w700,
+      fontSize: getResponsiveFontSize(fontSize: 20),
+    );
+  }
+
   TextStyle bold16() {
     return TextStyle(
       fontWeight: FontWeight.w700,
@@ -81,6 +89,7 @@ class AppTextStyles {
   }
 
   // Medium
+
   TextStyle medium14() {
     return TextStyle(
       fontWeight: FontWeight.w500,

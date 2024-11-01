@@ -42,7 +42,7 @@ class ProductView extends GetView<ProductController> {
             _buildInfo(context, title: "Supports", onTap: () {}),
             SizedBox(height: context.screenHeight * 0.03),
             _buildYouCanAlsoLikeThis(context),
-            SizedBox(height: context.screenHeight * 0.06),
+            SizedBox(height: context.screenHeight * 0.1),
           ],
         ),
       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quick_shop/core/constants/app_constants.dart';
 import 'package:quick_shop/core/constants/app_text_styles.dart';
+import 'package:quick_shop/core/widgets/custom_button.dart';
 import 'filter_controller.dart';
 import 'package:quick_shop/core/services/plugin_media_que.dart';
 
@@ -41,13 +42,14 @@ class FilterView extends GetView<FilterController> {
                 _buildSectionTitle('Size'),
                 SizedBox(height: context.screenHeight * 0.012),
                 _buildSizeChips(),
+                SizedBox(height: context.screenHeight * 0.1),
               ],
             ),
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: _buildActionButtons(),
+      floatingActionButton: _buildActionButtons(context),
     );
   }
 
@@ -180,7 +182,7 @@ class FilterView extends GetView<FilterController> {
     );
   }
 
-  Widget _buildSizeChips() {
+  GetBuilder<FilterController> _buildSizeChips() {
     return GetBuilder<FilterController>(
       id: "size",
       builder: (_) => Wrap(
@@ -213,60 +215,23 @@ class FilterView extends GetView<FilterController> {
     );
   }
 
-  Widget _buildActionButtons() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Spacer(),
-        Expanded(
-          flex: 3,
-          child: ElevatedButton(
-            onPressed: () {
-              Get.back();
-            },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                side: BorderSide(
-                  color: Get.theme.colorScheme.secondary,
-                ),
-              ),
-              foregroundColor: Get.theme.colorScheme.secondary,
-              backgroundColor: Get.theme.colorScheme.onPrimary,
-            ),
-            child: Text(
-              'Discard',
-              style: AppTextStyles()
-                  .normal14()
-                  .copyWith(color: Get.theme.colorScheme.secondary),
+  GetBuilder<FilterController> _buildActionButtons(BuildContext context) {
+    return GetBuilder<FilterController>(
+      id: "apply",
+      builder: (_) {
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenPadding),
+          child: SizedBox(
+            width: context.screenWidth,
+            height: 50,
+            child: CustomButton(
+              onPressed: () {},
+              text: "Apply",
+              isLoading: false,
             ),
           ),
-        ),
-        const Spacer(),
-        Expanded(
-          flex: 3,
-          child: ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                side: BorderSide(
-                  color: Get.theme.colorScheme.secondary,
-                ),
-              ),
-              foregroundColor: Get.theme.colorScheme.secondary,
-              backgroundColor: Get.theme.colorScheme.primary,
-            ),
-            child: Text(
-              'Apply',
-              style: AppTextStyles()
-                  .normal14()
-                  .copyWith(color: Get.theme.colorScheme.onPrimary),
-            ),
-          ),
-        ),
-        const Spacer(),
-      ],
+        );
+      },
     );
   }
 }

@@ -16,6 +16,7 @@ class CustomCardProduct extends StatelessWidget {
     required this.onTap,
     this.discountedPrice,
     this.rating = 3.5,
+    this.numberOfReviews = "0",
   });
 
   final String image;
@@ -23,12 +24,13 @@ class CustomCardProduct extends StatelessWidget {
   final String description;
   final String originalPrice;
   final String? discountedPrice;
+  final String numberOfReviews;
   final double rating;
   final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: ShapeDecoration(
@@ -62,7 +64,7 @@ class CustomCardProduct extends StatelessWidget {
         image,
         fit: BoxFit.cover,
         height: context.screenHeight * 0.22,
-        width: double.infinity,
+        width: context.screenWidth,
       ),
     );
   }
@@ -75,28 +77,32 @@ class CustomCardProduct extends StatelessWidget {
         children: [
           _buildText(
             title,
-            AppTextStyles().bold16(),
+            AppTextStyles().semiBold18(),
             Get.theme.colorScheme.secondary,
           ),
           SizedBox(height: context.screenHeight * 0.005),
           _buildText(
             description,
-            AppTextStyles().medium12(),
+            AppTextStyles().semiBold14(),
             Get.theme.colorScheme.onSurface,
           ),
           SizedBox(height: context.screenHeight * 0.005),
+          Row(
+            children: [
+              CustomRating(
+                isReadOnly: true,
+                itemSize: 18,
+              ),
+              SizedBox(width: context.screenWidth * 0.02),
+              _buildText(
+                "($numberOfReviews)",
+                AppTextStyles().medium10(),
+                Get.theme.colorScheme.onSurface,
+              ),
+            ],
+          ),
+          SizedBox(height: context.screenHeight * 0.01),
           _buildPriceRow(context),
-          SizedBox(height: context.screenHeight * 0.005),
-          CustomRating(
-            isReadOnly: true,
-            itemSize: 18,
-          ),
-          SizedBox(height: context.screenHeight * 0.005),
-          _buildText(
-            'Based on 800 reviews',
-            AppTextStyles().medium8(),
-            Get.theme.colorScheme.onSurface,
-          ),
         ],
       ),
     );
@@ -107,14 +113,14 @@ class CustomCardProduct extends StatelessWidget {
       children: [
         _buildText(
           originalPrice,
-          AppTextStyles().semiBold18(),
+          AppTextStyles().bold20(),
           Get.theme.colorScheme.primary,
         ),
         SizedBox(width: context.screenWidth * 0.05),
         if (discountedPrice != null)
           _buildText(
             discountedPrice!,
-            AppTextStyles().bold16(),
+            AppTextStyles().normal16(),
             Get.theme.colorScheme.onSurface,
             decoration: TextDecoration.lineThrough,
           ),
